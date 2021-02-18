@@ -12,10 +12,10 @@ public class Bullet : MonoBehaviour
     /// <summary>
     /// 弾発射
     /// </summary>
-    public void ShotBullet()
+    public void ShotBullet(Vector3 dir) //  <=  ☆①　受け取る側の引数
     {
         //移動
-        GetComponent<Rigidbody2D>().AddForce(transform.up * bulletSpeed);
+        GetComponent<Rigidbody2D>().AddForce(dir * bulletSpeed);
 
         // Debug.Logでこの処理が実行されているか確認
         Debug.Log("発射速度 : " + bulletSpeed);
