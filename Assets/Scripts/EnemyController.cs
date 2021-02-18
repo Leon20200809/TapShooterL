@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("エネミー移動速度")]
+    public float enemySpeed;
+
     [Header("エネミー消去ライン")]
     public　Vector3 deadLine;
 
@@ -19,12 +22,37 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         //オブジェクトを移動させる
-        this.gameObject.transform.Translate(0, -0.005f, 0);
+        this.gameObject.transform.Translate(0, -enemySpeed, 0);
 
         //特定位置を超えると破棄
         if (transform.localPosition.y < deadLine.y)
         {
+            //破棄
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Bullet")
+        {
+            //ログ表示
+            Debug.Log("接触判定；" + col.gameObject.tag);
+
+            DestroyObj(col);
+        }
+    }
+
+    /// <summary>
+    /// オブジェクト破棄（弾＆エネミー）
+    /// </summary>
+    /// <param name="col"></param>
+    void DestroyObj(Collider2D col)
+    {
+        //弾破棄
+        Destroy(col.gameObject);
+
+        //エネミー破棄
+        Destroy(gameObject);
     }
 }
