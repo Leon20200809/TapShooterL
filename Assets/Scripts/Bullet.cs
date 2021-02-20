@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [Header("弾威力")]
+    public int bulletPow;
+
     [Header("弾速度")]
     public float bulletSpeed;
 
