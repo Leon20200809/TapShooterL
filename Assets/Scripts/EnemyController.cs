@@ -42,8 +42,13 @@ public class EnemyController : MonoBehaviour
             //ログ表示
             Debug.Log("接触判定；" + col.gameObject.tag);
 
+            //プレイヤーの弾情報取得
+            if (col.gameObject.TryGetComponent(out Bullet bullet))
+            {
+                UpdateHp(bullet);
+            }
+
             DestroyBullet(col);
-            UpdateHp();
 
         }
     }
@@ -58,10 +63,13 @@ public class EnemyController : MonoBehaviour
         Destroy(col.gameObject);
     }
 
-    void UpdateHp()
+    /// <summary>
+    /// エネミーHP更新
+    /// </summary>
+    void UpdateHp(Bullet bullet)
     {
         //HP減らす
-        enemyHp -= 15;
+        enemyHp -= bullet.bulletPow;
 
         if (enemyHp <= 0)
         {
