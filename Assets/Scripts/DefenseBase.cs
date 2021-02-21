@@ -16,13 +16,33 @@ public class DefenseBase : MonoBehaviour
         {
             Debug.Log("接触判定；" + col.gameObject.tag);
 
-            //拠点HP減らす
-            playerHp -= 10;
-            Debug.Log("残拠点HP：" + playerHp);
+            //プレイヤーの弾情報取得
+            if (col.gameObject.TryGetComponent(out EnemyController enemyController))
+            {
+                UpdatePlayerHp(enemyController);
 
+            }
 
             //エネミー破棄
             Destroy(col.gameObject);
+        }
+
+    }
+
+    void UpdatePlayerHp(EnemyController enemyController)
+    {
+        //拠点HP減らす
+        playerHp -= enemyController.enemyAtkPow;
+        Debug.Log("残拠点HP：" + playerHp);
+
+        if (playerHp <= 0)
+        {
+            // TODO ゲームオーバー処理
+            Debug.Log("ゲームオーバー" + playerHp);
+        }
+        else
+        {
+            Debug.Log("残HP：" + playerHp);
         }
 
     }
