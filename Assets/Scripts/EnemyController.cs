@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("エネミーHP")]
+    public int enemyHp;
+
     [Header("エネミー移動速度")]
     public float enemySpeed;
 
@@ -39,20 +42,44 @@ public class EnemyController : MonoBehaviour
             //ログ表示
             Debug.Log("接触判定；" + col.gameObject.tag);
 
-            DestroyObj(col);
+            //プレイヤーの弾情報取得
+            if (col.gameObject.TryGetComponent(out Bullet bullet))
+            {
+                UpdateHp(bullet);
+            }
+
+            DestroyBullet(col);
+
         }
     }
 
     /// <summary>
-    /// オブジェクト破棄（弾＆エネミー）
+    /// オブジェクト破棄（弾）
     /// </summary>
     /// <param name="col"></param>
-    void DestroyObj(Collider2D col)
+    void DestroyBullet(Collider2D col)
     {
         //弾破棄
         Destroy(col.gameObject);
+    }
 
-        //エネミー破棄
-        Destroy(gameObject);
+    /// <summary>
+    /// エネミーHP更新
+    /// </summary>
+    void UpdateHp(Bullet bullet)
+    {
+        //HP減らす
+        enemyHp -= bullet.bulletPow;
+
+        if (enemyHp <= 0)
+        {
+            //エネミー破棄
+            Destroy(gameObject);
+            Debug.Log("エネミーを倒した！" + enemyHp);
+        }
+        else
+        {
+            Debug.Log("残HP：" + enemyHp);
+        }
     }
 }
