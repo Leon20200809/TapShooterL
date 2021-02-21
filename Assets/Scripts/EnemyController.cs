@@ -9,6 +9,9 @@ public class EnemyController : MonoBehaviour
     [Header("エネミーHP")]
     public int enemyHp;
 
+    [Header("エネミー攻撃力")]
+    public int enemyAtkPow;
+
     [Header("エネミー移動速度")]
     public float enemySpeed;
 
@@ -45,7 +48,7 @@ public class EnemyController : MonoBehaviour
             //プレイヤーの弾情報取得
             if (col.gameObject.TryGetComponent(out Bullet bullet))
             {
-                UpdateHp(bullet);
+                UpdateEnemyHp(bullet);
             }
 
             DestroyBullet(col);
@@ -66,7 +69,7 @@ public class EnemyController : MonoBehaviour
     /// <summary>
     /// エネミーHP更新
     /// </summary>
-    void UpdateHp(Bullet bullet)
+    void UpdateEnemyHp(Bullet bullet)
     {
         //HP減らす
         enemyHp -= bullet.bulletPow;
