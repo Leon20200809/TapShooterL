@@ -847,7 +847,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.429
+  m_Value: 0.559
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1053,6 +1053,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHp: 100
+  txtPlayerHp: {fileID: 1687499649}
+  sliderPlayerHp: {fileID: 1142212669}
 --- !u!50 &1492950733
 Rigidbody2D:
   serializedVersion: 4
@@ -1144,7 +1146,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100 /100
+  m_Text: 
 --- !u!222 &1687499650
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1345,7 +1347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHp: 30
-  enemyAtkPow: 100
+  enemyAtkPow: 150
   enemySpeed: 0.005
   deadLine: {x: 0, y: -1500, z: 0}
 --- !u!70 &1871507478
