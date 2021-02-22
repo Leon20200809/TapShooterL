@@ -17,11 +17,18 @@ public class DefenseBase : MonoBehaviour
     [SerializeField]
     Slider sliderPlayerHp;
 
-    private void Start()
-    {
-        maxPlayerHp = playerHp;
+    GameManager gameManager;
 
+    /// <summary>
+    /// 疑似スタートメソッド
+    /// </summary>
+    /// <param name="gameManager"></param>
+    public void SetUpDefenseBase(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+        maxPlayerHp = playerHp;
         DisplayPlayerHp();
+
     }
 
 
@@ -44,6 +51,10 @@ public class DefenseBase : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// プレイヤーHPの更新
+    /// </summary>
+    /// <param name="enemyController"></param>
     void UpdatePlayerHp(EnemyController enemyController)
     {
         //拠点HP減らす
@@ -56,10 +67,14 @@ public class DefenseBase : MonoBehaviour
 
         Debug.Log("残拠点HP：" + playerHp);
 
-        if (playerHp <= 0)
+        if (playerHp <= 0 && gameManager.isGameUp == false)
         {
-            // TODO ゲームオーバー処理
             Debug.Log("ゲームオーバー" + playerHp);
+
+            // TODO ゲームオーバー処理
+            gameManager.SwitchGameUp(true);
+
+
         }
         else
         {

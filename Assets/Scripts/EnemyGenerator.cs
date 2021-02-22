@@ -42,11 +42,8 @@ public class EnemyGenerator : MonoBehaviour
         //エネミー出現（生成）
         GameObject enemySetObj = Instantiate(enemyObjPrefab, transform, false);
 
-        //
-        enemySetObj.GetComponent<EnemyController>().SetUpEnemy();
-
         //EnemyController.csのメソッド実行
-        //enemyController.SetUpEnemy();
+        enemySetObj.GetComponent<EnemyController>().SetUpEnemy();
 
         //エネミー出現数カウント
         generateCount++;
