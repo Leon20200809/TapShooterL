@@ -24,9 +24,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     Slider sliderEnemyHp;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// 疑似スタートメソッド
+    /// </summary>
+    public void SetUpEnemy()
     {
+        //X軸のどこかにランダム生成
+        transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-650, 650), transform.localPosition.y, 0);
         maxEnemyHp = enemyHp;
         DisplayEnemyHp();
     }

@@ -68,9 +68,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHp: 30
-  enemyAtkPow: 150
+  enemyAtkPow: 20
   enemySpeed: 0.005
-  deadLine: {x: 0, y: -1500, z: 0}
+  deadLine: {x: 0, y: -2500, z: 0}
   sliderEnemyHp: {fileID: 7943149632715130699}
 --- !u!1 &7943149632715130701
 GameObject:
