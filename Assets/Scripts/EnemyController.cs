@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 
@@ -8,6 +10,7 @@ public class EnemyController : MonoBehaviour
 {
     [Header("エネミーHP")]
     public int enemyHp;
+    int maxEnemyHp;
 
     [Header("エネミー攻撃力")]
     public int enemyAtkPow;
@@ -18,10 +21,14 @@ public class EnemyController : MonoBehaviour
     [Header("エネミー消去ライン")]
     public　Vector3 deadLine;
 
+    [SerializeField]
+    Slider sliderEnemyHp;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        maxEnemyHp = enemyHp;
+        DisplayEnemyHp();
     }
 
     // Update is called once per frame
@@ -74,6 +81,11 @@ public class EnemyController : MonoBehaviour
         //HP減らす
         enemyHp -= bullet.bulletPow;
 
+        //上限下限値設定
+        enemyHp = Mathf.Clamp(enemyHp, 0, maxEnemyHp);
+
+        DisplayEnemyHp();
+
         if (enemyHp <= 0)
         {
             //エネミー破棄
@@ -84,5 +96,13 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("残HP：" + enemyHp);
         }
+    }
+
+    /// <summary>
+    /// enemyHpのUI更新
+    /// </summary>
+    void DisplayEnemyHp()
+    {
+        sliderEnemyHp.DOValue((float)enemyHp / maxEnemyHp, 0.25f);
     }
 }
