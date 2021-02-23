@@ -612,6 +612,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1440, y: 200}
   m_EdgeRadius: 0
+--- !u!1 &763815621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 763815622}
+  m_Layer: 5
+  m_Name: TemporaryObjectContainer
+  m_TagString: TemporaryObjectContainer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &763815622
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763815621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2087415681}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &967375831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,6 +1065,7 @@ MonoBehaviour:
   playerHp: 100
   txtPlayerHp: {fileID: 1687499649}
   sliderPlayerHp: {fileID: 1142212669}
+  enemyAtkEffectPrefab: {fileID: 6062978516678252835, guid: f14229e79b79fb04db9a1f753d8eb981, type: 3}
 --- !u!50 &1492950733
 Rigidbody2D:
   serializedVersion: 4
@@ -1304,6 +1340,7 @@ MonoBehaviour:
   defenseBase: {fileID: 1492950732}
   playerController: {fileID: 967375833}
   enemyGenerator: {fileID: 866358}
+  tOCTran: {fileID: 763815622}
 --- !u!4 &1900919092
 Transform:
   m_ObjectHideFlags: 0
@@ -1524,6 +1561,7 @@ RectTransform:
   - {fileID: 866357}
   - {fileID: 1492950731}
   - {fileID: 2101021506}
+  - {fileID: 763815622}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

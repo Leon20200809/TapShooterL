@@ -17,6 +17,9 @@ public class DefenseBase : MonoBehaviour
     [SerializeField]
     Slider sliderPlayerHp;
 
+    [SerializeField]
+    GameObject enemyAtkEffectPrefab;
+
     GameManager gameManager;
 
     /// <summary>
@@ -45,10 +48,23 @@ public class DefenseBase : MonoBehaviour
 
             }
 
+            //エフェクト生成
+            GenerateEnemyAtkEffect(col.gameObject.transform);
+
             //エネミー破棄
             Destroy(col.gameObject);
         }
 
+    }
+
+    void GenerateEnemyAtkEffect(Transform enemyAtkTran)
+    {
+        GameObject enemyAtkEffect = Instantiate(enemyAtkEffectPrefab, enemyAtkTran, false);
+
+        //位置情報を一時保存用オブジェクトへ転送（子オブジェクトとする）プロパティ
+        enemyAtkEffect.transform.SetParent(TransformHelper.TOCTran);
+
+        Destroy(enemyAtkEffect, 2f);
     }
 
     /// <summary>

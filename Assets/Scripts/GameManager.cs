@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     EnemyGenerator enemyGenerator;
 
+    [SerializeField]
+    Transform tOCTran;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,12 @@ public class GameManager : MonoBehaviour
         defenseBase.SetUpDefenseBase(this);
         playerController.SetUpPlayer(this);
         enemyGenerator.SetUpEnemyGenerator(this);
+
+        //位置情報一時保存用
+        //TransformHelper.SetTOCTran(tOCTran);
+
+        //位置情報一時保存用プロパティ書き換え
+        TransformHelper.TOCTran = tOCTran;
     }
 
     /// <summary>
