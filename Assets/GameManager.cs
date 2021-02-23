@@ -10,11 +10,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     DefenseBase defenseBase;
 
+    [SerializeField]
+    PlayerController playerController;
+
+    [SerializeField]
+    EnemyGenerator enemyGenerator;
+
     // Start is called before the first frame update
     void Start()
     {
         SwitchGameUp(false);
         defenseBase.SetUpDefenseBase(this);
+        playerController.SetUpPlayer(this);
+        enemyGenerator.SetUpEnemyGenerator(this);
     }
 
     /// <summary>

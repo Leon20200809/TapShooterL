@@ -1301,6 +1301,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameUp: 0
+  defenseBase: {fileID: 1492950732}
+  playerController: {fileID: 967375833}
+  enemyGenerator: {fileID: 866358}
 --- !u!4 &1900919092
 Transform:
   m_ObjectHideFlags: 0

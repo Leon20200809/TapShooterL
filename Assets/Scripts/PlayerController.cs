@@ -6,10 +6,20 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject bulletPrefab;
 
+    GameManager gameManager;
+
+    
+    public void SetUpPlayer(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.isGameUp) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             //タップした位置情報を取得

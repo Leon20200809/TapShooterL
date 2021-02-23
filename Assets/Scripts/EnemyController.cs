@@ -24,11 +24,16 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     Slider sliderEnemyHp;
 
+    [SerializeField]
+    GameObject bulletEffectPrefab;
+
+
     /// <summary>
     /// 疑似スタートメソッド
     /// </summary>
     public void SetUpEnemy()
     {
+        
         //X軸のどこかにランダム生成
         transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-650, 650), transform.localPosition.y, 0);
         maxEnemyHp = enemyHp;
@@ -49,6 +54,10 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// プレイヤー弾HIT時
+    /// </summary>
+    /// <param name="col"></param>
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Bullet")
@@ -61,6 +70,8 @@ public class EnemyController : MonoBehaviour
             {
                 UpdateEnemyHp(bullet);
             }
+
+            GenerateBulletEffect(col.gameObject.transform);
 
             DestroyBullet(col);
 
@@ -75,6 +86,17 @@ public class EnemyController : MonoBehaviour
     {
         //弾破棄
         Destroy(col.gameObject);
+    }
+
+    /// <summary>
+    /// HITエフェクト生成
+    /// </summary>
+    /// <param name="hitTran"></param>
+    void GenerateBulletEffect(Transform hitTran)
+    {
+        GameObject effect = Instantiate(bulletEffectPrefab, hitTran, false);
+        effect.transform.SetParent(transform);
+        Destroy(effect, 2f);
     }
 
     /// <summary>

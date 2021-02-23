@@ -72,6 +72,7 @@ MonoBehaviour:
   enemySpeed: 0.005
   deadLine: {x: 0, y: -2500, z: 0}
   sliderEnemyHp: {fileID: 7943149632715130699}
+  bulletEffectPrefab: {fileID: 7906057700657667004, guid: 8d7e7663c65699240b23acea1536055c, type: 3}
 --- !u!1 &7943149632715130701
 GameObject:
   m_ObjectHideFlags: 0

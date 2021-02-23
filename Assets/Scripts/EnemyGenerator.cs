@@ -16,6 +16,17 @@ public class EnemyGenerator : MonoBehaviour
     //時間タイマー
     float timer;
 
+    GameManager gameManager;
+
+    /// <summary>
+    /// 疑似スタートメソッド
+    /// </summary>
+    /// <param name="gameManager"></param>
+    public void SetUpEnemyGenerator(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+    }
+
     /// <summary>
     /// エネミー出現
     /// </summary>
@@ -60,6 +71,6 @@ public class EnemyGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EnemyPop();
+        if(!gameManager.isGameUp) EnemyPop();
     }
 }
