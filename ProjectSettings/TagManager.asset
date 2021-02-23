@@ -7,6 +7,7 @@ TagManager:
   - FxTemporaire
   - Bullet
   - Enemy
+  - TemporaryObjectContainer
   layers:
   - Default
   - TransparentFX
