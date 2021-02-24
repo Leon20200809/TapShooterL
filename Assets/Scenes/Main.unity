@@ -173,6 +173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyObjPrefab: {fileID: 7943149632527041189, guid: 5df5f87901a7775429d0ad99c58a2e0d, type: 3}
   enemyPopCooltime: 3
+  maxEnemyGenerateCounts: 2
+  isGenerateEnd: 0
+  isBossDestroyed: 0
 --- !u!1 &161416546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,7 +1140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.24528301, g: 0.20710216, b: 0.20710216, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1216,7 +1219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4009434, g: 0.6070521, b: 1, a: 1}
+  m_Color: {r: 0.03208439, g: 0.35757175, b: 0.9716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

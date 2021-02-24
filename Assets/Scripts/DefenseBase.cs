@@ -85,7 +85,7 @@ public class DefenseBase : MonoBehaviour
 
         if (playerHp <= 0 && gameManager.isGameUp == false)
         {
-            Debug.Log("ゲームオーバー" + playerHp);
+            Debug.Log("ゲームオーバー");
 
             // TODO ゲームオーバー処理
             gameManager.SwitchGameUp(true);

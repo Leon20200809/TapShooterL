@@ -27,24 +27,60 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     GameObject bulletEffectPrefab;
 
+    bool isBoss;
+    EnemyGenerator enemyGenerator;
+
 
     /// <summary>
     /// 疑似スタートメソッド
     /// </summary>
-    public void SetUpEnemy()
+    public void SetUpEnemy(bool isBoss = false)
     {
-        
-        //X軸のどこかにランダム生成
-        transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-650, 650), transform.localPosition.y, 0);
+        //エネミー種別判定（ボスかどうか）
+        this.isBoss = isBoss;
+
+        if (!this.isBoss)
+        {
+            //X軸のどこかにランダム生成
+            transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-650, 650), transform.localPosition.y, 0);
+        }
+        else
+        {
+            //特定位置まで移動
+            transform.DOLocalMoveY(transform.localPosition.y - 500, 3f);
+
+            //サイズ変更
+            transform.localScale = Vector3.one * 6f;
+
+            //HPゲージ位置調整
+            sliderEnemyHp.transform.localPosition = new Vector3(0, 150, 0);
+
+            //HPのボス補正
+            enemyHp *= 3;
+        }
+
         maxEnemyHp = enemyHp;
         DisplayEnemyHp();
     }
+
+    /// <summary>
+    /// エネミーの追加設定
+    /// </summary>
+    /// <param name="enemyGenerator"></param>
+    public void AdditionalSetUpEnemy(EnemyGenerator enemyGenerator)
+    {
+        // 引数で届いた情報を変数に代入してスクリプト内で利用できる状態にする
+        this.enemyGenerator = enemyGenerator;
+
+        Debug.Log("追加設定完了");
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         //オブジェクトを移動させる
-        this.gameObject.transform.Translate(0, -enemySpeed, 0);
+        if (!isBoss) this.gameObject.transform.Translate(0, -enemySpeed, 0);
 
         //特定位置を超えると破棄
         if (transform.localPosition.y < deadLine.y)
@@ -117,6 +153,12 @@ public class EnemyController : MonoBehaviour
             //エネミー破棄
             Destroy(gameObject);
             Debug.Log("エネミーを倒した！" + enemyHp);
+
+            if (isBoss)
+            {
+                //ボス討伐フラグ
+                enemyGenerator.SwitchBossDestroyed(true);
+            }
         }
         else
         {
