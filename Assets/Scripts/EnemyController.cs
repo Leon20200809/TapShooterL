@@ -53,7 +53,7 @@ public class EnemyController : MonoBehaviour
             transform.localScale = Vector3.one * 6f;
 
             //HPゲージ位置調整
-            sliderEnemyHp.transform.localPosition = new Vector3(0, 150, 0);
+            sliderEnemyHp.transform.localPosition = new Vector3(0, 50, 0);
 
             //HPのボス補正
             enemyHp *= 3;

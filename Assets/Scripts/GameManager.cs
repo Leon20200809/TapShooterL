@@ -19,10 +19,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Transform tOCTran;
 
+    [SerializeField]
+    UIManager uIManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
         SwitchGameUp(false);
+        uIManager.HideGameClear();
         defenseBase.SetUpDefenseBase(this);
         playerController.SetUpPlayer(this);
         enemyGenerator.SetUpEnemyGenerator(this);
@@ -42,6 +47,15 @@ public class GameManager : MonoBehaviour
         isGameUp = isSwitch;
 
         // TODO ゲーム内のエネミー削除
+
+    }
+
+    /// <summary>
+    /// ゲームクリア画像表示（アルファ値を1にする）
+    /// </summary>
+    public void PreparateGameClear()
+    {
+        uIManager.DisplayGameClear();
     }
 
     // Update is called once per frame
