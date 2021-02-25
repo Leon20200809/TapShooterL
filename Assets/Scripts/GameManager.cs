@@ -28,9 +28,11 @@ public class GameManager : MonoBehaviour
     {
         SwitchGameUp(false);
         uIManager.HideGameClear();
+        uIManager.HideGameOver();
         defenseBase.SetUpDefenseBase(this);
         playerController.SetUpPlayer(this);
         enemyGenerator.SetUpEnemyGenerator(this);
+        
 
         //位置情報一時保存用
         //TransformHelper.SetTOCTran(tOCTran);
@@ -56,6 +58,14 @@ public class GameManager : MonoBehaviour
     public void PreparateGameClear()
     {
         uIManager.DisplayGameClear();
+    }
+
+    /// <summary>
+    /// ゲームオーバー画像表示（アルファ値を1にする）
+    /// </summary>
+    public void PreparateGameOver()
+    {
+        uIManager.DisplayGameOver();
     }
 
     // Update is called once per frame
