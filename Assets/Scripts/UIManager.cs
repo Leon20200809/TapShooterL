@@ -16,6 +16,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Text txtGameOver;
 
+    [SerializeField]
+    Text txtPlayerHp;
+    [SerializeField]
+    Slider sliderPlayerHp;
+
+
     /// <summary>
     /// ゲームクリア画像のアルファ値を0にする。（透明）
     /// </summary>
@@ -25,19 +31,27 @@ public class UIManager : MonoBehaviour
         canvasGroupGameClear.alpha = 0;
     }
 
+    /// <summary>
+    /// ゲームクリア画像のアルファ値を1にする。（見える）
+    /// </summary>
     public void DisplayGameClear()
     {
         //アルファ値を1にする。（見える）
         canvasGroupGameClear.DOFade(1, 0.25f);
     }
 
-
+    /// <summary>
+    /// ゲームオーバー画像のアルファ値を0にする。（透明）
+    /// </summary>
     public void HideGameOver()
     {
         //アルファ値を0にする。（透明）
         canvasGroupGameOver.alpha = 0;
     }
 
+    /// <summary>
+    /// ゲームオーバー画像のアルファ値を1にする。（見える）
+    /// </summary>
     public void DisplayGameOver()
     {
         //アルファ値を1にする。（見える）
@@ -47,6 +61,18 @@ public class UIManager : MonoBehaviour
 
         // DOTween の DOText メソッドを利用して文字列を１文字ずつ順番に同じ表示時間で表示
         txtGameOver.DOText(txt, 1.5f).SetEase(Ease.Linear);
+    }
+
+    /// <summary>
+    /// playerHpのUI更新
+    /// </summary>
+    public void DisplayPlayerHp(int playerHp, int maxPlayerHp)
+    {
+        //テキスト更新
+        txtPlayerHp.text = playerHp + " / " + maxPlayerHp;
+
+        //スライダー更新（Dotween様）
+        sliderPlayerHp.DOValue((float)playerHp / maxPlayerHp, 0.25f);
     }
 
 }

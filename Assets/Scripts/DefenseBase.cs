@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -12,10 +11,6 @@ public class DefenseBase : MonoBehaviour
     public int playerHp;    
     int maxPlayerHp;
 
-    [SerializeField]
-    Text txtPlayerHp;
-    [SerializeField]
-    Slider sliderPlayerHp;
 
     [SerializeField]
     GameObject enemyAtkEffectPrefab;
@@ -30,7 +25,7 @@ public class DefenseBase : MonoBehaviour
     {
         this.gameManager = gameManager;
         maxPlayerHp = playerHp;
-        DisplayPlayerHp();
+        gameManager.uIManager.DisplayPlayerHp(playerHp, maxPlayerHp);
 
     }
 
@@ -79,7 +74,7 @@ public class DefenseBase : MonoBehaviour
         //拠点HPの上限下限値定義（負の値になるバグ回避のため）
         playerHp = Mathf.Clamp(playerHp, 0, maxPlayerHp);
 
-        DisplayPlayerHp();
+        gameManager.uIManager.DisplayPlayerHp(playerHp, maxPlayerHp);
 
         Debug.Log("残拠点HP：" + playerHp);
 
@@ -101,15 +96,4 @@ public class DefenseBase : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// playerHpのUI更新
-    /// </summary>
-    void DisplayPlayerHp()
-    {
-        //テキスト更新
-        txtPlayerHp.text = playerHp + " / " + maxPlayerHp;
-
-        //スライダー更新（Dotween様）
-        sliderPlayerHp.DOValue((float)playerHp / maxPlayerHp, 0.25f);
-    }
 }

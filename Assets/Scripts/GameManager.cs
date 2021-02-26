@@ -20,22 +20,29 @@ public class GameManager : MonoBehaviour
     Transform tOCTran;
 
     [SerializeField]
-    UIManager uIManager;
+    public UIManager uIManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //ゲーム終了フラグリセット
         SwitchGameUp(false);
-        uIManager.HideGameClear();
-        uIManager.HideGameOver();
-        defenseBase.SetUpDefenseBase(this);
-        playerController.SetUpPlayer(this);
-        enemyGenerator.SetUpEnemyGenerator(this);
-        
 
-        //位置情報一時保存用
-        //TransformHelper.SetTOCTran(tOCTran);
+        //ゲームクリア画像を隠す
+        uIManager.HideGameClear();
+
+        //ゲームオーバー画像を隠す
+        uIManager.HideGameOver();
+
+        //プレイヤー（防衛対象）の初期設定
+        defenseBase.SetUpDefenseBase(this);
+
+        //プレイヤー（攻撃関連）の初期設定
+        playerController.SetUpPlayer(this);
+
+        //エネミー出現メソッドの初期設定
+        enemyGenerator.SetUpEnemyGenerator(this);
 
         //位置情報一時保存用プロパティ書き換え
         TransformHelper.TOCTran = tOCTran;
@@ -68,9 +75,4 @@ public class GameManager : MonoBehaviour
         uIManager.DisplayGameOver();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

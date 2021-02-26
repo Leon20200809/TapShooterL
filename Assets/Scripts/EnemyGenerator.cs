@@ -62,7 +62,6 @@ public class EnemyGenerator : MonoBehaviour
 
                 // TODO ボス生成
                 StartCoroutine(GenerateBoss());
-                //SwitchBossDestroyed(true);
             }
         }
     }
@@ -110,13 +109,6 @@ public class EnemyGenerator : MonoBehaviour
 
         // TODO ゲームクリアの準備
         gameManager.PreparateGameClear();
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

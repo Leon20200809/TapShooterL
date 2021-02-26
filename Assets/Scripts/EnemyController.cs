@@ -31,6 +31,20 @@ public class EnemyController : MonoBehaviour
     EnemyGenerator enemyGenerator;
 
 
+    // Update is called once per frame
+    void Update()
+    {
+        //オブジェクトを移動させる
+        if (!isBoss) this.gameObject.transform.Translate(0, -enemySpeed, 0);
+
+        //特定位置を超えると破棄
+        if (transform.localPosition.y < deadLine.y)
+        {
+            //破棄
+            Destroy(gameObject);
+        }
+    }
+
     /// <summary>
     /// 疑似スタートメソッド
     /// </summary>
@@ -73,21 +87,6 @@ public class EnemyController : MonoBehaviour
         this.enemyGenerator = enemyGenerator;
 
         Debug.Log("追加設定完了");
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        //オブジェクトを移動させる
-        if (!isBoss) this.gameObject.transform.Translate(0, -enemySpeed, 0);
-
-        //特定位置を超えると破棄
-        if (transform.localPosition.y < deadLine.y)
-        {
-            //破棄
-            Destroy(gameObject);
-        }
     }
 
     /// <summary>

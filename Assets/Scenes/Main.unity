@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyObjPrefab: {fileID: 7943149632527041189, guid: 5df5f87901a7775429d0ad99c58a2e0d, type: 3}
   enemyPopCooltime: 3
-  maxEnemyGenerateCounts: 2
+  maxEnemyGenerateCounts: 6
   isGenerateEnd: 0
   isBossDestroyed: 0
 --- !u!1 &161416546
@@ -1039,7 +1039,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: 
 --- !u!222 &1048761386
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1363,6 +1363,8 @@ MonoBehaviour:
   canvasGroupGameClear: {fileID: 188190374}
   canvasGroupGameOver: {fileID: 912953834}
   txtGameOver: {fileID: 1048761385}
+  txtPlayerHp: {fileID: 1687499649}
+  sliderPlayerHp: {fileID: 1142212669}
 --- !u!4 &1312713948
 Transform:
   m_ObjectHideFlags: 0
@@ -1578,9 +1580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5bc12997b0fb1649bcfb37524d59d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHp: 100
-  txtPlayerHp: {fileID: 1687499649}
-  sliderPlayerHp: {fileID: 1142212669}
+  playerHp: 10
   enemyAtkEffectPrefab: {fileID: 6062978516678252835, guid: f14229e79b79fb04db9a1f753d8eb981, type: 3}
 --- !u!50 &1492950733
 Rigidbody2D:

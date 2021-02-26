@@ -8,16 +8,11 @@ public class PlayerController : MonoBehaviour
 
     GameManager gameManager;
 
-    
-    public void SetUpPlayer(GameManager gameManager)
-    {
-        this.gameManager = gameManager;
-
-    }
 
     // Update is called once per frame
     void Update()
     {
+        //ゲーム終了フラグオンならタップ反応制御
         if (gameManager.isGameUp) return;
 
         if (Input.GetMouseButtonDown(0))
@@ -39,6 +34,16 @@ public class PlayerController : MonoBehaviour
             //弾プレファブ生成
             GenerateBullet(dir); //<=  ☆①　送る側の引数を追加
         }
+    }
+
+    /// <summary>
+    /// 疑似スタートメソッド
+    /// </summary>
+    /// <param name="gameManager"></param>
+    public void SetUpPlayer(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+
     }
 
     /// <summary>
