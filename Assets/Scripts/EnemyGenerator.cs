@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
+    [Header("エネミーデータSO")]
+    public EnemyDataSO enemyDataSO;
+
+    public List<EnemyDataSO.EnemyData> normalEnemyDatas = new List<EnemyDataSO.EnemyData>();
+    public List<EnemyDataSO.EnemyData> bossEnemyDatas = new List<EnemyDataSO.EnemyData>();
+
     [SerializeField, Header("エネミープレファブ")]
     GameObject enemyObjPrefab;
 
@@ -28,12 +34,42 @@ public class EnemyGenerator : MonoBehaviour
     GameManager gameManager;
 
     /// <summary>
+    /// エネミーの種類のListを作成、値を戻す ※enemyType 変数には、EnemyType.Normal が引数として代入されている
+    /// </summary>
+    /// <param name="enemyType"></param>
+    /// <returns></returns>
+    List<EnemyDataSO.EnemyData> GetEnemyTypeList(EnemyType enemyType)
+    {
+        //EnemyType.Normalのみ入れるList作成
+        List<EnemyDataSO.EnemyData> enemyDatas = new List<EnemyDataSO.EnemyData>();
+
+        //SO内のEnemyTypeをすべて確認
+        for (int i = 0; i < enemyDataSO.enemyDataList.Count; i++)
+        {
+            //EnemyType.Normalだけリストに追加する
+            if (enemyDataSO.enemyDataList[i].enemyType == enemyType)
+            {
+                enemyDatas.Add(enemyDataSO.enemyDataList[i]);
+            }
+        }
+
+        //EnemyType.Normalのみ入ったリストを返す
+        return enemyDatas;
+    }
+
+    /// <summary>
     /// 疑似スタートメソッド
     /// </summary>
     /// <param name="gameManager"></param>
     public void SetUpEnemyGenerator(GameManager gameManager)
     {
         this.gameManager = gameManager;
+
+        //EnemyType.Normalのみ入ったリストを作成
+        normalEnemyDatas = GetEnemyTypeList(EnemyType.Normal);
+
+        //EnemyType.Bossのみ入ったリストを作成
+        bossEnemyDatas = GetEnemyTypeList(EnemyType.Boss);
     }
 
     /// <summary>
@@ -60,7 +96,7 @@ public class EnemyGenerator : MonoBehaviour
                 isGenerateEnd = true;
                 Debug.Log("エネミー生成完了、ボス出現");
 
-                // TODO ボス生成
+                //ボス生成
                 StartCoroutine(GenerateBoss());
             }
         }
@@ -69,17 +105,37 @@ public class EnemyGenerator : MonoBehaviour
     /// <summary>
     /// エネミープレファブからクローン生成
     /// </summary>
-    void GenerateEnemy(bool isBoss = false)
+    void GenerateEnemy(EnemyType enemyType = EnemyType.Normal)
     {
+        //ランダム値の格納用
+        int randomEnemyNo;
+
+        //EnemyType格納用変数初期化
+        EnemyDataSO.EnemyData enemyData = null;
+
+        //EnemyType照合の後、リストからEnemyType別のランダムNoを取得、格納
+        switch (enemyType)
+        {
+            case EnemyType.Normal:
+                randomEnemyNo = Random.Range(0, normalEnemyDatas.Count);
+                enemyData = normalEnemyDatas[randomEnemyNo];
+                break;
+
+            case EnemyType.Boss:
+                randomEnemyNo = Random.Range(0, bossEnemyDatas.Count);
+                enemyData = bossEnemyDatas[randomEnemyNo];
+                break;
+        }
+
         //エネミー出現（生成）
         GameObject enemySetObj = Instantiate(enemyObjPrefab, transform, false);
 
         //EnemyController.csのメソッド実行
         EnemyController enemyController = enemySetObj.GetComponent<EnemyController>();
-        enemyController.SetUpEnemy(isBoss);
+        enemyController.SetUpEnemy(enemyData);
 
         //ボス生成の場合は追加設定
-        if (isBoss) enemyController.AdditionalSetUpEnemy(this);
+        enemyController.AdditionalSetUpEnemy(this);
     }
 
     /// <summary>
@@ -93,7 +149,7 @@ public class EnemyGenerator : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // TODO ボス生成
-        GenerateEnemy(true);
+        GenerateEnemy(EnemyType.Boss);
     }
 
     /// <summary>

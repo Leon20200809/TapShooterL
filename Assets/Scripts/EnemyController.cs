@@ -8,8 +8,13 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    [Header("エネミーHP")]
-    public int enemyHp;
+    [Header("エネミーデータ")]
+    public EnemyDataSO.EnemyData enemyData;
+
+    [SerializeField]
+    Image imgEnemy;
+
+    int enemyHp;
     int maxEnemyHp;
 
     [Header("エネミー攻撃力")]
@@ -27,7 +32,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     GameObject bulletEffectPrefab;
 
-    bool isBoss;
     EnemyGenerator enemyGenerator;
 
 
@@ -35,7 +39,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         //オブジェクトを移動させる
-        if (!isBoss) this.gameObject.transform.Translate(0, -enemySpeed, 0);
+        if (this.enemyData.enemyType != EnemyType.Boss) this.gameObject.transform.Translate(0, -enemySpeed, 0);
 
         //特定位置を超えると破棄
         if (transform.localPosition.y < deadLine.y)
@@ -48,12 +52,13 @@ public class EnemyController : MonoBehaviour
     /// <summary>
     /// 疑似スタートメソッド
     /// </summary>
-    public void SetUpEnemy(bool isBoss = false)
+    public void SetUpEnemy(EnemyDataSO.EnemyData enemyData)
     {
-        //エネミー種別判定（ボスかどうか）
-        this.isBoss = isBoss;
+        //データベースにあるパラメータを使用可能にする
+        this.enemyData = enemyData;
 
-        if (!this.isBoss)
+        //エネミー種別判定
+        if (this.enemyData.enemyType != EnemyType.Boss)
         {
             //X軸のどこかにランダム生成
             transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-650, 650), transform.localPosition.y, 0);
@@ -69,11 +74,15 @@ public class EnemyController : MonoBehaviour
             //HPゲージ位置調整
             sliderEnemyHp.transform.localPosition = new Vector3(0, 50, 0);
 
-            //HPのボス補正
-            enemyHp *= 3;
         }
 
-        maxEnemyHp = enemyHp;
+        //エネミーHP設定
+        maxEnemyHp = this.enemyData.hp;
+        enemyHp = maxEnemyHp;
+
+        //エネミー画像設定
+        imgEnemy.sprite = this.enemyData.enemySprite;
+
         DisplayEnemyHp();
     }
 
@@ -83,7 +92,7 @@ public class EnemyController : MonoBehaviour
     /// <param name="enemyGenerator"></param>
     public void AdditionalSetUpEnemy(EnemyGenerator enemyGenerator)
     {
-        // 引数で届いた情報を変数に代入してスクリプト内で利用できる状態にする
+        // EnemyGeneratorを利用可能にする
         this.enemyGenerator = enemyGenerator;
 
         Debug.Log("追加設定完了");
@@ -153,7 +162,7 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("エネミーを倒した！" + enemyHp);
 
-            if (isBoss)
+            if (this.enemyData.enemyType == EnemyType.Boss)
             {
                 //ボス討伐フラグ
                 enemyGenerator.SwitchBossDestroyed(true);
