@@ -67,7 +67,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a57bd188ac003c438e7b367ce5da8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHp: 30
+  enemyData:
+    no: 0
+    hp: 0
+    power: 0
+    enemySprite: {fileID: 0}
+    enemyType: 0
+  imgEnemy: {fileID: 7943149633688428959}
   enemyAtkPow: 20
   enemySpeed: 0.005
   deadLine: {x: 0, y: -2500, z: 0}

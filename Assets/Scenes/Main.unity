@@ -171,8 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af9794e737eb7445afca265b5855da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDataSO: {fileID: 11400000, guid: eef354c880ccda544b510e89c4fb79c2, type: 2}
+  normalEnemyDatas: []
+  bossEnemyDatas: []
   enemyObjPrefab: {fileID: 7943149632527041189, guid: 5df5f87901a7775429d0ad99c58a2e0d, type: 3}
-  enemyPopCooltime: 3
+  enemyPopCooltime: 2
   maxEnemyGenerateCounts: 6
   isGenerateEnd: 0
   isBossDestroyed: 0
