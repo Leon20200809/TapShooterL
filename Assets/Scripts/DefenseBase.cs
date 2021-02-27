@@ -24,6 +24,7 @@ public class DefenseBase : MonoBehaviour
     public void SetUpDefenseBase(GameManager gameManager)
     {
         this.gameManager = gameManager;
+        playerHp = GameData.instance.GetPlayerHp();
         maxPlayerHp = playerHp;
         gameManager.uIManager.DisplayPlayerHp(playerHp, maxPlayerHp);
 

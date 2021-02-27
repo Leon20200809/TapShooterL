@@ -6,6 +6,12 @@ public class GameData : MonoBehaviour
 {
     public static GameData instance;
 
+    [SerializeField, Header("プレイヤーHP")]
+    int playerHp;
+
+    [SerializeField, Header("エネミー最大生成数")]
+    int maxEnemyGenerateCounts;
+
     [SerializeField]
     int totalExp;
 
@@ -32,5 +38,15 @@ public class GameData : MonoBehaviour
     public int GetTotalExp()
     {
         return totalExp;
+    }
+
+    public int GetPlayerHp()
+    {
+        return playerHp;
+    }
+
+    public int GetMaxEnemyGenerateCounts()
+    {
+        return maxEnemyGenerateCounts;
     }
 }

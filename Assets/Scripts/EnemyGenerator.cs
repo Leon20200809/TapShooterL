@@ -65,6 +65,9 @@ public class EnemyGenerator : MonoBehaviour
     {
         this.gameManager = gameManager;
 
+        //エネミー最大生産数設定
+        maxEnemyGenerateCounts = GameData.instance.GetMaxEnemyGenerateCounts();
+
         //EnemyType.Normalのみ入ったリストを作成
         normalEnemyDatas = GetEnemyTypeList(EnemyType.Normal);
 
