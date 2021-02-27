@@ -16,9 +16,7 @@ public class EnemyController : MonoBehaviour
 
     int enemyHp;
     int maxEnemyHp;
-
-    [Header("エネミー攻撃力")]
-    public int enemyAtkPow;
+    //int enemyAtkPow;
 
     [Header("エネミー移動速度")]
     public float enemySpeed;
@@ -79,6 +77,9 @@ public class EnemyController : MonoBehaviour
         //エネミーHP設定
         maxEnemyHp = this.enemyData.hp;
         enemyHp = maxEnemyHp;
+
+        //エネミー攻撃力設定
+        //enemyAtkPow = this.enemyData.power;
 
         //エネミー画像設定
         imgEnemy.sprite = this.enemyData.enemySprite;
@@ -158,6 +159,12 @@ public class EnemyController : MonoBehaviour
 
         if (enemyHp <= 0)
         {
+            //Exp加算処理（内部的に）
+            GameData.instance.UpdateTotalExp(enemyData.exp);
+
+            //Exp加算処理（UI更新）
+            enemyGenerator.PreparateDisplayTotalExp(enemyData.exp);
+
             //エネミー破棄
             Destroy(gameObject);
             Debug.Log("エネミーを倒した！" + enemyHp);

@@ -69,7 +69,8 @@ public class DefenseBase : MonoBehaviour
     void UpdatePlayerHp(EnemyController enemyController)
     {
         //拠点HP減らす
-        playerHp -= enemyController.enemyAtkPow;
+        playerHp -= enemyController.enemyData.power;
+        Debug.Log("エネミーの攻撃力 : " + enemyController.enemyData.power);
 
         //拠点HPの上限下限値定義（負の値になるバグ回避のため）
         playerHp = Mathf.Clamp(playerHp, 0, maxPlayerHp);

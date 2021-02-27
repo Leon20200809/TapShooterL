@@ -16,25 +16,30 @@ MonoBehaviour:
   - no: 0
     hp: 30
     power: 20
+    exp: 30
     enemySprite: {fileID: 21300000, guid: ff1ebc38b4bf2c448a0962164fb69f8b, type: 3}
     enemyType: 0
   - no: 1
-    hp: 50
+    hp: 100
     power: 30
+    exp: 100
     enemySprite: {fileID: 21300000, guid: 54bd24b3863bf624ca472f07e45c05b7, type: 3}
     enemyType: 1
   - no: 2
     hp: 250
     power: 20
+    exp: 250
     enemySprite: {fileID: 21300000, guid: 2011de10211f0964cb3d5e786797442e, type: 3}
     enemyType: 2
   - no: 3
     hp: 50
     power: 20
+    exp: 50
     enemySprite: {fileID: 21300000, guid: b3c36ddcc01f5804b9577757a5ddb803, type: 3}
     enemyType: 0
   - no: 4
     hp: 40
     power: 20
+    exp: 40
     enemySprite: {fileID: 21300000, guid: 411888926042d1c4f840fb3d1a1beaaf, type: 3}
     enemyType: 0

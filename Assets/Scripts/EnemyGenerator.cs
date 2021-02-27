@@ -167,6 +167,13 @@ public class EnemyGenerator : MonoBehaviour
         gameManager.PreparateGameClear();
     }
 
+    public void PreparateDisplayTotalExp(int exp)
+    {
+        gameManager.uIManager.DisplayTotalExp(GameData.instance.GetTotalExp());
+
+        // TODO 引数の exp 変数は後々利用する
+    }
+
     // Update is called once per frame
     void Update()
     {
