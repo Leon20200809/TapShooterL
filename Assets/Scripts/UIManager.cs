@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
     Text txtGameOver;
 
     [SerializeField]
+    Text txtTotalExp;
+
+    [SerializeField]
     Text txtPlayerHp;
     [SerializeField]
     Slider sliderPlayerHp;
@@ -73,6 +76,15 @@ public class UIManager : MonoBehaviour
 
         //スライダー更新（Dotween様）
         sliderPlayerHp.DOValue((float)playerHp / maxPlayerHp, 0.25f);
+    }
+
+    /// <summary>
+    /// PtUI更新
+    /// </summary>
+    /// <param name="totalExp"></param>
+    public void DisplayTotalExp(int totalExp)
+    {
+        txtTotalExp.text = totalExp.ToString();
     }
 
 }

@@ -21,6 +21,9 @@ public class EnemyDataSO : ScriptableObject
         //攻撃力
         public int power;
 
+        //Exp
+        public int exp;
+
         //画像データ
         public Sprite enemySprite;
 
