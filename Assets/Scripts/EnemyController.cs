@@ -33,19 +33,6 @@ public class EnemyController : MonoBehaviour
     EnemyGenerator enemyGenerator;
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        //オブジェクトを移動させる
-        if (this.enemyData.enemyType != EnemyType.Boss) this.gameObject.transform.Translate(0, -enemySpeed, 0);
-
-        //特定位置を超えると破棄
-        if (transform.localPosition.y < deadLine.y)
-        {
-            //破棄
-            Destroy(gameObject);
-        }
-    }
 
     /// <summary>
     /// 疑似スタートメソッド
@@ -63,15 +50,29 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            //特定位置まで移動
-            transform.DOLocalMoveY(transform.localPosition.y - 500, 3f);
-
             //サイズ変更
             transform.localScale = Vector3.one * 6f;
 
             //HPゲージ位置調整
             sliderEnemyHp.transform.localPosition = new Vector3(0, 50, 0);
+        }
 
+        //移動タイプ判定、移動開始
+        switch (enemyData.moveType)
+        {
+            case EnemyMoveType.Straight:
+                MoveStraight();
+                break;
+
+            case EnemyMoveType.Meandering:
+                MoveMeandering();
+                break;
+
+            case EnemyMoveType.Boss_Horizontal:
+                Boss_Horizontal();
+                break;
+
+            
         }
 
         //エネミーHP設定
@@ -85,6 +86,47 @@ public class EnemyController : MonoBehaviour
         imgEnemy.sprite = this.enemyData.enemySprite;
 
         DisplayEnemyHp();
+    }
+
+    /// <summary>
+    /// 直進
+    /// </summary>
+    void MoveStraight()
+    {
+        transform.DOLocalMoveY(-3000, enemyData.moveDuration);
+    }
+
+    /// <summary>
+    /// 蛇行
+    /// </summary>
+    void MoveMeandering()
+    {
+        // 左右方向の移動をループ処理することで行ったり来たりさせる。左右の移動幅はランダム、移動間隔は等速
+        transform.DOLocalMoveX(transform.position.x + Random.Range(200f, 400f), 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        transform.DOLocalMoveY(-3000, enemyData.moveDuration);
+    }
+
+    /// <summary>
+    /// ボス用
+    /// </summary>
+    void Boss_Horizontal()
+    {
+        //出現位置初期化
+        transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
+
+        //ボス挙動　一定位置まで移動⇒左右にループ移動
+        transform.DOLocalMoveY(-500f, 3f).OnComplete(() => 
+        { 
+            Debug.Log("水平移動");
+
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 500f, 2.5f).SetEase(Ease.Linear));
+            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + -500f, 5f).SetEase(Ease.Linear));
+            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x, 2.0f).SetEase(Ease.Linear));
+            sequence.AppendInterval(1.0f).SetLoops(-1, LoopType.Restart);
+
+        });
+
     }
 
     /// <summary>
@@ -119,7 +161,6 @@ public class EnemyController : MonoBehaviour
             GenerateBulletEffect(col.gameObject.transform);
 
             DestroyBullet(col);
-
         }
     }
 
