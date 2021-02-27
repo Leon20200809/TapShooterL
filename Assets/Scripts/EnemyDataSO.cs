@@ -27,7 +27,11 @@ public class EnemyDataSO : ScriptableObject
         //画像データ
         public Sprite enemySprite;
 
-        //タイプ
+        //階級（タイプ）
         public EnemyType enemyType;
+
+        //移動タイプと移動速度（時間）
+        public EnemyMoveType moveType;
+        public float moveDuration;
     }
 }

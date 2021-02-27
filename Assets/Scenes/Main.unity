@@ -1117,6 +1117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83dcbf1aa16a3f74aa25084ee2a98679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHp: 100
+  maxEnemyGenerateCounts: 2
   totalExp: 0
 --- !u!4 &1046914885
 Transform:
