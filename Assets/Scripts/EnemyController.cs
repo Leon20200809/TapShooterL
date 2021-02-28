@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 
@@ -18,12 +19,6 @@ public class EnemyController : MonoBehaviour
     int maxEnemyHp;
     //int enemyAtkPow;
 
-    [Header("エネミー移動速度")]
-    public float enemySpeed;
-
-    [Header("エネミー消去ライン")]
-    public　Vector3 deadLine;
-
     [SerializeField]
     Slider sliderEnemyHp;
 
@@ -32,7 +27,8 @@ public class EnemyController : MonoBehaviour
 
     EnemyGenerator enemyGenerator;
 
-
+    //エネミーの移動メソッドが入る
+    UnityAction<Transform, float> enemyMoveEvent;
 
     /// <summary>
     /// 疑似スタートメソッド
@@ -57,23 +53,7 @@ public class EnemyController : MonoBehaviour
             sliderEnemyHp.transform.localPosition = new Vector3(0, 50, 0);
         }
 
-        //移動タイプ判定、移動開始
-        switch (enemyData.moveType)
-        {
-            case EnemyMoveType.Straight:
-                MoveStraight();
-                break;
-
-            case EnemyMoveType.Meandering:
-                MoveMeandering();
-                break;
-
-            case EnemyMoveType.Boss_Horizontal:
-                Boss_Horizontal();
-                break;
-
-            
-        }
+        
 
         //エネミーHP設定
         maxEnemyHp = this.enemyData.hp;
@@ -88,46 +68,6 @@ public class EnemyController : MonoBehaviour
         DisplayEnemyHp();
     }
 
-    /// <summary>
-    /// 直進
-    /// </summary>
-    void MoveStraight()
-    {
-        transform.DOLocalMoveY(-3000, enemyData.moveDuration);
-    }
-
-    /// <summary>
-    /// 蛇行
-    /// </summary>
-    void MoveMeandering()
-    {
-        // 左右方向の移動をループ処理することで行ったり来たりさせる。左右の移動幅はランダム、移動間隔は等速
-        transform.DOLocalMoveX(transform.position.x + Random.Range(200f, 400f), 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-        transform.DOLocalMoveY(-3000, enemyData.moveDuration);
-    }
-
-    /// <summary>
-    /// ボス用
-    /// </summary>
-    void Boss_Horizontal()
-    {
-        //出現位置初期化
-        transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
-
-        //ボス挙動　一定位置まで移動⇒左右にループ移動
-        transform.DOLocalMoveY(-500f, 3f).OnComplete(() => 
-        { 
-            Debug.Log("水平移動");
-
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 500f, 2.5f).SetEase(Ease.Linear));
-            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + -500f, 5f).SetEase(Ease.Linear));
-            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x, 2.0f).SetEase(Ease.Linear));
-            sequence.AppendInterval(1.0f).SetLoops(-1, LoopType.Restart);
-
-        });
-
-    }
 
     /// <summary>
     /// エネミーの追加設定
@@ -137,6 +77,12 @@ public class EnemyController : MonoBehaviour
     {
         // EnemyGeneratorを利用可能にする
         this.enemyGenerator = enemyGenerator;
+
+        //MoveEventSOから移動タイプを引っ張る
+        enemyMoveEvent = this.enemyGenerator.enemyMoveEventSO.GetEnemyMoveEvent(enemyData.moveType);
+
+        //移動開始
+        enemyMoveEvent.Invoke(transform, enemyData.moveDuration);
 
         Debug.Log("追加設定完了");
     }
