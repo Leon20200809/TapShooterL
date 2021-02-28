@@ -7,8 +7,11 @@ public class EnemyGenerator : MonoBehaviour
     [Header("エネミーデータSO")]
     public EnemyDataSO enemyDataSO;
 
-    public List<EnemyDataSO.EnemyData> normalEnemyDatas = new List<EnemyDataSO.EnemyData>();
-    public List<EnemyDataSO.EnemyData> bossEnemyDatas = new List<EnemyDataSO.EnemyData>();
+    [Header("エネミー移動SO")]
+    public EnemyMoveEventSO enemyMoveEventSO;
+
+    List<EnemyDataSO.EnemyData> normalEnemyDatas = new List<EnemyDataSO.EnemyData>();
+    List<EnemyDataSO.EnemyData> bossEnemyDatas = new List<EnemyDataSO.EnemyData>();
 
     [SerializeField, Header("エネミープレファブ")]
     GameObject enemyObjPrefab;
@@ -137,7 +140,7 @@ public class EnemyGenerator : MonoBehaviour
         EnemyController enemyController = enemySetObj.GetComponent<EnemyController>();
         enemyController.SetUpEnemy(enemyData);
 
-        //ボス生成の場合は追加設定
+        //追加設定
         enemyController.AdditionalSetUpEnemy(this);
     }
 
