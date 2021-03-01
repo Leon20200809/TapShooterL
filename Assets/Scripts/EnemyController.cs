@@ -25,6 +25,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     GameObject bulletEffectPrefab;
 
+    [SerializeField]
+    GameObject enemyBulletPrefab;
+
+
+
+
+
     EnemyGenerator enemyGenerator;
 
     //エネミーの移動メソッドが入る
@@ -84,7 +91,35 @@ public class EnemyController : MonoBehaviour
         //移動開始
         enemyMoveEvent.Invoke(transform, enemyData.moveDuration);
 
+        //攻撃手段設定
+        if (enemyData.moveType == EnemyMoveType.Straight || enemyData.moveType == EnemyMoveType.Boss_Horizontal)
+        {
+            //飛び道具発射
+            StartCoroutine(EnemyShot());
+        }
+
         Debug.Log("追加設定完了");
+    }
+
+    /// <summary>
+    /// エネミーの飛び道具攻撃
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator EnemyShot()
+    {
+        while (true)
+        {
+            Bullet enemyBulletObj = Instantiate(enemyBulletPrefab, transform).GetComponent<Bullet>();
+            enemyBulletObj.ShotBullet(enemyGenerator.PreparateGetPlayerDirection(transform.position));
+
+            //ボスの場合は親子関係をTOCへ避難
+            if (enemyData.moveType == EnemyMoveType.Boss_Horizontal)
+            {
+                enemyBulletObj.transform.SetParent(TransformHelper.TOCTran);
+            }
+
+            yield return new WaitForSeconds(5f);
+        }
     }
 
     /// <summary>

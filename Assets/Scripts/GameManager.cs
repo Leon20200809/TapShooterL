@@ -75,4 +75,13 @@ public class GameManager : MonoBehaviour
         uIManager.DisplayGameOver();
     }
 
+
+    public Vector3 GetPlayerDirection(Vector3 enemyPos)
+    {
+        Vector3 vector3 = (playerController.transform.position - enemyPos).normalized;
+        Debug.Log(vector3);
+        return vector3;
+
+    }
+
 }
