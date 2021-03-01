@@ -33,16 +33,31 @@ public class DefenseBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+
         if (col.gameObject.tag == "Enemy")
         {
+                    //ダメージ設定用
+            int damage = 0;
+
+            //接触コライダーOFF
+            col.GetComponent<CapsuleCollider2D>().enabled = false;
+
             Debug.Log("接触判定；" + col.gameObject.tag);
 
-            //プレイヤーの弾情報取得
+            //エネミー本体の場合
             if (col.gameObject.TryGetComponent(out EnemyController enemyController))
             {
-                UpdatePlayerHp(enemyController);
-
+                damage = enemyController.enemyData.power;
             }
+
+            //エネミー飛び道具の場合
+            if (col.gameObject.TryGetComponent(out Bullet bullet))
+            {
+                damage = bullet.bulletPow;
+            }
+
+            //
+            UpdatePlayerHp(damage);
 
             //エフェクト生成
             GenerateEnemyAtkEffect(col.gameObject.transform);
@@ -67,11 +82,11 @@ public class DefenseBase : MonoBehaviour
     /// プレイヤーHPの更新
     /// </summary>
     /// <param name="enemyController"></param>
-    void UpdatePlayerHp(EnemyController enemyController)
+    void UpdatePlayerHp(int damage)
     {
         //拠点HP減らす
-        playerHp -= enemyController.enemyData.power;
-        Debug.Log("エネミーの攻撃力 : " + enemyController.enemyData.power);
+        playerHp -= damage;
+        Debug.Log("エネミーの攻撃力 : " + damage);
 
         //拠点HPの上限下限値定義（負の値になるバグ回避のため）
         playerHp = Mathf.Clamp(playerHp, 0, maxPlayerHp);

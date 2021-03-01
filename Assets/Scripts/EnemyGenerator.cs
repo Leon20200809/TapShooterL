@@ -186,4 +186,9 @@ public class EnemyGenerator : MonoBehaviour
         if (isGenerateEnd) return;
         if (!gameManager.isGameUp) EnemyPop();
     }
+
+    public Vector3 PreparateGetPlayerDirection(Vector3 enemyPos)
+    {
+        return gameManager.GetPlayerDirection(enemyPos);
+    }
 }
