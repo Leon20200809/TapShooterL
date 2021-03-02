@@ -28,7 +28,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     GameObject enemyBulletPrefab;
 
+    [SerializeField, Header("フロート表示を行う位置情報")]
+    Transform floatingDamageTran;
 
+    [SerializeField]
+    FloatingMessage floatingMessagePrefab;
 
 
 
@@ -54,7 +58,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             //サイズ変更
-            transform.localScale = Vector3.one * 6f;
+            transform.localScale = Vector3.one * 3f;
 
             //HPゲージ位置調整
             sliderEnemyHp.transform.localPosition = new Vector3(0, 50, 0);
@@ -171,6 +175,9 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     void UpdateEnemyHp(Bullet bullet)
     {
+        //ダメージ用UI生成
+        CreateFloatingMessageToBulletPower(bullet.bulletPow);
+
         //HP減らす
         enemyHp -= bullet.bulletPow;
 
@@ -209,5 +216,16 @@ public class EnemyController : MonoBehaviour
     void DisplayEnemyHp()
     {
         sliderEnemyHp.DOValue((float)enemyHp / maxEnemyHp, 0.25f);
+    }
+
+
+    void　CreateFloatingMessageToBulletPower(int bulletPower)
+    {
+
+        // フロート表示の生成。生成位置は EnemySet ゲームオブジェクト内の FloatingMessageTran ゲームオブジェクトの位置(子オブジェクト)
+        FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingDamageTran, false);
+
+        // 生成したフロート表示の設定用メソッドを実行。引数として、バレットの攻撃力値とフロート表示の種類を指定して渡す
+        floatingMessage.DisplayFloatingMessage(bulletPower, FloatingMessage.FloatingMessageType.EnemyDamage);
     }
 }

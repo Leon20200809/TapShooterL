@@ -24,6 +24,11 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Slider sliderPlayerHp;
 
+    [SerializeField]
+    FloatingMessage floatingMessagePrefab;
+    [SerializeField]
+    Transform floatingMessageGetExpTran;
+
 
     /// <summary>
     /// ゲームクリア画像のアルファ値を0にする。（透明）
@@ -79,12 +84,24 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// PtUI更新
+    /// EXPUI更新
     /// </summary>
     /// <param name="totalExp"></param>
     public void DisplayTotalExp(int totalExp)
     {
         txtTotalExp.text = totalExp.ToString();
+    }
+
+    /// <summary>
+    /// EXP取得演出
+    /// </summary>
+    /// <param name="exp"></param>
+    /// <param name="floatingMessageType"></param>
+    public void CreateMessageToExp(int exp, FloatingMessage.FloatingMessageType floatingMessageType)
+    {
+        FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingMessageGetExpTran, false);
+
+        floatingMessage.DisplayFloatingMessage(exp, floatingMessageType);
     }
 
 }

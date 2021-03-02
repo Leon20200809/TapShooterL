@@ -15,6 +15,12 @@ public class DefenseBase : MonoBehaviour
     [SerializeField]
     GameObject enemyAtkEffectPrefab;
 
+    [SerializeField, Header("フロート表示を行う位置情報")]
+    Transform floatingDamageTran;
+
+    [SerializeField]
+    FloatingMessage floatingMessagePrefab;
+
     GameManager gameManager;
 
     /// <summary>
@@ -84,6 +90,9 @@ public class DefenseBase : MonoBehaviour
     /// <param name="enemyController"></param>
     void UpdatePlayerHp(int damage)
     {
+        //プレイヤーダメージ表示
+        CreateFloatingMessageToPlayerDmg(damage);
+
         //拠点HP減らす
         playerHp -= damage;
         Debug.Log("エネミーの攻撃力 : " + damage);
@@ -92,8 +101,6 @@ public class DefenseBase : MonoBehaviour
         playerHp = Mathf.Clamp(playerHp, 0, maxPlayerHp);
 
         gameManager.uIManager.DisplayPlayerHp(playerHp, maxPlayerHp);
-
-        Debug.Log("残拠点HP：" + playerHp);
 
         if (playerHp <= 0 && gameManager.isGameUp == false)
         {
@@ -104,7 +111,6 @@ public class DefenseBase : MonoBehaviour
 
             gameManager.PreparateGameOver();
 
-
         }
         else
         {
@@ -112,5 +118,17 @@ public class DefenseBase : MonoBehaviour
         }
 
     }
+
+
+    void CreateFloatingMessageToPlayerDmg(int damage)
+    {
+
+        // フロート表示の生成。生成位置は EnemySet ゲームオブジェクト内の FloatingMessageTran ゲームオブジェクトの位置(子オブジェクト)
+        FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingDamageTran, false);
+
+        // 生成したフロート表示の設定用メソッドを実行。引数として、バレットの攻撃力値とフロート表示の種類を指定して渡す
+        floatingMessage.DisplayFloatingMessage(damage, FloatingMessage.FloatingMessageType.PlayerDamage);
+    }
+
 
 }

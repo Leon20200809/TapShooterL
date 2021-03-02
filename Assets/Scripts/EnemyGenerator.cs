@@ -173,11 +173,16 @@ public class EnemyGenerator : MonoBehaviour
         gameManager.PreparateGameClear();
     }
 
+    /// <summary>
+    /// EXP取得
+    /// </summary>
+    /// <param name="exp"></param>
     public void PreparateDisplayTotalExp(int exp)
     {
         gameManager.uIManager.DisplayTotalExp(GameData.instance.GetTotalExp());
 
         // TODO 引数の exp 変数は後々利用する
+        gameManager.uIManager.CreateMessageToExp(exp, FloatingMessage.FloatingMessageType.GetExp);
     }
 
     // Update is called once per frame
@@ -187,6 +192,11 @@ public class EnemyGenerator : MonoBehaviour
         if (!gameManager.isGameUp) EnemyPop();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="enemyPos"></param>
+    /// <returns></returns>
     public Vector3 PreparateGetPlayerDirection(Vector3 enemyPos)
     {
         return gameManager.GetPlayerDirection(enemyPos);
