@@ -7,6 +7,9 @@ public class BulletSelectManager : MonoBehaviour
     [SerializeField]
     BulletSelectDetail bulletSelectDetailPrefab;
 
+    [SerializeField]
+    BulletDataSO bulletDataSO;
+
     [SerializeField]//生成位置用
     Transform bulletTran;
 
@@ -43,5 +46,9 @@ public class BulletSelectManager : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
 
         }
+
+        //使用弾種の初期設定
+        GameData.instance.SetUpBulletData(bulletDataSO.bulletDataList[0]);
     }
+
 }

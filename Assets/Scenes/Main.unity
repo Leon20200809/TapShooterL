@@ -891,6 +891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSelectDetailPrefab: {fileID: 3511599054314406345, guid: e2f91f1b1a34f9149a5e611ee39b09b3, type: 3}
+  bulletDataSO: {fileID: 11400000, guid: fc9b514b6b862f34b848d4d7808e5df7, type: 2}
   bulletTran: {fileID: 1659554954}
   bulletSelectDetailList: []
 --- !u!4 &807047177
@@ -1165,6 +1166,18 @@ MonoBehaviour:
   playerHp: 100
   maxEnemyGenerateCounts: 2
   totalExp: 0
+  currentBullet:
+    no: 0
+    liberalType: 0
+    bulletType: 0
+    selectSprite: {fileID: 0}
+    bulletSprite: {fileID: 0}
+    bulletSpeed: 0
+    bulletPow: 0
+    bulletReload: 0
+    launchTime: 0
+    openExp: 0
+    discription: 
 --- !u!4 &1046914885
 Transform:
   m_ObjectHideFlags: 0
