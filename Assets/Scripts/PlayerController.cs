@@ -54,6 +54,6 @@ public class PlayerController : MonoBehaviour
         // 生成位置の指定を transform と指定すると PlayerSet ゲームオブジェクトの子オブジェクトとして親子関係を持って生成される
         GameObject bulletObj = Instantiate(bulletPrefab, transform);
 
-        bulletObj.GetComponent<Bullet>().ShotBullet(dir); //<=  ☆③　送る側の引数を追加します。この情報が、Bullet スクリプトの修正した ShotBullet メソッドに引数として送られる
+        bulletObj.GetComponent<Bullet>().ShotBullet(dir, GameData.instance.GetCurrentBullet()); //<=  ☆③　送る側の引数を追加します。この情報が、Bullet スクリプトの修正した ShotBullet メソッドに引数として送られる
     }
 }
