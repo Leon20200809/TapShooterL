@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("方向" + dir);
 
             //弾プレファブ生成
-            GenerateBullet(dir); //<=  ☆①　送る側の引数を追加
+            GenerateBullet(dir); //<=  ☆①　送る側の引数
         }
     }
 
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 弾生成
     /// </summary>
-    void GenerateBullet(Vector3 dir) //  <=  ☆②　受け取る側の引数を追加
+    void GenerateBullet(Vector3 dir) //  <=  ☆②　受け取る側の引数
     {
         // 生成位置の指定を transform と指定すると PlayerSet ゲームオブジェクトの子オブジェクトとして親子関係を持って生成される
         GameObject bulletObj = Instantiate(bulletPrefab, transform);

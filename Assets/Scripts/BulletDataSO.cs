@@ -41,7 +41,7 @@ public class BulletDataSO : ScriptableObject
         public float bulletReload;
 
         //使用可能時間
-        public float launchTime;
+        public float bulletUsableTime;
 
         //使用可能Pt
         public int openExp;
