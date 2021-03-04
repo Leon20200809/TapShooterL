@@ -114,7 +114,7 @@ public class EnemyController : MonoBehaviour
         while (true)
         {
             Bullet enemyBulletObj = Instantiate(enemyBulletPrefab, transform).GetComponent<Bullet>();
-            enemyBulletObj.ShotBullet(enemyGenerator.PreparateGetPlayerDirection(transform.position));
+            enemyBulletObj.ShotBullet(enemyGenerator.GetPlayerDirection_From_EnemyController(transform.position));
 
             //ボスの場合は親子関係をTOCへ避難
             if (enemyData.moveType == EnemyMoveType.Boss_Horizontal)
@@ -192,7 +192,7 @@ public class EnemyController : MonoBehaviour
             GameData.instance.UpdateTotalExp(enemyData.exp);
 
             //Exp加算処理（UI更新）
-            enemyGenerator.PreparateDisplayTotalExp(enemyData.exp);
+            enemyGenerator.DisplayTotalExp_From_EnemyController(enemyData.exp);
 
             //エネミー破棄
             Destroy(gameObject);

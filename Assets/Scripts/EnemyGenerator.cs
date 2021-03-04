@@ -14,13 +14,15 @@ public class EnemyGenerator : MonoBehaviour
     List<EnemyDataSO.EnemyData> bossEnemyDatas = new List<EnemyDataSO.EnemyData>();
 
     [SerializeField, Header("エネミープレファブ")]
-    GameObject enemyObjPrefab;
+    EnemyController enemyObjPrefab;
 
     [SerializeField, Header("エネミー出現クールタイム")]
     public float enemyPopCooltime;
 
     //エネミー出現総数
     int generateCount;
+    [SerializeField, Header("生成したエネミーのリスト")]
+    private List<EnemyController> enemiesList = new List<EnemyController>();
 
     [Header("エネミー最大生成数")]
     public int maxEnemyGenerateCounts;
@@ -134,7 +136,7 @@ public class EnemyGenerator : MonoBehaviour
         }
 
         //エネミー出現（生成）
-        GameObject enemySetObj = Instantiate(enemyObjPrefab, transform, false);
+        EnemyController enemySetObj = Instantiate(enemyObjPrefab, transform, false);
 
         //EnemyController.csのメソッド実行
         EnemyController enemyController = enemySetObj.GetComponent<EnemyController>();
@@ -164,25 +166,33 @@ public class EnemyGenerator : MonoBehaviour
     /// <param name="isSwitch"></param>
     public void SwitchBossDestroyed(bool isSwitch)
     {
+        //ボス討伐フラグオン
         isBossDestroyed = isSwitch;
         Debug.Log("ボスを倒した！");
 
         gameManager.SwitchGameUp(isBossDestroyed);
 
         // TODO ゲームクリアの準備
-        gameManager.PreparateGameClear();
+        gameManager.GameClear_From_EnemyGenerator();
     }
 
     /// <summary>
     /// EXP取得
     /// </summary>
     /// <param name="exp"></param>
-    public void PreparateDisplayTotalExp(int exp)
+    public void DisplayTotalExp_From_EnemyController(int exp)
     {
+        //EXPUI更新
         gameManager.uIManager.DisplayTotalExp(GameData.instance.GetTotalExp());
 
-        // TODO 引数の exp 変数は後々利用する
+        //EXP取得演出
         gameManager.uIManager.CreateMessageToExp(exp, FloatingMessage.FloatingMessageType.GetExp);
+
+        //特殊弾使用可否判定
+        gameManager.bulletSelectManager.JugdeOpenBullet();
+
+        // TODO 引数の exp 変数は後々利用する
+
     }
 
     // Update is called once per frame
@@ -197,8 +207,34 @@ public class EnemyGenerator : MonoBehaviour
     /// </summary>
     /// <param name="enemyPos"></param>
     /// <returns></returns>
-    public Vector3 PreparateGetPlayerDirection(Vector3 enemyPos)
+    public Vector3 GetPlayerDirection_From_EnemyController(Vector3 enemyPos)
     {
         return gameManager.GetPlayerDirection(enemyPos);
+    }
+
+    /// <summary>
+    /// エネミーオブジェクト＆リスト全消去
+    /// </summary>
+    public void ClearEnemiesList()
+    {
+
+        //enemiesList判定
+        for (int i = 0; i < enemiesList.Count; i++)
+        {
+            if (enemiesList[i] != null)
+            {
+                Destroy(enemiesList[i].gameObject);
+            }
+        }
+
+        enemiesList.Clear();
+    }
+
+    /// <summary>
+    /// TOCオブジェクト全消去
+    /// </summary>
+    public void DestroyTOC()
+    {
+        Destroy(TransformHelper.TOCTran.gameObject);
     }
 }
