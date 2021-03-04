@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ゲーム内データ（シングルトンクラス）
+/// </summary>
 public class GameData : MonoBehaviour
 {
     public static GameData instance;

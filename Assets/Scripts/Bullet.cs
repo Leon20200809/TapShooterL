@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     /// <summary>
     /// 弾発射
     /// </summary>
-    public void ShotBullet(Vector3 dir, BulletDataSO.BulletData bulletData = null) //  <=  ☆①　受け取る側の引数
+    public void ShotBullet(Vector3 dir, BulletDataSO.BulletData bulletData = null) 
     {
         //BulletDataSO.BulletData使用可能
         this.bulletData = bulletData;

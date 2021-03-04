@@ -136,6 +136,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnBulletSelect: {fileID: 8087620744463569953}
+  imgBulletbtn: {fileID: 8087620746041403264}
+  imgUsableTimeGauge: {fileID: 8087620745666273366}
+  bulletData:
+    no: 0
+    liberalType: 0
+    bulletType: 0
+    selectSprite: {fileID: 0}
+    bulletSprite: {fileID: 0}
+    bulletSpeed: 0
+    bulletPow: 0
+    bulletReload: 0
+    bulletUsableTime: 0
+    openExp: 0
+    discription: 
 --- !u!1 &8087620745666273352
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8087620745666273353
 RectTransform:
   m_ObjectHideFlags: 0
@@ -228,7 +242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8087620745742160098
 RectTransform:
   m_ObjectHideFlags: 0

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 弾選択管理、ボタンオブジェクト＆生成位置、弾データ、
+/// </summary>
 public class BulletSelectManager : MonoBehaviour
 {
     [SerializeField]
@@ -37,7 +40,7 @@ public class BulletSelectManager : MonoBehaviour
             BulletSelectDetail bulletSelectDetail = Instantiate(bulletSelectDetailPrefab, bulletTran, false);
 
             //ボタン中身設定
-            bulletSelectDetail.SetUpBulletSelectDetail(this);
+            bulletSelectDetail.SetUpBulletSelectDetail(this, bulletDataSO.bulletDataList[i]);
 
             //リストに追加
             bulletSelectDetailList.Add(bulletSelectDetail);
