@@ -109,7 +109,7 @@ public class DefenseBase : MonoBehaviour
             // TODO ゲームオーバー処理
             gameManager.SwitchGameUp(true);
 
-            gameManager.PreparateGameOver();
+            gameManager.GameOver_From_DefenseBase();
 
         }
         else

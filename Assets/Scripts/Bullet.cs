@@ -27,8 +27,11 @@ public class Bullet : MonoBehaviour
 
         if (this.bulletData == null) return;
 
-        //画像設定
+        //画像反映
         imgBullet.sprite = this.bulletData.bulletSprite;
+
+        //弾攻撃力反映
+        bulletPow = this.bulletData.bulletPow;
         
         //移動
         GetComponent<Rigidbody2D>().AddForce(dir * this.bulletData.bulletSpeed);

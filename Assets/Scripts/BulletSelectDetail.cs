@@ -21,6 +21,9 @@ public class BulletSelectDetail : MonoBehaviour
     float maxUsableTime;
     bool isShoting;
 
+    [SerializeField]
+    Text txtOpenExpValue;
+
     //デフォルト弾判定フラグ
     public bool isDefaultBullet;
 
@@ -45,20 +48,29 @@ public class BulletSelectDetail : MonoBehaviour
         btnBulletSelect.onClick.AddListener(OnClickBulletSelect);
 
         // TODO ボタンのオンオフ制御（押せる押せない）
+        SwitchActiveBulletbtn(false);
 
-        //使用可能時間設定）
+        //使用可能時間設定
         maxUsableTime = this.bulletData.bulletUsableTime;
         usableTime = maxUsableTime;
 
-        //
+        //UI使用可能時間ゲージ初期化（0%）
         imgUsableTimeGauge.fillAmount = 0;
+
+        //アンロックEXP設定
+        txtOpenExpValue.text = this.bulletData.openExp.ToString();
 
         //デフォルト弾フラグ監視
         if (this.bulletData.openExp == 0)
         {
             isDefaultBullet = true;
-
             ChengeShotBullet(true);
+
+            //アンロックEXP非表示
+            txtOpenExpValue.gameObject.SetActive(false);
+
+            //弾選択ボタンのオン
+            SwitchActiveBulletbtn(true);
 
             // TODO その他処理
         }
@@ -75,13 +87,17 @@ public class BulletSelectDetail : MonoBehaviour
         GameData.instance.SetUpBulletData(bulletData);
 
         //弾切り替えフラグ変更
-        ChengeShotBullet(true);
+        //ChengeShotBullet(true);
+        bulletSelectManager.ChengeLoadingBulletSetting(bulletData.no);
 
         //☆重複タップ防止策☆
         if (!isDefaultBullet && imgUsableTimeGauge.fillAmount == 0)
         {
             //UI使用中ゲージ表示
             imgUsableTimeGauge.fillAmount = 1f;
+
+            //アンロックEXP非表示
+            txtOpenExpValue.gameObject.SetActive(false);
 
             // TODO その他設定
         }
@@ -118,11 +134,38 @@ public class BulletSelectDetail : MonoBehaviour
         {
             usableTime = 0;
 
-            // TODO 初期バレット以外のバレットを初期状態に戻す
-
+            //初期バレット以外のバレットを初期状態に戻す
+            InitBulletState();
         }
 
 
+    }
+
+    /// <summary>
+    /// 初期バレット以外のバレットを初期状態に戻す
+    /// </summary>
+    void InitBulletState()
+    {
+        //使用可能時間終了
+        isShoting = false;
+
+        //デフォルト弾に切り替え
+        bulletSelectManager.ActiveDefaultBullet();
+
+        //使用可能時間初期化
+        usableTime = maxUsableTime;
+
+        //アンロックEXP表示
+        txtOpenExpValue.gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// 弾選択ボタンのオンオフ
+    /// </summary>
+    /// <param name="isSwitch"></param>
+    public void SwitchActiveBulletbtn(bool isSwitch)
+    {
+        btnBulletSelect.interactable = isSwitch;
     }
 
 }

@@ -35,22 +35,37 @@ public class GameData : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// EXP取得、値更新
+    /// </summary>
+    /// <param name="exp"></param>
     public void UpdateTotalExp(int exp)
     {
         totalExp += exp;
     }
 
+    /// <summary>
+    /// 値の取得：総取得EXP
+    /// </summary>
+    /// <returns></returns>
     public int GetTotalExp()
     {
         return totalExp;
     }
 
+    /// <summary>
+    /// 値の取得
+    /// </summary>
+    /// <returns></returns>
     public int GetPlayerHp()
     {
         return playerHp;
     }
 
+    /// <summary>
+    /// 値の取得
+    /// </summary>
+    /// <returns></returns>
     public int GetMaxEnemyGenerateCounts()
     {
         return maxEnemyGenerateCounts;

@@ -19,12 +19,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Transform tOCTran;
 
-    [SerializeField]
     public UIManager uIManager;
-
+    public BulletSelectManager bulletSelectManager;
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         //ゲーム終了フラグリセット
         SwitchGameUp(false);
@@ -46,6 +45,12 @@ public class GameManager : MonoBehaviour
 
         //位置情報一時保存用プロパティ書き換え
         TransformHelper.TOCTran = tOCTran;
+
+        //弾選択ボタンの生成 ☆この処理が終了するまで、次の処理は動かない
+        yield return StartCoroutine(bulletSelectManager.GenerateBulletSelectDitail(this));
+
+        //特殊弾使用可否判定
+        bulletSelectManager.JugdeOpenBullet();
     }
 
     /// <summary>
@@ -56,13 +61,17 @@ public class GameManager : MonoBehaviour
         isGameUp = isSwitch;
 
         // TODO ゲーム内のエネミー削除
-
+        if (isGameUp)
+        {
+            enemyGenerator.ClearEnemiesList();
+            enemyGenerator.DestroyTOC();
+        }
     }
 
     /// <summary>
     /// ゲームクリア画像表示（アルファ値を1にする）
     /// </summary>
-    public void PreparateGameClear()
+    public void GameClear_From_EnemyGenerator()
     {
         uIManager.DisplayGameClear();
     }
@@ -70,7 +79,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// ゲームオーバー画像表示（アルファ値を1にする）
     /// </summary>
-    public void PreparateGameOver()
+    public void GameOver_From_DefenseBase()
     {
         uIManager.DisplayGameOver();
     }

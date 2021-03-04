@@ -136,8 +136,8 @@ MonoBehaviour:
     bulletSpeed: 0
     bulletPow: 0
     bulletReload: 0
-    launchTime: 0
+    bulletUsableTime: 0
     openExp: 0
     discription: 
   imgBullet: {fileID: 6883418196963167584}
-  bulletPow: 10
+  bulletPow: 0

@@ -1175,7 +1175,7 @@ MonoBehaviour:
     bulletSpeed: 0
     bulletPow: 0
     bulletReload: 0
-    launchTime: 0
+    bulletUsableTime: 0
     openExp: 0
     discription: 
 --- !u!4 &1046914885
@@ -2097,6 +2097,7 @@ GameObject:
   - component: {fileID: 1687499648}
   - component: {fileID: 1687499650}
   - component: {fileID: 1687499649}
+  - component: {fileID: 1687499651}
   m_Layer: 5
   m_Name: txtPlayerHp
   m_TagString: Untagged
@@ -2136,7 +2137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24528301, g: 0.20710216, b: 0.20710216, a: 1}
+  m_Color: {r: 1, g: 0.9858491, b: 0.9858491, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2165,6 +2166,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687499647}
   m_CullTransparentMesh: 0
+--- !u!114 &1687499651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687499647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1723847723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,7 +2310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.03208439, g: 0.35757175, b: 0.9716981, a: 1}
+  m_Color: {r: 0.031372517, g: 0.43772575, b: 0.972549, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2456,6 +2472,7 @@ MonoBehaviour:
   enemyGenerator: {fileID: 866358}
   tOCTran: {fileID: 763815622}
   uIManager: {fileID: 1312713947}
+  bulletSelectManager: {fileID: 807047176}
 --- !u!4 &1900919092
 Transform:
   m_ObjectHideFlags: 0
@@ -2520,7 +2537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
