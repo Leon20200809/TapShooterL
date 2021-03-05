@@ -27,6 +27,9 @@ public class BulletSelectDetail : MonoBehaviour
     //デフォルト弾判定フラグ
     public bool isDefaultBullet;
 
+    //アンロック済かつ支払済なら"true"
+    bool isCostPayment;
+
     public BulletDataSO.BulletData bulletData;
 
     BulletSelectManager bulletSelectManager;
@@ -99,6 +102,13 @@ public class BulletSelectDetail : MonoBehaviour
             //アンロックEXP非表示
             txtOpenExpValue.gameObject.SetActive(false);
 
+            //特殊弾使用可能コストを送信
+            bulletSelectManager.SelectedBulletCostPayment(bulletData.openExp);
+
+            //コスト支払済フラグ
+            //SetStateBulletCostPayment(true);
+            IsCostPayment = true;
+
             // TODO その他設定
         }
 
@@ -157,6 +167,13 @@ public class BulletSelectDetail : MonoBehaviour
 
         //アンロックEXP表示
         txtOpenExpValue.gameObject.SetActive(true);
+
+        //特殊弾使用コスト未払いに戻す
+        //SetStateBulletCostPayment(false);
+        IsCostPayment = false;
+
+        //特殊弾使用可否判定
+        bulletSelectManager.JugdeOpenBullet();
     }
 
     /// <summary>
@@ -168,4 +185,37 @@ public class BulletSelectDetail : MonoBehaviour
         btnBulletSelect.interactable = isSwitch;
     }
 
+    /// <summary>
+    /// 特殊弾使用コスト支払いフラグ
+    /// </summary>
+    /// <returns></returns>
+    public bool GetStateBulletCostPayment()
+    {
+        return isCostPayment;
+    }
+
+    /// <summary>
+    /// 特殊弾使用コスト支払いフラグセット
+    /// </summary>
+    /// <param name="isSet"></param>
+    public void SetStateBulletCostPayment(bool isSet)
+    {
+        isCostPayment = isSet;
+    }
+
+    /// <summary>
+    /// 特殊弾使用コスト支払いフラグセット
+    /// </summary>
+    public bool IsCostPayment
+    {
+        set
+        {
+            isCostPayment = value;
+        }
+
+        get
+        {
+            return isCostPayment;
+        }
+    }
 }
