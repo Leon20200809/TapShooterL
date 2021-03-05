@@ -122,6 +122,14 @@ public class BulletSelectManager : MonoBehaviour
                 continue;　//これの意味
             }
 
+            //特殊弾使用コスト支払いフラグ判定
+            if (bulletData.IsCostPayment == true)
+            {
+                //弾選択ボタンオン
+                bulletData.SwitchActiveBulletbtn(true);
+                continue;
+            }
+
             //弾コスト判定
             if (bulletData.bulletData.openExp <= totalExp)
             {
@@ -132,6 +140,26 @@ public class BulletSelectManager : MonoBehaviour
                 bulletData.SwitchActiveBulletbtn(false);
             }
         }
+    }
+
+    /// <summary>
+    /// 特殊弾使用コスト支払い
+    /// </summary>
+    /// <param name="costExp"></param>
+    public void SelectedBulletCostPayment(int costExp)
+    {
+        //特殊弾コスト減算
+        GameData.instance.UpdateTotalExp(-costExp);
+
+        //UI更新
+        gameManager.uIManager.DisplayTotalExp(GameData.instance.GetTotalExp());
+
+        //UI表示
+        gameManager.uIManager.CreateMessageToExp(-costExp, FloatingMessage.FloatingMessageType.BulletCost);
+
+        //特殊弾使用可否判定
+        JugdeOpenBullet();
+
     }
 
 }

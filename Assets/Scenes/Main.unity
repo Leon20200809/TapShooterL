@@ -173,9 +173,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyDataSO: {fileID: 11400000, guid: eef354c880ccda544b510e89c4fb79c2, type: 2}
   enemyMoveEventSO: {fileID: 11400000, guid: ad5ef0e1b0453114baa27f131aee7975, type: 2}
-  enemyObjPrefab: {fileID: 7943149632527041189, guid: 5df5f87901a7775429d0ad99c58a2e0d, type: 3}
-  enemyPopCooltime: 2
-  maxEnemyGenerateCounts: 6
+  enemyObjPrefab: {fileID: 7943149632527041187, guid: 5df5f87901a7775429d0ad99c58a2e0d, type: 3}
+  enemyPopCooltime: 1.5
+  enemiesList: []
+  maxEnemyGenerateCounts: 0
   isGenerateEnd: 0
   isBossDestroyed: 0
 --- !u!1 &41982589
@@ -1164,7 +1165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHp: 100
-  maxEnemyGenerateCounts: 2
+  maxEnemyGenerateCounts: 5
   totalExp: 0
   currentBullet:
     no: 0

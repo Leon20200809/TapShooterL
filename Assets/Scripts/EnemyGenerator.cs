@@ -95,7 +95,7 @@ public class EnemyGenerator : MonoBehaviour
 
             GenerateEnemy();
 
-            //エネミー出現数カウント
+            //エネミー出現数カウントアップ
             generateCount++;
             Debug.Log("エネミー出現数" + generateCount);
 
