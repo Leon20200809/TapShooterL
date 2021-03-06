@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject bulletPrefab;
+    [SerializeField]
+    Bullet bulletPrefab;
 
     GameManager gameManager;
 
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("方向" + dir);
 
             //弾プレファブ生成
-            GenerateBullet(dir); //<=  ☆①　送る側の引数
+            SetupGenerateBullet(dir); //<=  ☆①　送る側の引数
         }
     }
 
@@ -47,13 +48,48 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// 弾生成段取り
+    /// </summary>
+    void SetupGenerateBullet(Vector3 dir) //  <=  ☆②　受け取る側の引数
+    {
+        //選択中の弾データ取得
+        BulletDataSO.BulletData bulletData = GameData.instance.GetCurrentBullet();
+
+        //弾種評価
+        switch (bulletData.bulletType)
+        {
+            //
+            case BulletDataSO.BulletType.Player_Normal:
+            case BulletDataSO.BulletType.Player_Blaze:
+
+                GenerateBullet(dir, bulletData);
+                break;
+
+            case BulletDataSO.BulletType.Player_3ways_Piercing:
+
+                for (int i = -1; i < 2; i++)
+                {
+                    GenerateBullet(new Vector3(dir.x + (0.5f * i), dir.y, dir.z), bulletData);
+                }
+                break;
+
+            case BulletDataSO.BulletType.Player_5ways_Normal:
+
+                for (int i = -2; i < 3; i++)
+                {
+                    GenerateBullet(new Vector3(dir.x + (0.25f * i), dir.y, dir.z), bulletData);
+                }
+                break;
+        }
+    }
+
+    /// <summary>
     /// 弾生成
     /// </summary>
-    void GenerateBullet(Vector3 dir) //  <=  ☆②　受け取る側の引数
+    /// <param name="dir"></param>
+    /// <param name="bulletData"></param>
+    void GenerateBullet(Vector3 dir, BulletDataSO.BulletData bulletData)
     {
-        // 生成位置の指定を transform と指定すると PlayerSet ゲームオブジェクトの子オブジェクトとして親子関係を持って生成される
-        GameObject bulletObj = Instantiate(bulletPrefab, transform);
-
-        bulletObj.GetComponent<Bullet>().ShotBullet(dir, GameData.instance.GetCurrentBullet()); //<=  ☆③　送る側の引数を追加します。この情報が、Bullet スクリプトの修正した ShotBullet メソッドに引数として送られる
+        Instantiate(bulletPrefab, transform).ShotBullet(dir, bulletData);
     }
 }

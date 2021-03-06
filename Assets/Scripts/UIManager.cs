@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class UIManager : MonoBehaviour
@@ -29,6 +30,30 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Transform floatingMessageGetExpTran;
 
+    [SerializeField]
+    Button btnNextStage;
+    [SerializeField]
+    Button btnRestart;
+
+
+
+    public void OnClickNextStage()
+    {
+        btnNextStage.onClick.RemoveAllListeners();
+
+        // TODO 仮リスタート。徐々に難易度をあげていく処理を追加
+        string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void OnClickRestart()
+    {
+        btnNextStage.onClick.RemoveAllListeners();
+
+        string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
+
+    }
 
     /// <summary>
     /// ゲームクリア画像のアルファ値を0にする。（透明）
@@ -46,6 +71,9 @@ public class UIManager : MonoBehaviour
     {
         //アルファ値を1にする。（見える）
         canvasGroupGameClear.DOFade(1, 0.25f);
+
+        btnNextStage.onClick.AddListener(OnClickNextStage);
+        canvasGroupGameClear.blocksRaycasts = true;
     }
 
     /// <summary>
@@ -69,6 +97,9 @@ public class UIManager : MonoBehaviour
 
         // DOTween の DOText メソッドを利用して文字列を１文字ずつ順番に同じ表示時間で表示
         txtGameOver.DOText(txt, 1.5f).SetEase(Ease.Linear);
+
+        btnRestart.onClick.AddListener(OnClickRestart);
+        canvasGroupGameOver.blocksRaycasts = true;
     }
 
     /// <summary>
