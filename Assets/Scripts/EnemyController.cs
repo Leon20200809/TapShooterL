@@ -38,7 +38,9 @@ public class EnemyController : MonoBehaviour
 
     EnemyGenerator enemyGenerator;
 
-    //エネミーの移動メソッドが入る
+    /// <summary>
+    /// エネミーの移動メソッドが入る
+    /// </summary>
     UnityAction<Transform, float> enemyMoveEvent;
 
     /// <summary>
@@ -138,14 +140,16 @@ public class EnemyController : MonoBehaviour
             Debug.Log("接触判定；" + col.gameObject.tag);
 
             //プレイヤーの弾情報取得
-            if (col.gameObject.TryGetComponent(out Bullet bullet))
+            if (col.gameObject.TryGetComponent(out Bullet playerBullet))
             {
-                UpdateEnemyHp(bullet);
+                //エネミーHP減算
+                UpdateEnemyHp(playerBullet);
+
+                //HITエフェクト生成⇒発生場所指定
+                GenerateBulletEffect(col.gameObject.transform);
+
             }
 
-            GenerateBulletEffect(col.gameObject.transform);
-
-            DestroyBullet(col);
         }
     }
 
@@ -162,7 +166,7 @@ public class EnemyController : MonoBehaviour
     /// <summary>
     /// HITエフェクト生成
     /// </summary>
-    /// <param name="hitTran"></param>
+    /// <param name="hitTran">エフェクト発生位置</param>
     void GenerateBulletEffect(Transform hitTran)
     {
         GameObject effect = Instantiate(bulletEffectPrefab, hitTran, false);
@@ -173,21 +177,30 @@ public class EnemyController : MonoBehaviour
     /// <summary>
     /// エネミーHP更新
     /// </summary>
-    void UpdateEnemyHp(Bullet bullet)
+    void UpdateEnemyHp(Bullet playerBullet)
     {
         //ダメージ用UI生成
-        CreateFloatingMessageToBulletPower(bullet.bulletPow);
+        CreateFloatingMessageToBulletPower(playerBullet.bulletData.bulletPow);
 
-        //HP減らす
-        enemyHp -= bullet.bulletPow;
+        //HP減らす（内部的に）
+        enemyHp -= playerBullet.bulletData.bulletPow;
 
         //上限下限値設定
         enemyHp = Mathf.Clamp(enemyHp, 0, maxEnemyHp);
 
+        //HP減らす（UI更新）
         DisplayEnemyHp();
 
+        //エネミーHP判定
         if (enemyHp <= 0)
         {
+            //ボス判定
+            if (this.enemyData.enemyType == EnemyType.Boss)
+            {
+                //ボス討伐フラグ
+                enemyGenerator.SwitchBossDestroyed(true);
+            }
+
             //Exp加算処理（内部的に）
             GameData.instance.UpdateTotalExp(enemyData.exp);
 
@@ -198,16 +211,14 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("エネミーを倒した！" + enemyHp);
 
-            if (this.enemyData.enemyType == EnemyType.Boss)
-            {
-                //ボス討伐フラグ
-                enemyGenerator.SwitchBossDestroyed(true);
-            }
         }
-        else
+
+        //被弾種判定
+        if (playerBullet.bulletData.bulletType == BulletDataSO.BulletType.Player_Normal || playerBullet.bulletData.bulletType == BulletDataSO.BulletType.Player_5ways_Normal)
         {
-            Debug.Log("残HP：" + enemyHp);
+            Destroy(playerBullet.gameObject);
         }
+
     }
 
     /// <summary>
