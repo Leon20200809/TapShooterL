@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1964718252411700305}
   m_Layer: 5
   m_Name: EnemyBullet
-  m_TagString: Enemy
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,5 +127,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f58480b69a0e064982432582384ffb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletData:
+    no: 0
+    liberalType: 0
+    bulletType: 0
+    selectSprite: {fileID: 0}
+    bulletSprite: {fileID: 0}
+    bulletSpeed: 0
+    bulletPow: 0
+    bulletReload: 0
+    bulletUsableTime: 0
+    openExp: 0
+    discription: 
+  imgBullet: {fileID: 0}
   bulletPow: 10
-  bulletSpeed: 200

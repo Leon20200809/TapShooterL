@@ -136,14 +136,15 @@ public class EnemyGenerator : MonoBehaviour
         }
 
         //エネミー出現（生成）
-        EnemyController enemySetObj = Instantiate(enemyObjPrefab, transform, false);
+        EnemyController enemyController = Instantiate(enemyObjPrefab, transform, false);
 
-        //EnemyController.csのメソッド実行
-        EnemyController enemyController = enemySetObj.GetComponent<EnemyController>();
         enemyController.SetUpEnemy(enemyData);
 
         //追加設定
         enemyController.AdditionalSetUpEnemy(this);
+
+        //リスト追加 クリア後の全削除用
+        enemiesList.Add(enemyController);
     }
 
     /// <summary>
