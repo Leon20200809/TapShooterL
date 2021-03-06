@@ -1134,7 +1134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5962c63c56c9984996536c07a8dffdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6883418196963167590, guid: 9ae42d1a1ab20a241aa2189c584110a9, type: 3}
+  bulletPrefab: {fileID: 6883418196963167587, guid: 9ae42d1a1ab20a241aa2189c584110a9, type: 3}
 --- !u!1 &1046914883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,6 +1592,8 @@ MonoBehaviour:
   sliderPlayerHp: {fileID: 1142212669}
   floatingMessagePrefab: {fileID: -3482728527075159554, guid: f67e939113672ab45bbf46fb83a21cb6, type: 3}
   floatingMessageGetExpTran: {fileID: 41982590}
+  btnNextStage: {fileID: 1131999658}
+  btnRestart: {fileID: 1584989979}
 --- !u!4 &1312713948
 Transform:
   m_ObjectHideFlags: 0

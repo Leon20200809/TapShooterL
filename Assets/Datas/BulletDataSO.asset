@@ -62,9 +62,9 @@ MonoBehaviour:
     bulletType: 0
     selectSprite: {fileID: 21300000, guid: c067722c6935d32469369a6388465cb1, type: 3}
     bulletSprite: {fileID: 21300000, guid: c067722c6935d32469369a6388465cb1, type: 3}
-    bulletSpeed: 0
-    bulletPow: 0
-    bulletReload: 0
+    bulletSpeed: 50
+    bulletPow: 10
+    bulletReload: 1
     bulletUsableTime: 0
     openExp: 0
     discription: 
@@ -73,9 +73,9 @@ MonoBehaviour:
     bulletType: 1
     selectSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     bulletSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    bulletSpeed: 0
-    bulletPow: 0
-    bulletReload: 0
+    bulletSpeed: 50
+    bulletPow: 15
+    bulletReload: 1
     bulletUsableTime: 0
     openExp: 0
     discription: 
