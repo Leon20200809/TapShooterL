@@ -209,7 +209,7 @@ public class EnemyController : MonoBehaviour
 
             //エネミー破棄
             Destroy(gameObject);
-            Debug.Log("エネミーを倒した！" + enemyHp);
+            Debug.Log("エネミーを倒した！");
 
         }
 

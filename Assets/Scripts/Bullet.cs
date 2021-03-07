@@ -16,61 +16,67 @@ public class Bullet : MonoBehaviour
     [Header("弾威力")]
     public int bulletPow;
 
+    /// <summary>
+    /// 追尾対象確定フラグ
+    /// </summary>
     bool isTarget;
+
     Vector3 nearEnemyPos;
 
 
     /// <summary>
     /// 弾発射
     /// </summary>
-    public void ShotBullet(Vector3 dir, BulletDataSO.BulletData bulletData = null) 
+    public void ShotBullet(Vector3 shotDir, BulletDataSO.BulletData bulletData = null) 
     {
         //BulletDataSO.BulletData使用可能
         this.bulletData = bulletData;
 
         if (this.bulletData == null) return;
 
-        //画像反映
+        //弾画像反映
         imgBullet.sprite = this.bulletData.bulletSprite;
 
         //弾攻撃力反映
         bulletPow = this.bulletData.bulletPow;
         
-        //
+        //弾種判定（追尾弾用、一番近いエネミーを選定）
         if (bulletData.bulletType == BulletDataSO.BulletType.Player_Blaze)
         {
-            //
+            //画面内エネミータグ付きのオブジェクト検索、配列に追加
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-            //
+            //配列データチェック
             if (enemies.Length > 0)
             {
+                //データ格納（仮）
                 nearEnemyPos = enemies[0].transform.position;
 
-                //エネミーの現在位置を評価
+                //配列内データの現在位置をチェック
                 for (int i = 0; i < enemies.Length; i++)
                 {
+                    //データ格納
                     Vector3 pos = enemies[i].transform.position;
 
-                    //
+                    //一番近いエネミーを選定
                     if (nearEnemyPos.x > pos.x && nearEnemyPos.y > pos.y)
                     {
-                        //
+                        //確定
                         nearEnemyPos = pos;
                     }
 
                 }
 
-                //
+                //追尾対象確定フラグ
                 isTarget = true;
             }
         }
 
-        //
+        //弾種判定
         if (bulletData.bulletType != BulletDataSO.BulletType.Player_Blaze)
         {
             //移動
-            GetComponent<Rigidbody2D>().AddForce(dir * this.bulletData.bulletSpeed);
+            GetComponent<Rigidbody2D>().AddForce(shotDir * this.bulletData.bulletSpeed);
 
         }
 

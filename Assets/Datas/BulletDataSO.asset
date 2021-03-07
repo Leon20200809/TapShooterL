@@ -16,11 +16,11 @@ MonoBehaviour:
   - no: 0
     liberalType: 0
     bulletType: 3
-    selectSprite: {fileID: 21300000, guid: 22b2684bc7c70b042a57a5553682b255, type: 3}
-    bulletSprite: {fileID: 21300000, guid: 22b2684bc7c70b042a57a5553682b255, type: 3}
+    selectSprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
+    bulletSprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
     bulletSpeed: 300
     bulletPow: 10
-    bulletReload: 0.2
+    bulletReload: 10.9
     bulletUsableTime: 0
     openExp: 0
     discription: "\u901A\u5E38\u5F3E"
@@ -64,7 +64,7 @@ MonoBehaviour:
     bulletSprite: {fileID: 21300000, guid: c067722c6935d32469369a6388465cb1, type: 3}
     bulletSpeed: 50
     bulletPow: 10
-    bulletReload: 1
+    bulletReload: 5
     bulletUsableTime: 0
     openExp: 0
     discription: 
@@ -75,7 +75,7 @@ MonoBehaviour:
     bulletSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     bulletSpeed: 50
     bulletPow: 15
-    bulletReload: 1
+    bulletReload: 4
     bulletUsableTime: 0
     openExp: 0
     discription: 

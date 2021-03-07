@@ -16,7 +16,7 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField, Header("エネミープレファブ")]
     EnemyController enemyObjPrefab;
 
-    [SerializeField, Header("エネミー出現クールタイム")]
+    [SerializeField, Header("エネミー出現クールタイム")][Range(0.2f, 10f)]
     public float enemyPopCooltime;
 
     //エネミー出現総数
@@ -200,7 +200,7 @@ public class EnemyGenerator : MonoBehaviour
     void Update()
     {
         if (isGenerateEnd) return;
-        if (!gameManager.isGameUp) EnemyPop();
+        if (!gameManager.isGameUp && gameManager.isStartSetup) EnemyPop();
     }
 
     /// <summary>
