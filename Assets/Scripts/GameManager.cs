@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
         //ゲームオーバー画像を隠す
         uIManager.HideGameOver();
 
+        //ボス出現演出画像を隠す
+        uIManager.HideBossAlertSet();
+
         //プレイヤー（防衛対象）の初期設定
         defenseBase.SetUpDefenseBase(this);
 
@@ -98,7 +101,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// ゲームクリア時の演出
+    /// </summary>
+    /// <returns></returns>
     IEnumerator GanerateFireWorks()
     {
         yield return new WaitForSeconds(1.5f);

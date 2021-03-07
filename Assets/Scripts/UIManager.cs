@@ -45,6 +45,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Image imgGameStart;
 
+    [SerializeField]
+    CanvasGroup canvasGroupBossAlert;
+
     public void OnClickNextStage()
     {
         btnNextStage.onClick.RemoveAllListeners();
@@ -83,6 +86,41 @@ public class UIManager : MonoBehaviour
         //
         imgGameStart.transform.DOLocalJump(new Vector3(1500, 0, 0), 200f, 6, 1.5f).SetEase(Ease.Linear);
     }
+
+    /// <summary>
+    /// ボス出現演出の非表示
+    /// </summary>
+    public void HideBossAlertSet()
+    {
+        canvasGroupBossAlert.transform.parent.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// ボス出現演出
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator PlayBossAlert()
+    {
+        //
+        canvasGroupBossAlert.transform.parent.gameObject.SetActive(true);
+
+        //
+        canvasGroupBossAlert.DOFade(1, 0.5f).SetLoops(6, LoopType.Yoyo);
+
+        //
+        yield return new WaitForSeconds(3f);
+
+        //
+        canvasGroupBossAlert.DOFade(0, 0.25f);
+
+        //
+        yield return new WaitForSeconds(0.25f);
+
+        //
+        canvasGroupBossAlert.transform.parent.gameObject.SetActive(false);
+    }
+
+
 
     /// <summary>
     /// ゲームクリア画像のアルファ値を0にする。（透明）
