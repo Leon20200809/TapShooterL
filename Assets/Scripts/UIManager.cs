@@ -31,11 +31,19 @@ public class UIManager : MonoBehaviour
     Transform floatingMessageGetExpTran;
 
     [SerializeField]
+    Image imgGameClear;
+    [SerializeField]
+    CanvasGroup canvasGroupRestartImage;
+
+    [SerializeField]
     Button btnNextStage;
     [SerializeField]
     Button btnRestart;
 
-
+    [SerializeField]
+    CanvasGroup canvasGroupOpeningFilter;
+    [SerializeField]
+    Image imgGameStart;
 
     public void OnClickNextStage()
     {
@@ -56,6 +64,27 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
+    /// ゲームスタート時の演出
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator PlayOpening()
+    {
+        //フィルターのアルファ値を0に（黒い画が見えなくなる）
+        canvasGroupOpeningFilter.DOFade(0, 1f)
+            .OnComplete(() =>
+            {
+                //
+                imgGameStart.transform.DOLocalJump(Vector3.zero, 300f, 2, 2f).SetEase(Ease.Linear);
+            });
+
+        //
+        yield return new WaitForSeconds(5.5f);
+
+        //
+        imgGameStart.transform.DOLocalJump(new Vector3(1500, 0, 0), 200f, 6, 1.5f).SetEase(Ease.Linear);
+    }
+
+    /// <summary>
     /// ゲームクリア画像のアルファ値を0にする。（透明）
     /// </summary>
     public void HideGameClear()
@@ -70,10 +99,29 @@ public class UIManager : MonoBehaviour
     public void DisplayGameClear()
     {
         //アルファ値を1にする。（見える）
-        canvasGroupGameClear.DOFade(1, 0.25f);
+        canvasGroupGameClear.DOFade(1, 0.25f)
+
+            .OnComplete(() =>
+            {
+                //
+                imgGameClear.transform.DOPunchScale(imgGameClear.transform.localScale * 2.5f, 0.5f)
+                .OnComplete(() =>
+                {
+                    //
+                    imgGameClear.transform.DOShakeScale(0.5f);
+
+                    //
+                    imgGameClear.transform.localScale = imgGameClear.transform.localScale * 1.1f;
+
+                    //画面タップ許可
+                    canvasGroupGameClear.blocksRaycasts = true;
+
+                    //
+                    canvasGroupRestartImage.DOFade(1, 1.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+                });
+            });
 
         btnNextStage.onClick.AddListener(OnClickNextStage);
-        canvasGroupGameClear.blocksRaycasts = true;
     }
 
     /// <summary>
@@ -98,8 +146,8 @@ public class UIManager : MonoBehaviour
         // DOTween の DOText メソッドを利用して文字列を１文字ずつ順番に同じ表示時間で表示
         txtGameOver.DOText(txt, 1.5f).SetEase(Ease.Linear);
 
-        btnRestart.onClick.AddListener(OnClickRestart);
-        canvasGroupGameOver.blocksRaycasts = true;
+        //btnRestart.onClick.AddListener(OnClickRestart);
+        //canvasGroupGameOver.blocksRaycasts = true;
     }
 
     /// <summary>

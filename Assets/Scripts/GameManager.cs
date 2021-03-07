@@ -22,9 +22,20 @@ public class GameManager : MonoBehaviour
     public UIManager uIManager;
     public BulletSelectManager bulletSelectManager;
 
+    [SerializeField]
+    GameObject fireworksEffectPrefab;
+    [SerializeField]
+    Transform fireworksEffectTran;
+
+    //
+    public bool isStartSetup;
+
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        isStartSetup = false;
+
         //ゲーム終了フラグリセット
         SwitchGameUp(false);
 
@@ -43,14 +54,21 @@ public class GameManager : MonoBehaviour
         //エネミー出現メソッドの初期設定
         enemyGenerator.SetUpEnemyGenerator(this);
 
-        //位置情報一時保存用プロパティ書き換え
+        //位置情報一時保存用ロパティ書き換え
         TransformHelper.TOCTran = tOCTran;
 
         //弾選択ボタンの生成 ☆この処理が終了するまで、次の処理は動かない
         yield return StartCoroutine(bulletSelectManager.GenerateBulletSelectDitail(this));
 
+        //ゲーム開始時の演出
+        yield return StartCoroutine(uIManager.PlayOpening());
+
         //特殊弾使用可否判定
         bulletSelectManager.JugdeOpenBullet();
+
+        //
+        isStartSetup = true;
+        Debug.Log("GameManager初期セットアップ終了！");
     }
 
     /// <summary>
@@ -60,7 +78,7 @@ public class GameManager : MonoBehaviour
     {
         isGameUp = isSwitch;
 
-        // TODO ゲーム内のエネミー削除
+        //ゲーム内のエネミー、弾オブジェクト削除
         if (isGameUp)
         {
             enemyGenerator.ClearEnemiesList();
@@ -74,6 +92,49 @@ public class GameManager : MonoBehaviour
     public void GameClear_From_EnemyGenerator()
     {
         uIManager.DisplayGameClear();
+
+        //ゲームクリア演出
+        StartCoroutine(GanerateFireWorks());
+
+    }
+
+
+    IEnumerator GanerateFireWorks()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        //何個か生成
+        for (int i = 0; i < Random.Range(5, 8); i++)
+        {
+            //オブジェクト作成
+            GameObject fireworks = Instantiate(fireworksEffectPrefab, fireworksEffectTran, false);
+
+            //パーティクルのプロパティいじる用
+            ParticleSystem.MainModule main = fireworks.GetComponent<ParticleSystem>().main;
+
+            //
+            main.startColor = GetNewTwoRandamColors();
+
+            //生成位置ランダムに設定
+            fireworks.transform.localPosition = new Vector3(fireworks.transform.localPosition.x + Random.Range(-500, 500), fireworks.transform.localPosition.y + Random.Range(700, 1000));
+
+            //
+            Destroy(fireworks, 3f);
+
+            //
+            yield return new WaitForSeconds(0.5f);
+
+        }
+    }
+
+    ParticleSystem.MinMaxGradient GetNewTwoRandamColors()
+    {
+        return new ParticleSystem.MinMaxGradient(GetRandamColor(), GetRandamColor());
+    }
+
+    Color GetRandamColor()
+    {
+        return new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
     }
 
     /// <summary>
@@ -84,7 +145,11 @@ public class GameManager : MonoBehaviour
         uIManager.DisplayGameOver();
     }
 
-
+    /// <summary>
+    /// プレイヤーの方向算出メソッド
+    /// </summary>
+    /// <param name="enemyPos"></param>
+    /// <returns></returns>
     public Vector3 GetPlayerDirection(Vector3 enemyPos)
     {
         Vector3 vector3 = (playerController.transform.position - enemyPos).normalized;

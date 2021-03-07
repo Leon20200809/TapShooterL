@@ -23,17 +23,17 @@ public class PlayerController : MonoBehaviour
             Debug.Log("タップ座標：" + tapPos);
 
             //射出ベクトルを計算、算出
-            Vector3 dir = tapPos - transform.position;
+            Vector3 shotDir = tapPos - transform.position;
 
             //Z情報を0にする※無効化
-            dir = Vector3.Scale(dir, new Vector3(1, 1, 0));
+            shotDir = Vector3.Scale(shotDir, new Vector3(1, 1, 0));
 
             //正規化
-            dir = dir.normalized;
-            Debug.Log("方向" + dir);
+            shotDir = shotDir.normalized;
+            Debug.Log("方向" + shotDir);
 
             //弾プレファブ生成
-            SetupGenerateBullet(dir); //<=  ☆①　送る側の引数
+            SetupGenerateBullet(shotDir); //<=  ☆①　送る側の引数
         }
     }
 
@@ -50,26 +50,26 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 弾生成段取り
     /// </summary>
-    void SetupGenerateBullet(Vector3 dir) //  <=  ☆②　受け取る側の引数
+    void SetupGenerateBullet(Vector3 shotDir) //  <=  ☆②　受け取る側の引数
     {
         //選択中の弾データ取得
-        BulletDataSO.BulletData bulletData = GameData.instance.GetCurrentBullet();
+        BulletDataSO.BulletData currentBulletData = GameData.instance.GetCurrentBullet();
 
-        //弾種評価
-        switch (bulletData.bulletType)
+        //弾種チェック
+        switch (currentBulletData.bulletType)
         {
-            //
+            //評価
             case BulletDataSO.BulletType.Player_Normal:
             case BulletDataSO.BulletType.Player_Blaze:
 
-                GenerateBullet(dir, bulletData);
+                GenerateBullet(shotDir, currentBulletData);
                 break;
 
             case BulletDataSO.BulletType.Player_3ways_Piercing:
 
                 for (int i = -1; i < 2; i++)
                 {
-                    GenerateBullet(new Vector3(dir.x + (0.5f * i), dir.y, dir.z), bulletData);
+                    GenerateBullet(new Vector3(shotDir.x + (0.5f * i), shotDir.y, shotDir.z), currentBulletData);
                 }
                 break;
 
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
                 for (int i = -2; i < 3; i++)
                 {
-                    GenerateBullet(new Vector3(dir.x + (0.25f * i), dir.y, dir.z), bulletData);
+                    GenerateBullet(new Vector3(shotDir.x + (0.25f * i), shotDir.y, shotDir.z), currentBulletData);
                 }
                 break;
         }

@@ -32,6 +32,8 @@ public class EnemyDataSO : ScriptableObject
 
         //移動タイプと移動速度（時間）
         public EnemyMoveType moveType;
+
+        [Range(2f, 60f)]
         public float moveDuration;
     }
 }

@@ -31,19 +31,19 @@ public class BulletDataSO : ScriptableObject
         //射出画像
         public Sprite bulletSprite;
 
-        //速度
+        [Range(10f, 800f)]//速度
         public float bulletSpeed;
 
-        //攻撃力
+        [Range(0, 100)]//攻撃力
         public int bulletPow;
 
-        //リロード速度
+        [Range(0f, 30f)]//リロード速度
         public float bulletReload;
 
-        //使用可能時間
+        [Range(0f, 120f)]//使用可能時間
         public float bulletUsableTime;
 
-        //使用可能Pt
+        [Range(0, 200)]//使用可能Pt
         public int openExp;
 
         //説明文
