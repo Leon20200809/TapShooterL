@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!gameManager.isStartSetup) return;
         //ゲーム終了フラグオンならタップ反応制御
         if (gameManager.isGameUp) return;
 

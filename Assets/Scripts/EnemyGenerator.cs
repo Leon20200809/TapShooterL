@@ -154,8 +154,7 @@ public class EnemyGenerator : MonoBehaviour
     IEnumerator GenerateBoss()
     {
         // TODO 出現演出
-
-        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(gameManager.uIManager.PlayBossAlert());
 
         // TODO ボス生成
         GenerateEnemy(EnemyType.Boss);
