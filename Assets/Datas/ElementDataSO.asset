@@ -14,17 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementDataList:
   - no: 0
-    elementSprite: {fileID: 0}
+    elementSprite: {fileID: 21300000, guid: 2a116b9b097c42e4a9429175d272b1ca, type: 3}
     elementType: 0
   - no: 1
-    elementSprite: {fileID: 0}
-    elementType: 1
-  - no: 2
-    elementSprite: {fileID: 0}
+    elementSprite: {fileID: 21300000, guid: 5651a9ef2b8cc184a83e87893d5a8ba4, type: 3}
     elementType: 2
-  - no: 3
-    elementSprite: {fileID: 0}
+  - no: 2
+    elementSprite: {fileID: 21300000, guid: ac5c7b83031edee4bb032829bdf26ffa, type: 3}
     elementType: 3
-  - no: 4
-    elementSprite: {fileID: 0}
+  - no: 3
+    elementSprite: {fileID: 21300000, guid: 8d345570393c92046934eb77a5961aaf, type: 3}
     elementType: 4

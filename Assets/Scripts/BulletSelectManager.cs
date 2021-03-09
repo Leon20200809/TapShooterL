@@ -13,6 +13,8 @@ public class BulletSelectManager : MonoBehaviour
 
     [SerializeField]
     BulletDataSO bulletDataSO;
+    [SerializeField]
+    ElementDataSO elementDataSO;
 
     [SerializeField]//生成位置用
     Transform bulletTran;
@@ -40,13 +42,19 @@ public class BulletSelectManager : MonoBehaviour
     {
         this.gameManager = gameManager;
 
+        //特定のENUMタイプのみのリスト作成
+        List<BulletDataSO.BulletData> playerBulletDatas = new List<BulletDataSO.BulletData>();
+
+        //作ったリストにデータを格納 BulletDataSO.LiberalType.Player
+        playerBulletDatas = bulletDataSO.bulletDataList.Where(x => x.liberalType == BulletDataSO.LiberalType.Player).ToList();
+
         for (int i = 0; i < maxBulletNum; i++)
         {
             //弾種分ボタンを生成
             BulletSelectDetail bulletSelectDetail = Instantiate(bulletSelectDetailPrefab, bulletTran, false);
 
             //ボタン中身設定
-            bulletSelectDetail.SetUpBulletSelectDetail(this, bulletDataSO.bulletDataList[i]);
+            bulletSelectDetail.SetUpBulletSelectDetail(this, playerBulletDatas[i]);
 
             //リストに追加
             bulletSelectDetailList.Add(bulletSelectDetail);
@@ -57,10 +65,7 @@ public class BulletSelectManager : MonoBehaviour
         }
 
         //使用弾種の初期設定
-        GameData.instance.SetUpBulletData(bulletDataSO.bulletDataList[0]);
-
-        //使用中弾種のフラグ設定
-        
+        GameData.instance.SetUpBulletData(playerBulletDatas[0]);
 
     }
 
@@ -100,6 +105,7 @@ public class BulletSelectManager : MonoBehaviour
             {
                 bulletSelectDetail.OnClickBulletSelect();
                 Debug.Log("初期バレットを装填中のバレットとして設定");
+                Time.timeScale = 1f;
 
                 return;
             }
@@ -182,6 +188,25 @@ public class BulletSelectManager : MonoBehaviour
         Debug.Log(bulletType);
 
         // どれも合致しない場合は null を戻す
+        return null;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="elementType"></param>
+    /// <returns></returns>
+    public Sprite GetElementTypeSprite(ElementType elementType)
+    {
+        //
+        foreach (ElementDataSO.ElementData elementData in elementDataSO.elementDataList)
+        {
+            if (elementData.elementType == elementType)
+            {
+                return elementData.elementSprite;
+            }
+        }
+
         return null;
     }
 

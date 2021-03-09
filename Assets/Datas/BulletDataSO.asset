@@ -17,7 +17,7 @@ MonoBehaviour:
     liberalType: 0
     bulletType: 3
     elementType: 0
-    selectSprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
+    selectSprite: {fileID: 0}
     bulletSprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
     bulletSpeed: 300
     bulletPow: 10
@@ -28,46 +28,46 @@ MonoBehaviour:
   - no: 1
     liberalType: 0
     bulletType: 4
-    elementType: 0
-    selectSprite: {fileID: 21300000, guid: 80bb8586f10d4ca4a9ae447f38d87cd1, type: 3}
-    bulletSprite: {fileID: 21300000, guid: 80bb8586f10d4ca4a9ae447f38d87cd1, type: 3}
-    bulletSpeed: 100
+    elementType: 2
+    selectSprite: {fileID: 0}
+    bulletSprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
+    bulletSpeed: 800
     bulletPow: 20
-    bulletReload: 1
+    bulletReload: 0
     bulletUsableTime: 5
     openExp: 20
-    discription: 
+    discription: "\u6642\u7A7A\u5F3E"
   - no: 2
     liberalType: 0
     bulletType: 5
-    elementType: 0
-    selectSprite: {fileID: 21300000, guid: 1f06393b6f8bff240825037fdef497d7, type: 3}
-    bulletSprite: {fileID: 21300000, guid: 1f06393b6f8bff240825037fdef497d7, type: 3}
+    elementType: 3
+    selectSprite: {fileID: 0}
+    bulletSprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
     bulletSpeed: 500
-    bulletPow: 10
-    bulletReload: 0
-    bulletUsableTime: 10
-    openExp: 30
-    discription: "\u624B\u88CF\u5263"
-  - no: 3
-    liberalType: 0
-    bulletType: 6
-    elementType: 0
-    selectSprite: {fileID: 21300000, guid: 691220960ab78e64dac5bad4a62f10a9, type: 3}
-    bulletSprite: {fileID: 21300000, guid: 691220960ab78e64dac5bad4a62f10a9, type: 3}
-    bulletSpeed: 250
     bulletPow: 8
     bulletReload: 0
     bulletUsableTime: 10
     openExp: 30
-    discription: 
+    discription: "\u7279\u5927\u5F3E"
+  - no: 3
+    liberalType: 0
+    bulletType: 6
+    elementType: 4
+    selectSprite: {fileID: 0}
+    bulletSprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
+    bulletSpeed: 250
+    bulletPow: 6
+    bulletReload: 0
+    bulletUsableTime: 10
+    openExp: 30
+    discription: "\u62E1\u6563\u5F3E"
   - no: 4
     liberalType: 1
     bulletType: 0
     elementType: 0
-    selectSprite: {fileID: 21300000, guid: c067722c6935d32469369a6388465cb1, type: 3}
-    bulletSprite: {fileID: 21300000, guid: c067722c6935d32469369a6388465cb1, type: 3}
-    bulletSpeed: 50
+    selectSprite: {fileID: 21300000, guid: 80bb8586f10d4ca4a9ae447f38d87cd1, type: 3}
+    bulletSprite: {fileID: 21300000, guid: 80bb8586f10d4ca4a9ae447f38d87cd1, type: 3}
+    bulletSpeed: 70
     bulletPow: 10
     bulletReload: 2.5
     bulletUsableTime: 0
@@ -77,11 +77,11 @@ MonoBehaviour:
     liberalType: 2
     bulletType: 1
     elementType: 0
-    selectSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    bulletSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    bulletSpeed: 50
+    selectSprite: {fileID: 21300000, guid: e7306f9803ee82a47ae17aed07dd8660, type: 3}
+    bulletSprite: {fileID: 21300000, guid: e7306f9803ee82a47ae17aed07dd8660, type: 3}
+    bulletSpeed: 80
     bulletPow: 15
-    bulletReload: 1.3
+    bulletReload: 1.5
     bulletUsableTime: 0
     openExp: 0
     discription: 

@@ -131,6 +131,7 @@ MonoBehaviour:
     no: 0
     liberalType: 0
     bulletType: 0
+    elementType: 0
     selectSprite: {fileID: 0}
     bulletSprite: {fileID: 0}
     bulletSpeed: 0

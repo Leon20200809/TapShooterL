@@ -56,11 +56,16 @@ public class PlayerController : MonoBehaviour
         //選択中の弾データ取得
         BulletDataSO.BulletData currentBulletData = GameData.instance.GetCurrentBullet();
 
+
         //弾種チェック
         switch (currentBulletData.bulletType)
         {
             //評価
             case BulletDataSO.BulletType.Player_Normal:
+
+                GenerateBullet(shotDir, currentBulletData);
+                break;
+
             case BulletDataSO.BulletType.Player_Blaze:
 
                 GenerateBullet(shotDir, currentBulletData);
@@ -70,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
                 for (int i = -1; i < 2; i++)
                 {
-                    GenerateBullet(new Vector3(shotDir.x + (0.5f * i), shotDir.y, shotDir.z), currentBulletData);
+                    GenerateBullet(new Vector3(shotDir.x + (0.25f * i), shotDir.y, shotDir.z), currentBulletData);
                 }
                 break;
 
@@ -78,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
                 for (int i = -2; i < 3; i++)
                 {
-                    GenerateBullet(new Vector3(shotDir.x + (0.25f * i), shotDir.y, shotDir.z), currentBulletData);
+                    GenerateBullet(new Vector3(shotDir.x + (0.1f * i), shotDir.y, shotDir.z), currentBulletData);
                 }
                 break;
         }

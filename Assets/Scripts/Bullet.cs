@@ -39,46 +39,49 @@ public class Bullet : MonoBehaviour
 
         //弾攻撃力反映
         bulletPow = this.bulletData.bulletPow;
+
+        CheckBulletType(shotDir, bulletData);
         
-        //弾種判定（追尾弾用、一番近いエネミーを選定）
-        if (bulletData.bulletType == BulletDataSO.BulletType.Player_Blaze)
-        {
-            //画面内エネミータグ付きのオブジェクト検索、配列に追加
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        ////弾種判定（追尾弾用、一番近いエネミーを選定）
+        //if (bulletData.bulletType == BulletDataSO.BulletType.Player_Blaze)
+        //{
+        //    //画面内エネミータグ付きのオブジェクト検索、配列に追加
+        //    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-            //配列データチェック
-            if (enemies.Length > 0)
-            {
-                //データ格納（仮）
-                nearEnemyPos = enemies[0].transform.position;
+        //    //配列データチェック
+        //    if (enemies.Length > 0)
+        //    {
+        //        //データ格納（仮）
+        //        nearEnemyPos = enemies[0].transform.position;
 
-                //配列内データの現在位置をチェック
-                for (int i = 0; i < enemies.Length; i++)
-                {
-                    //データ格納
-                    Vector3 pos = enemies[i].transform.position;
+        //        //配列内データの現在位置をチェック
+        //        for (int i = 0; i < enemies.Length; i++)
+        //        {
+        //            //データ格納
+        //            Vector3 pos = enemies[i].transform.position;
 
-                    //一番近いエネミーを選定
-                    if (nearEnemyPos.x > pos.x && nearEnemyPos.y > pos.y)
-                    {
-                        //確定
-                        nearEnemyPos = pos;
-                    }
+        //            //一番近いエネミーを選定
+        //            if (nearEnemyPos.x > pos.x && nearEnemyPos.y > pos.y)
+        //            {
+        //                //確定
+        //                nearEnemyPos = pos;
+        //            }
 
-                }
+        //        }
 
-                //追尾対象確定フラグ
-                isTarget = true;
-            }
-        }
+        //        //追尾対象確定フラグ
+        //        isTarget = true;
+        //    }
+        //}
 
-        //弾種判定
-        if (bulletData.bulletType != BulletDataSO.BulletType.Player_Blaze)
-        {
-            //移動
-            GetComponent<Rigidbody2D>().AddForce(shotDir * this.bulletData.bulletSpeed);
+        ////弾種判定
+        //if (bulletData.bulletType != BulletDataSO.BulletType.Player_Blaze)
+        //{
+        //    //移動
+        //    GetComponent<Rigidbody2D>().AddForce(shotDir * this.bulletData.bulletSpeed);
 
-        }
+        //}
+
         //５秒後にオブジェクト破棄
         Destroy(gameObject, 5f);
     }
@@ -102,6 +105,72 @@ public class Bullet : MonoBehaviour
             GameData.instance.GanerateOffsetEffect(col.transform);
             Destroy(col.gameObject);
             Destroy(gameObject);
+        }
+    }
+
+    /// <summary>
+    /// 弾性能決定
+    /// </summary>
+    /// <param name="shotDir"></param>
+    /// <param name="bulletData"></param>
+    void CheckBulletType(Vector3 shotDir, BulletDataSO.BulletData bulletData)
+    {
+        switch (bulletData.bulletType)
+        {
+            case BulletDataSO.BulletType.Player_Normal:
+            case BulletDataSO.BulletType.Player_5ways_Normal:
+            case BulletDataSO.BulletType.A:
+                //移動
+                GetComponent<Rigidbody2D>().AddForce(shotDir * this.bulletData.bulletSpeed);
+                break;
+
+            case BulletDataSO.BulletType.Player_3ways_Piercing:
+
+                //スケール補正
+                transform.localScale = Vector3.one * 2f;
+                //移動
+                GetComponent<Rigidbody2D>().AddForce(shotDir * this.bulletData.bulletSpeed);
+                break;
+
+            case BulletDataSO.BulletType.B:
+            case BulletDataSO.BulletType.C:
+
+                //スケール補正
+                transform.localScale = Vector3.one * 0.8f;
+                //移動
+                GetComponent<Rigidbody2D>().AddForce(shotDir * this.bulletData.bulletSpeed);
+                break;
+
+            case BulletDataSO.BulletType.Player_Blaze:
+                //画面内エネミータグ付きのオブジェクト検索、配列に追加
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+                //配列データチェック
+                if (enemies.Length > 0)
+                {
+                    //データ格納（仮）
+                    nearEnemyPos = enemies[0].transform.position;
+
+                    //配列内データの現在位置をチェック
+                    for (int i = 0; i < enemies.Length; i++)
+                    {
+                        //データ格納
+                        Vector3 pos = enemies[i].transform.position;
+
+                        //一番近いエネミーを選定
+                        if (nearEnemyPos.x > pos.x && nearEnemyPos.y > pos.y)
+                        {
+                            //確定
+                            nearEnemyPos = pos;
+                        }
+
+                    }
+                }
+                    //追尾対象確定フラグ
+                    isTarget = true;
+
+                    break;
+
         }
     }
 }

@@ -32,7 +32,8 @@ public class FloatingMessage : MonoBehaviour
     /// </summary>
     /// <param name="floatingValue"></param>
     /// <param name="floatingMessageType"></param>
-    public void DisplayFloatingMessage(int floatingValue, FloatingMessageType floatingMessageType)
+    /// <param name="isWeakness"></param>
+    public void DisplayFloatingMessage(int floatingValue, FloatingMessageType floatingMessageType, bool isWeakness = false)
     {
         //表示位置微妙ランダム
         transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-20f, 20f), transform.localPosition.y + Random.Range(-10f, 10f), 0);
@@ -42,6 +43,12 @@ public class FloatingMessage : MonoBehaviour
 
         //色設定
         txtFloatingMessage.color = GetMessageColor(floatingMessageType);
+
+        //強調表示
+        if (isWeakness)
+        {
+            transform.localScale = transform.localScale * 2;
+        }
 
         //上方向へ移動、移動後破棄
         transform.DOLocalMoveY(transform.localPosition.y + 50f, 1f).OnComplete(() =>
