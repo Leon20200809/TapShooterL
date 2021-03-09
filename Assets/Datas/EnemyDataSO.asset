@@ -19,12 +19,12 @@ MonoBehaviour:
     exp: 30
     enemySprite: {fileID: 21300000, guid: ff1ebc38b4bf2c448a0962164fb69f8b, type: 3}
     enemyType: 0
-    elementType: 0
+    elementType: 1
     bulletType: 0
     moveType: 0
     moveDuration: 26.7
   - no: 1
-    hp: 100
+    hp: 20
     power: 30
     exp: 100
     enemySprite: {fileID: 21300000, guid: 54bd24b3863bf624ca472f07e45c05b7, type: 3}
@@ -39,7 +39,7 @@ MonoBehaviour:
     exp: 250
     enemySprite: {fileID: 21300000, guid: 2011de10211f0964cb3d5e786797442e, type: 3}
     enemyType: 2
-    elementType: 1
+    elementType: 0
     bulletType: 1
     moveType: 2
     moveDuration: 5
@@ -52,7 +52,7 @@ MonoBehaviour:
     elementType: 0
     bulletType: 7
     moveType: 1
-    moveDuration: 19.4
+    moveDuration: 24.6
   - no: 4
     hp: 40
     power: 30

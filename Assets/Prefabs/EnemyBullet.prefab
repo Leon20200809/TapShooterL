@@ -141,4 +141,4 @@ MonoBehaviour:
     openExp: 0
     discription: 
   imgBullet: {fileID: 1964718252411700306}
-  bulletPow: 10
+  bulletPow: 0

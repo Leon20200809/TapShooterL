@@ -70,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -139,11 +139,13 @@ MonoBehaviour:
   imgBulletbtn: {fileID: 8087620746041403264}
   imgUsableTimeGauge: {fileID: 8087620745666273366}
   txtOpenExpValue: {fileID: 8087620745742160099}
+  imgElementTypeBackground: {fileID: 8087620744463569966}
   isDefaultBullet: 0
   bulletData:
     no: 0
     liberalType: 0
     bulletType: 0
+    elementType: 0
     selectSprite: {fileID: 0}
     bulletSprite: {fileID: 0}
     bulletSpeed: 0
@@ -415,7 +417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8087620746041403267
 RectTransform:
   m_ObjectHideFlags: 0

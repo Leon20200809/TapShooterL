@@ -24,6 +24,9 @@ public class BulletSelectDetail : MonoBehaviour
     [SerializeField]
     Text txtOpenExpValue;
 
+    [SerializeField]
+    Image imgElementTypeBackground;
+
     //デフォルト弾判定フラグ
     public bool isDefaultBullet;
 
@@ -77,6 +80,9 @@ public class BulletSelectDetail : MonoBehaviour
 
             // TODO その他処理
         }
+
+        //弾選択背景画像設定
+        imgElementTypeBackground.sprite = bulletSelectManager.GetElementTypeSprite(this.bulletData.elementType);
     }
 
     /// <summary>
@@ -96,6 +102,16 @@ public class BulletSelectDetail : MonoBehaviour
         //☆重複タップ防止策☆
         if (!isDefaultBullet && imgUsableTimeGauge.fillAmount == 0)
         {
+            Debug.Log("<color=yellow>" + bulletData.bulletType + "</color>");
+            if (bulletData.bulletType == BulletDataSO.BulletType.Player_Blaze)
+            {
+                Time.timeScale = 0.2f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
+
             //UI使用中ゲージ表示
             imgUsableTimeGauge.fillAmount = 1f;
 

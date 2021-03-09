@@ -183,12 +183,16 @@ public class EnemyController : MonoBehaviour
         //ダメージ確定用
         int bulletDamage = 0;
 
+        //ダメージ倍率フラグ
+        bool isWeekness = false;
+
         //ダメージ倍率チェック
         if (ElementCompatibilityHelper.GetElementCompati(playerBullet.bulletData.elementType, enemyData.elementType))
         {
             Debug.Log("<color=blue>ボーナス倍率適用!!</color>");
-            //
+            //☆小数点以下切り捨て処理☆
             bulletDamage = Mathf.FloorToInt(playerBullet.bulletData.bulletPow * GameData.instance.DamageRetio);
+            isWeekness = true;
         }
         else
         {
@@ -196,7 +200,7 @@ public class EnemyController : MonoBehaviour
         }
 
         //ダメージ用UI生成
-        CreateFloatingMessageToBulletPower(bulletDamage);
+        CreateFloatingMessageToBulletPower(bulletDamage, isWeekness);
 
         //HP減らす（内部的に）
         enemyHp -= bulletDamage;
@@ -233,7 +237,7 @@ public class EnemyController : MonoBehaviour
         }
 
         //被弾種判定
-        if (playerBullet.bulletData.bulletType == BulletDataSO.BulletType.Player_Normal || playerBullet.bulletData.bulletType == BulletDataSO.BulletType.Player_5ways_Normal)
+        if (playerBullet.bulletData.bulletType != BulletDataSO.BulletType.Player_3ways_Piercing)
         {
             Destroy(playerBullet.gameObject);
         }
@@ -249,13 +253,13 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    void　CreateFloatingMessageToBulletPower(int bulletPower)
+    void　CreateFloatingMessageToBulletPower(int bulletPower, bool isWeekness)
     {
 
         // フロート表示の生成。生成位置は EnemySet ゲームオブジェクト内の FloatingMessageTran ゲームオブジェクトの位置(子オブジェクト)
         FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingDamageTran, false);
 
         // 生成したフロート表示の設定用メソッドを実行。引数として、バレットの攻撃力値とフロート表示の種類を指定して渡す
-        floatingMessage.DisplayFloatingMessage(bulletPower, FloatingMessage.FloatingMessageType.EnemyDamage);
+        floatingMessage.DisplayFloatingMessage(bulletPower, FloatingMessage.FloatingMessageType.EnemyDamage, isWeekness);
     }
 }

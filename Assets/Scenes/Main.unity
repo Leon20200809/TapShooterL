@@ -1055,6 +1055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSelectDetailPrefab: {fileID: 3511599054314406345, guid: e2f91f1b1a34f9149a5e611ee39b09b3, type: 3}
   bulletDataSO: {fileID: 11400000, guid: fc9b514b6b862f34b848d4d7808e5df7, type: 2}
+  elementDataSO: {fileID: 11400000, guid: 4e7d95e8a9c5406409df09a962e32366, type: 2}
   bulletTran: {fileID: 1659554954}
   bulletSelectDetailList: []
 --- !u!4 &807047177
@@ -1316,7 +1317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHp: 100
   maxEnemyGenerateCounts: 5
-  totalExp: 0
+  totalExp: 100
   currentBullet:
     no: 0
     liberalType: 0
