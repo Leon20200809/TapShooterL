@@ -108,8 +108,10 @@ MonoBehaviour:
     hp: 0
     power: 0
     exp: 0
-    enemySprite: {fileID: 0}
+    enemySprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
     enemyType: 0
+    elementType: 0
+    bulletType: 0
     moveType: 0
     moveDuration: 0
   imgEnemy: {fileID: 7943149633688428959}
@@ -346,7 +348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff1ebc38b4bf2c448a0962164fb69f8b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

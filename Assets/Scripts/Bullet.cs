@@ -79,13 +79,6 @@ public class Bullet : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(shotDir * this.bulletData.bulletSpeed);
 
         }
-
-
-
-
-        // Debug.Logでこの処理が実行されているか確認
-        Debug.Log("発射速度 : " + this.bulletData.bulletSpeed);
-
         //５秒後にオブジェクト破棄
         Destroy(gameObject, 5f);
     }
@@ -100,5 +93,15 @@ public class Bullet : MonoBehaviour
 
         //
         transform.position = Vector3.MoveTowards(currentPos, nearEnemyPos, Time.deltaTime / 10 * bulletData.bulletSpeed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "EnemyBullet")
+        {
+            GameData.instance.GanerateOffsetEffect(col.transform);
+            Destroy(col.gameObject);
+            Destroy(gameObject);
+        }
     }
 }

@@ -16,6 +16,7 @@ MonoBehaviour:
   - no: 0
     liberalType: 0
     bulletType: 3
+    elementType: 0
     selectSprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
     bulletSprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
     bulletSpeed: 300
@@ -27,6 +28,7 @@ MonoBehaviour:
   - no: 1
     liberalType: 0
     bulletType: 4
+    elementType: 0
     selectSprite: {fileID: 21300000, guid: 80bb8586f10d4ca4a9ae447f38d87cd1, type: 3}
     bulletSprite: {fileID: 21300000, guid: 80bb8586f10d4ca4a9ae447f38d87cd1, type: 3}
     bulletSpeed: 100
@@ -38,44 +40,48 @@ MonoBehaviour:
   - no: 2
     liberalType: 0
     bulletType: 5
+    elementType: 0
     selectSprite: {fileID: 21300000, guid: 1f06393b6f8bff240825037fdef497d7, type: 3}
     bulletSprite: {fileID: 21300000, guid: 1f06393b6f8bff240825037fdef497d7, type: 3}
     bulletSpeed: 500
     bulletPow: 10
-    bulletReload: 0.5
+    bulletReload: 0
     bulletUsableTime: 10
     openExp: 30
     discription: "\u624B\u88CF\u5263"
   - no: 3
     liberalType: 0
     bulletType: 6
+    elementType: 0
     selectSprite: {fileID: 21300000, guid: 691220960ab78e64dac5bad4a62f10a9, type: 3}
     bulletSprite: {fileID: 21300000, guid: 691220960ab78e64dac5bad4a62f10a9, type: 3}
     bulletSpeed: 250
     bulletPow: 8
-    bulletReload: 3
+    bulletReload: 0
     bulletUsableTime: 10
     openExp: 30
     discription: 
   - no: 4
     liberalType: 1
     bulletType: 0
+    elementType: 0
     selectSprite: {fileID: 21300000, guid: c067722c6935d32469369a6388465cb1, type: 3}
     bulletSprite: {fileID: 21300000, guid: c067722c6935d32469369a6388465cb1, type: 3}
     bulletSpeed: 50
     bulletPow: 10
-    bulletReload: 5
+    bulletReload: 2.5
     bulletUsableTime: 0
     openExp: 0
     discription: 
   - no: 5
     liberalType: 2
     bulletType: 1
+    elementType: 0
     selectSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     bulletSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     bulletSpeed: 50
     bulletPow: 15
-    bulletReload: 4
+    bulletReload: 1.3
     bulletUsableTime: 0
     openExp: 0
     discription: 

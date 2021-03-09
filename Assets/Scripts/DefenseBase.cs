@@ -40,7 +40,7 @@ public class DefenseBase : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
 
-        if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "EnemyBullet")
         {
                     //ダメージ設定用
             int damage = 0;
@@ -59,7 +59,7 @@ public class DefenseBase : MonoBehaviour
             //エネミー飛び道具の場合
             if (col.gameObject.TryGetComponent(out Bullet bullet))
             {
-                damage = bullet.bulletPow;
+                damage = bullet.bulletData.bulletPow;
             }
 
             //
@@ -74,6 +74,10 @@ public class DefenseBase : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// プレイヤーダメージ
+    /// </summary>
+    /// <param name="enemyAtkTran"></param>
     void GenerateEnemyAtkEffect(Transform enemyAtkTran)
     {
         GameObject enemyAtkEffect = Instantiate(enemyAtkEffectPrefab, enemyAtkTran, false);
@@ -130,5 +134,31 @@ public class DefenseBase : MonoBehaviour
         floatingMessage.DisplayFloatingMessage(damage, FloatingMessage.FloatingMessageType.PlayerDamage);
     }
 
+
+    /// <summary>
+    /// ElementTypeの相性判定を行ってダメージの最終値と弱点かどうかを判定
+    /// </summary>
+    /// <param name="attackPower"></param>
+    /// <param name="attackElementType"></param>
+    /// <returns></returns>
+    private int JudgeDamageToElementType(int attackPower, ElementType attackElementType)
+    {
+
+        // 最終的なダメージ値を準備する。初期値として、現在のダメージ値を代入
+        int lastDamage = attackPower;
+
+        // エネミー側の本体やバレットを攻撃者とし、属性間の相性を確認
+        if (ElementCompatibilityHelper.GetElementCompati(attackElementType, GameData.instance.GetCurrentBullet().elementType))
+        {
+
+            // エネミーの攻撃属性がプレイヤー側の弱点であるなら、ダメージ値に倍率をかける
+            lastDamage = Mathf.FloorToInt(attackPower * GameData.instance.DamageRetio);
+
+            Debug.Log("弱点");
+        }
+
+        // 計算後のダメージ値を戻す
+        return lastDamage;
+    }
 
 }

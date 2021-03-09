@@ -25,6 +25,9 @@ public class BulletDataSO : ScriptableObject
         //弾種別
         public BulletType bulletType;
 
+        //弾属性
+        public ElementType elementType;
+
         //選択画像
         public Sprite selectSprite;
 

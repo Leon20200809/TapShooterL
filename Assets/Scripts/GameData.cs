@@ -21,6 +21,14 @@ public class GameData : MonoBehaviour
     [SerializeField, Header("現在の弾種")]
     BulletDataSO.BulletData currentBullet;
 
+    [SerializeField, Header("ダメージ倍率")]
+    float damageRetio;
+
+    [Header("エフェクト")]
+    public GameObject offsetEfectPrefab;
+
+    public PositiveWordSO positiveWordSO;
+
     //シングルトンパターンテンプレ
     void Awake()
     {
@@ -87,5 +95,45 @@ public class GameData : MonoBehaviour
     public BulletDataSO.BulletData GetCurrentBullet()
     {
         return currentBullet;
+    }
+
+    /// <summary>
+    /// ダメージ倍率（プロパティ）
+    /// </summary>
+    public float DamageRetio
+    {
+        set
+        {
+            damageRetio = value;
+        }
+        get
+        {
+            return damageRetio;
+        }
+    }
+
+    /// <summary>
+    /// 弾相殺エフェクト生成
+    /// </summary>
+    /// <param name="offsetTran"></param>
+    public void GanerateOffsetEffect(Transform offsetTran)
+    {
+        GameObject offsetEffect = Instantiate(offsetEfectPrefab, offsetTran, false);
+
+        offsetEffect.transform.SetParent(TransformHelper.TOCTran);
+        Destroy(offsetEffect, 3f);
+        Debug.Log("弾相殺");
+    }
+
+    /// <summary>
+    /// 撃破エフェクト生成
+    /// </summary>
+    /// <param name="destroyTran"></param>
+    public void GanerateDestroyEffect(Transform destroyTran)
+    {
+        GameObject destroyEffect = Instantiate(offsetEfectPrefab, destroyTran, false);
+
+        destroyEffect.transform.SetParent(TransformHelper.TOCTran);
+        Destroy(destroyEffect, 3f);
     }
 }

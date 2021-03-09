@@ -176,7 +176,6 @@ MonoBehaviour:
   enemyObjPrefab: {fileID: 7943149632527041187, guid: 5df5f87901a7775429d0ad99c58a2e0d, type: 3}
   enemyPopCooltime: 1.5
   enemiesList: []
-  maxEnemyGenerateCounts: 0
   isGenerateEnd: 0
   isBossDestroyed: 0
 --- !u!1 &41982589
@@ -1322,6 +1321,7 @@ MonoBehaviour:
     no: 0
     liberalType: 0
     bulletType: 0
+    elementType: 0
     selectSprite: {fileID: 0}
     bulletSprite: {fileID: 0}
     bulletSpeed: 0
@@ -1330,6 +1330,9 @@ MonoBehaviour:
     bulletUsableTime: 0
     openExp: 0
     discription: 
+  damageRetio: 1.2
+  offsetEfectPrefab: {fileID: 8441952121782860288, guid: 3e3a4919c2ed20743a429c5b7c21ca61, type: 3}
+  positiveWordSO: {fileID: 11400000, guid: ed151b2f644b13149b02075e60e6898b, type: 2}
 --- !u!4 &1046914885
 Transform:
   m_ObjectHideFlags: 0
@@ -2189,7 +2192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5bc12997b0fb1649bcfb37524d59d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHp: 10
+  playerHp: 0
   enemyAtkEffectPrefab: {fileID: 6062978516678252835, guid: f14229e79b79fb04db9a1f753d8eb981, type: 3}
   floatingDamageTran: {fileID: 1687499648}
   floatingMessagePrefab: {fileID: -3482728527075159554, guid: f67e939113672ab45bbf46fb83a21cb6, type: 3}

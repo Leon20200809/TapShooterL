@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 /// <summary>
 /// 弾選択管理、ボタンオブジェクト＆生成位置、弾データ、
@@ -160,6 +161,28 @@ public class BulletSelectManager : MonoBehaviour
         //特殊弾使用可否判定
         JugdeOpenBullet();
 
+    }
+
+    /// <summary>
+    /// BulletType より BulletData を検索して取得
+    /// </summary>
+    /// <param name="bulletType"></param>
+    /// <returns></returns>
+    public BulletDataSO.BulletData GetBulletData(BulletDataSO.BulletType bulletType)
+    {
+
+        // 引数の bulletType と同じ BulletType が登録されている BulletData を探す
+        foreach (BulletDataSO.BulletData bulletData in bulletDataSO.bulletDataList.Where(x => x.bulletType == bulletType))
+        {
+            Debug.Log(bulletType);
+
+            // 合致した BulletData を戻す
+            return bulletData;
+        }
+        Debug.Log(bulletType);
+
+        // どれも合致しない場合は null を戻す
+        return null;
     }
 
 }

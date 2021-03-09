@@ -131,6 +131,7 @@ MonoBehaviour:
     no: 0
     liberalType: 0
     bulletType: 0
+    elementType: 0
     selectSprite: {fileID: 0}
     bulletSprite: {fileID: 0}
     bulletSpeed: 0
@@ -139,5 +140,5 @@ MonoBehaviour:
     bulletUsableTime: 0
     openExp: 0
     discription: 
-  imgBullet: {fileID: 0}
+  imgBullet: {fileID: 1964718252411700306}
   bulletPow: 10

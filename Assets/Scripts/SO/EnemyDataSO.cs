@@ -30,6 +30,12 @@ public class EnemyDataSO : ScriptableObject
         //階級（タイプ）
         public EnemyType enemyType;
 
+        //属性
+        public ElementType elementType;
+
+        //
+        public BulletDataSO.BulletType bulletType;
+
         //移動タイプと移動速度（時間）
         public EnemyMoveType moveType;
 

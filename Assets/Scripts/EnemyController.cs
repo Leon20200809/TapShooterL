@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             //サイズ変更
-            transform.localScale = Vector3.one * 3f;
+            transform.localScale = Vector3.one * 2f;
 
             //HPゲージ位置調整
             sliderEnemyHp.transform.localPosition = new Vector3(0, 50, 0);
@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
     /// エネミーの追加設定
     /// </summary>
     /// <param name="enemyGenerator"></param>
-    public void AdditionalSetUpEnemy(EnemyGenerator enemyGenerator)
+    public void AdditionalSetUpEnemy(EnemyGenerator enemyGenerator, BulletDataSO.BulletData bulletData)
     {
         // EnemyGeneratorを利用可能にする
         this.enemyGenerator = enemyGenerator;
@@ -98,25 +98,26 @@ public class EnemyController : MonoBehaviour
         enemyMoveEvent.Invoke(transform, enemyData.moveDuration);
 
         //攻撃手段設定
-        if (enemyData.moveType == EnemyMoveType.Straight || enemyData.moveType == EnemyMoveType.Boss_Horizontal)
+        if (bulletData != null && bulletData.bulletType != BulletDataSO.BulletType.None)
         {
             //飛び道具発射
-            StartCoroutine(EnemyShot());
+            StartCoroutine(EnemyShot(bulletData));
+            Debug.Log("エネミー飛び道具発射");
+
         }
 
-        Debug.Log("追加設定完了");
     }
 
     /// <summary>
     /// エネミーの飛び道具攻撃
     /// </summary>
     /// <returns></returns>
-    IEnumerator EnemyShot()
+    IEnumerator EnemyShot(BulletDataSO.BulletData bulletData)
     {
         while (true)
         {
-            Bullet enemyBulletObj = Instantiate(enemyBulletPrefab, transform).GetComponent<Bullet>();
-            enemyBulletObj.ShotBullet(enemyGenerator.GetPlayerDirection_From_EnemyController(transform.position));
+            GameObject enemyBulletObj = Instantiate(enemyBulletPrefab, transform);
+            enemyBulletObj.GetComponent<Bullet>().ShotBullet(enemyGenerator.GetPlayerDirection_From_EnemyController(transform.position), bulletData);
 
             //ボスの場合は親子関係をTOCへ避難
             if (enemyData.moveType == EnemyMoveType.Boss_Horizontal)
@@ -124,7 +125,7 @@ public class EnemyController : MonoBehaviour
                 enemyBulletObj.transform.SetParent(TransformHelper.TOCTran);
             }
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(bulletData.bulletReload);
         }
     }
 
@@ -179,11 +180,26 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     void UpdateEnemyHp(Bullet playerBullet)
     {
+        //ダメージ確定用
+        int bulletDamage = 0;
+
+        //ダメージ倍率チェック
+        if (ElementCompatibilityHelper.GetElementCompati(playerBullet.bulletData.elementType, enemyData.elementType))
+        {
+            Debug.Log("<color=blue>ボーナス倍率適用!!</color>");
+            //
+            bulletDamage = Mathf.FloorToInt(playerBullet.bulletData.bulletPow * GameData.instance.DamageRetio);
+        }
+        else
+        {
+            bulletDamage = playerBullet.bulletData.bulletPow;
+        }
+
         //ダメージ用UI生成
-        CreateFloatingMessageToBulletPower(playerBullet.bulletData.bulletPow);
+        CreateFloatingMessageToBulletPower(bulletDamage);
 
         //HP減らす（内部的に）
-        enemyHp -= playerBullet.bulletData.bulletPow;
+        enemyHp -= bulletDamage;
 
         //上限下限値設定
         enemyHp = Mathf.Clamp(enemyHp, 0, maxEnemyHp);
@@ -194,6 +210,9 @@ public class EnemyController : MonoBehaviour
         //エネミーHP判定
         if (enemyHp <= 0)
         {
+            //撃破演出
+            GameData.instance.GanerateDestroyEffect(gameObject.transform);
+
             //ボス判定
             if (this.enemyData.enemyType == EnemyType.Boss)
             {

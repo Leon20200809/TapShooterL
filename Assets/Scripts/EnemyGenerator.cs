@@ -22,10 +22,10 @@ public class EnemyGenerator : MonoBehaviour
     //エネミー出現総数
     int generateCount;
     [SerializeField, Header("生成したエネミーのリスト")]
-    private List<EnemyController> enemiesList = new List<EnemyController>();
+    List<EnemyController> enemiesList = new List<EnemyController>();
 
     [Header("エネミー最大生成数")]
-    public int maxEnemyGenerateCounts;
+    int maxEnemyGenerateCounts;
 
     [Header("エネミー生成完了フラグ")]
     public bool isGenerateEnd;
@@ -141,7 +141,8 @@ public class EnemyGenerator : MonoBehaviour
         enemyController.SetUpEnemy(enemyData);
 
         //追加設定
-        enemyController.AdditionalSetUpEnemy(this);
+        enemyController.AdditionalSetUpEnemy(this, gameManager.bulletSelectManager.GetBulletData(enemyData.bulletType));
+        Debug.Log(gameManager.bulletSelectManager.GetBulletData(enemyData.bulletType));
 
         //リスト追加 クリア後の全削除用
         enemiesList.Add(enemyController);

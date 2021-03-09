@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         {
             //タップした位置情報を取得
             Vector3 tapPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("タップ座標：" + tapPos);
+            //Debug.Log("タップ座標：" + tapPos);
 
             //射出ベクトルを計算、算出
             Vector3 shotDir = tapPos - transform.position;
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
             //正規化
             shotDir = shotDir.normalized;
-            Debug.Log("方向" + shotDir);
+            //Debug.Log("方向" + shotDir);
 
             //弾プレファブ生成
             SetupGenerateBullet(shotDir); //<=  ☆①　送る側の引数
