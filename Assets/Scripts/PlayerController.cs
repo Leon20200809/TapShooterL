@@ -73,11 +73,14 @@ public class PlayerController : MonoBehaviour
 
             case BulletDataSO.BulletType.Player_3ways_Piercing:
 
-                for (int i = -1; i < 2; i++)
-                {
-                    GenerateBullet(new Vector3(shotDir.x + (0.25f * i), shotDir.y, shotDir.z), currentBulletData);
-                }
+                GenerateBullet(shotDir, currentBulletData);
                 break;
+
+            //for (int i = -1; i < 2; i++)
+            //{
+            //    GenerateBullet(new Vector3(shotDir.x + (0.25f * i), shotDir.y, shotDir.z), currentBulletData);
+            //}
+            //break;
 
             case BulletDataSO.BulletType.Player_5ways_Normal:
 

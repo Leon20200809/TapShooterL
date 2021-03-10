@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Transform fireworksEffectTran;
 
-    //
+    //ゲーム開始セットアップ完了フラグ
     public bool isStartSetup;
 
 
@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
 
         //ゲーム終了フラグリセット
         SwitchGameUp(false);
+
+        //BGM再生
+        SoundManager.instance.PlayBGM(SoundDataSO.BgmType.Main);
 
         //ゲームクリア画像を隠す
         uIManager.HideGameClear();
@@ -69,9 +72,9 @@ public class GameManager : MonoBehaviour
         //特殊弾使用可否判定
         bulletSelectManager.JugdeOpenBullet();
 
-        //
+        //ゲーム開始セットアップ完了フラグオン
         isStartSetup = true;
-        Debug.Log("GameManager初期セットアップ終了！");
+        Debug.Log("GameManager初期セットアップ完了！");
     }
 
     /// <summary>
@@ -98,6 +101,7 @@ public class GameManager : MonoBehaviour
 
         //ゲームクリア演出
         StartCoroutine(GanerateFireWorks());
+
 
     }
 
@@ -129,6 +133,10 @@ public class GameManager : MonoBehaviour
 
             //
             yield return new WaitForSeconds(0.5f);
+
+            // TODO 画面タップ許可
+            yield return uIManager.SwitchBlocksRaycasts();
+
 
         }
     }

@@ -47,6 +47,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     CanvasGroup canvasGroupBossAlert;
+    [SerializeField]
+    Text txtBossAlert;
 
     public void OnClickNextStage()
     {
@@ -99,22 +101,28 @@ public class UIManager : MonoBehaviour
     /// ボス出現演出
     /// </summary>
     /// <returns></returns>
-    public IEnumerator PlayBossAlert()
+    public IEnumerator PlayBossAlert(EnemyDataSO.EnemyData enemyData)
     {
         //
         canvasGroupBossAlert.transform.parent.gameObject.SetActive(true);
 
-        //
-        canvasGroupBossAlert.DOFade(1, 0.5f).SetLoops(6, LoopType.Yoyo);
+        //テキスト表示
+        txtBossAlert.text = enemyData.name + "を撃退せよ！ ";
 
         //
-        yield return new WaitForSeconds(3f);
+        canvasGroupBossAlert.DOFade(1, 0.5f).SetLoops(10, LoopType.Yoyo);
+
+        //
+        yield return new WaitForSeconds(5f);
 
         //
         canvasGroupBossAlert.DOFade(0, 0.25f);
 
         //
         yield return new WaitForSeconds(0.25f);
+
+        //ボス用BGM再生
+        SoundManager.instance.PlayBGM(SoundDataSO.BgmType.Boss);
 
         //
         canvasGroupBossAlert.transform.parent.gameObject.SetActive(false);
@@ -150,9 +158,6 @@ public class UIManager : MonoBehaviour
 
                     //
                     imgGameClear.transform.localScale = imgGameClear.transform.localScale * 1.1f;
-
-                    //画面タップ許可
-                    canvasGroupGameClear.blocksRaycasts = true;
 
                     //
                     canvasGroupRestartImage.DOFade(1, 1.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
@@ -219,6 +224,14 @@ public class UIManager : MonoBehaviour
         FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingMessageGetExpTran, false);
 
         floatingMessage.DisplayFloatingMessage(exp, floatingMessageType);
+    }
+
+
+    public IEnumerator SwitchBlocksRaycasts()
+    {
+        //画面タップ許可
+        yield return canvasGroupGameClear.blocksRaycasts = true;
+
     }
 
 }

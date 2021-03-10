@@ -608,6 +608,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277336874}
   m_CullTransparentMesh: 1
+--- !u!1 &333147016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333147018}
+  - component: {fileID: 333147017}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &333147017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333147016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edbda5f9977aa014299dee227fb31588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundDataSO: {fileID: 11400000, guid: cbf8ed11be638ef4ba63f0dce2d89666, type: 2}
+  bgmVolume: 0.1
+  seVolume: 0.2
+  voiceVolume: 0.2
+  isMute: 0
+  bgmSources:
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!4 &333147018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333147016}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &405443372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,6 +1954,7 @@ MonoBehaviour:
   canvasGroupOpeningFilter: {fileID: 1794122227}
   imgGameStart: {fileID: 1248400284}
   canvasGroupBossAlert: {fileID: 277336876}
+  txtBossAlert: {fileID: 2070780501}
 --- !u!4 &1312713948
 Transform:
   m_ObjectHideFlags: 0
@@ -2502,7 +2554,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1719525019}
-  - component: {fileID: 1719525020}
   m_Layer: 5
   m_Name: OpningSet
   m_TagString: Untagged
@@ -2531,19 +2582,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1719525020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719525018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abdbf319e8ee7d245ab2a3b5b18b777a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObj: 
 --- !u!1 &1723847723
 GameObject:
   m_ObjectHideFlags: 0
@@ -3152,7 +3190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5426\u5B9A\u4EBA\u3092\u3084\u3063\u3064\u3051\u308D"
+  m_Text: 
 --- !u!222 &2070780502
 CanvasRenderer:
   m_ObjectHideFlags: 0
