@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
 
     int enemyHp;
     int maxEnemyHp;
+    int atkCount;
+
     //int enemyAtkPow;
 
     [SerializeField]
@@ -108,6 +110,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
+
     /// <summary>
     /// エネミーの飛び道具攻撃
     /// </summary>
@@ -116,15 +119,23 @@ public class EnemyController : MonoBehaviour
     {
         while (true)
         {
+
             GameObject enemyBulletObj = Instantiate(enemyBulletPrefab, transform);
             enemyBulletObj.GetComponent<Bullet>().ShotBullet(enemyGenerator.GetPlayerDirection_From_EnemyController(transform.position), bulletData);
 
             //ボスの場合は親子関係をTOCへ避難
             if (enemyData.moveType == EnemyMoveType.Boss_Horizontal)
             {
+
                 enemyBulletObj.transform.SetParent(TransformHelper.TOCTran);
+
+                if (atkCount % 5 ==0) 
+                {
+                    enemyGenerator.GenerateEnemy();
+                }
             }
 
+            ++atkCount;
             yield return new WaitForSeconds(bulletData.bulletReload);
         }
     }

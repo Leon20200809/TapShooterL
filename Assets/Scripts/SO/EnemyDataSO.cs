@@ -15,6 +15,9 @@ public class EnemyDataSO : ScriptableObject
         //通し番号
         public int no;
 
+        //名前
+        public string name;
+
         //HP
         public int hp;
 

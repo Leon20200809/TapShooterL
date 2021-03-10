@@ -105,7 +105,7 @@ public class BulletSelectDetail : MonoBehaviour
             Debug.Log("<color=yellow>" + bulletData.bulletType + "</color>");
             if (bulletData.bulletType == BulletDataSO.BulletType.Player_Blaze)
             {
-                Time.timeScale = 0.2f;
+                Time.timeScale = 0.5f;
             }
             else
             {

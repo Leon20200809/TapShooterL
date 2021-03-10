@@ -34,7 +34,7 @@ MonoBehaviour:
     bulletSpeed: 800
     bulletPow: 20
     bulletReload: 0
-    bulletUsableTime: 5
+    bulletUsableTime: 3
     openExp: 20
     discription: "\u6642\u7A7A\u5F3E"
   - no: 2

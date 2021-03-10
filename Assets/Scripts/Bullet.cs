@@ -127,7 +127,7 @@ public class Bullet : MonoBehaviour
             case BulletDataSO.BulletType.Player_3ways_Piercing:
 
                 //スケール補正
-                transform.localScale = Vector3.one * 2f;
+                transform.localScale = Vector3.one * 5f;
                 //移動
                 GetComponent<Rigidbody2D>().AddForce(shotDir * this.bulletData.bulletSpeed);
                 break;
@@ -136,40 +136,44 @@ public class Bullet : MonoBehaviour
             case BulletDataSO.BulletType.C:
 
                 //スケール補正
-                transform.localScale = Vector3.one * 0.8f;
+                transform.localScale = Vector3.one * 1f;
                 //移動
                 GetComponent<Rigidbody2D>().AddForce(shotDir * this.bulletData.bulletSpeed);
                 break;
 
             case BulletDataSO.BulletType.Player_Blaze:
-                //画面内エネミータグ付きのオブジェクト検索、配列に追加
-                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                //移動
+                GetComponent<Rigidbody2D>().AddForce(shotDir * this.bulletData.bulletSpeed);
 
-                //配列データチェック
-                if (enemies.Length > 0)
-                {
-                    //データ格納（仮）
-                    nearEnemyPos = enemies[0].transform.position;
 
-                    //配列内データの現在位置をチェック
-                    for (int i = 0; i < enemies.Length; i++)
-                    {
-                        //データ格納
-                        Vector3 pos = enemies[i].transform.position;
+                ////画面内エネミータグ付きのオブジェクト検索、配列に追加
+                //GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-                        //一番近いエネミーを選定
-                        if (nearEnemyPos.x > pos.x && nearEnemyPos.y > pos.y)
-                        {
-                            //確定
-                            nearEnemyPos = pos;
-                        }
+                ////配列データチェック
+                //if (enemies.Length > 0)
+                //{
+                //    //データ格納（仮）
+                //    nearEnemyPos = enemies[0].transform.position;
 
-                    }
-                }
-                    //追尾対象確定フラグ
-                    isTarget = true;
+                //    //配列内データの現在位置をチェック
+                //    for (int i = 0; i < enemies.Length; i++)
+                //    {
+                //        //データ格納
+                //        Vector3 pos = enemies[i].transform.position;
 
-                    break;
+                //        //一番近いエネミーを選定
+                //        if (nearEnemyPos.x > pos.x && nearEnemyPos.y > pos.y)
+                //        {
+                //            //確定
+                //            nearEnemyPos = pos;
+                //        }
+
+                //    }
+                //}
+                //    //追尾対象確定フラグ
+                //    isTarget = true;
+
+                break;
 
         }
     }

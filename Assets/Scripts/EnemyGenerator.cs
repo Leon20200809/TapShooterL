@@ -113,7 +113,7 @@ public class EnemyGenerator : MonoBehaviour
     /// <summary>
     /// エネミープレファブからクローン生成
     /// </summary>
-    void GenerateEnemy(EnemyType enemyType = EnemyType.Normal)
+    public void GenerateEnemy(EnemyType enemyType = EnemyType.Normal)
     {
         //ランダム値の格納用
         int randomEnemyNo;
@@ -155,7 +155,7 @@ public class EnemyGenerator : MonoBehaviour
     IEnumerator GenerateBoss()
     {
         // TODO 出現演出
-        yield return StartCoroutine(gameManager.uIManager.PlayBossAlert());
+        yield return StartCoroutine(gameManager.uIManager.PlayBossAlert(bossEnemyDatas[0]));
 
         // TODO ボス生成
         GenerateEnemy(EnemyType.Boss);
