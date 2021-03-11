@@ -46,7 +46,7 @@ public class BulletDataSO : ScriptableObject
         [Range(0f, 120f)]//使用可能時間
         public float bulletUsableTime;
 
-        [Range(0, 200)]//使用可能Pt
+        [Range(0, 1000)]//使用可能Pt
         public int openExp;
 
         //説明文

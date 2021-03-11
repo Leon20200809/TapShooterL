@@ -122,8 +122,10 @@ public class BulletSelectDetail : MonoBehaviour
             bulletSelectManager.SelectedBulletCostPayment(bulletData.openExp);
 
             //コスト支払済フラグ
-            //SetStateBulletCostPayment(true);
             IsCostPayment = true;
+
+            //SE再生
+            SoundManager.instance.PlaySE(SoundDataSO.SeType.Select);
 
             // TODO その他設定
         }

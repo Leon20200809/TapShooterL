@@ -12,6 +12,7 @@ public class EnemyGenerator : MonoBehaviour
 
     List<EnemyDataSO.EnemyData> normalEnemyDatas = new List<EnemyDataSO.EnemyData>();
     List<EnemyDataSO.EnemyData> bossEnemyDatas = new List<EnemyDataSO.EnemyData>();
+    List<EnemyDataSO.EnemyData> eliteEnemyDatas = new List<EnemyDataSO.EnemyData>();
 
     [SerializeField, Header("エネミープレファブ")]
     EnemyController enemyObjPrefab;
@@ -39,26 +40,26 @@ public class EnemyGenerator : MonoBehaviour
     GameManager gameManager;
 
     /// <summary>
-    /// エネミーの種類のListを作成、値を戻す ※enemyType 変数には、EnemyType.Normal が引数として代入されている
+    /// エネミーの種類のListを作成、値を戻す
     /// </summary>
     /// <param name="enemyType"></param>
     /// <returns></returns>
     List<EnemyDataSO.EnemyData> GetEnemyTypeList(EnemyType enemyType)
     {
-        //EnemyType.Normalのみ入れるList作成
+        //EnemyType別List作成
         List<EnemyDataSO.EnemyData> enemyDatas = new List<EnemyDataSO.EnemyData>();
 
         //SO内のEnemyTypeをすべて確認
         for (int i = 0; i < enemyDataSO.enemyDataList.Count; i++)
         {
-            //EnemyType.Normalだけリストに追加する
+            //EnemyType別に追加する
             if (enemyDataSO.enemyDataList[i].enemyType == enemyType)
             {
                 enemyDatas.Add(enemyDataSO.enemyDataList[i]);
             }
         }
 
-        //EnemyType.Normalのみ入ったリストを返す
+        //EnemyType別リストを返す
         return enemyDatas;
     }
 
@@ -78,6 +79,9 @@ public class EnemyGenerator : MonoBehaviour
 
         //EnemyType.Bossのみ入ったリストを作成
         bossEnemyDatas = GetEnemyTypeList(EnemyType.Boss);
+
+        //EnemyType.Eliteのみ入ったリストを作成
+        eliteEnemyDatas = GetEnemyTypeList(EnemyType.Elite);
     }
 
     /// <summary>
@@ -132,6 +136,11 @@ public class EnemyGenerator : MonoBehaviour
             case EnemyType.Boss:
                 randomEnemyNo = Random.Range(0, bossEnemyDatas.Count);
                 enemyData = bossEnemyDatas[randomEnemyNo];
+                break;
+
+            case EnemyType.Elite:
+                randomEnemyNo = Random.Range(0, eliteEnemyDatas.Count);
+                enemyData = eliteEnemyDatas[randomEnemyNo];
                 break;
         }
 
@@ -199,7 +208,7 @@ public class EnemyGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGenerateEnd) return;
+        if (isGenerateEnd || gameManager.isGameUp) return;
         if (!gameManager.isGameUp && gameManager.isStartSetup) EnemyPop();
     }
 

@@ -28,3 +28,39 @@ MonoBehaviour:
     bgmType: 2
     volume: 0.0726
     bgmAudioClip: {fileID: 0}
+  seDataList:
+  - no: 0
+    title: 
+    seType: 0
+    volume: 0.0726
+    seAudioClip: {fileID: 8300000, guid: cef2d35fe938b2f47800e0c0381c7022, type: 3}
+  - no: 1
+    title: 
+    seType: 1
+    volume: 0.0762
+    seAudioClip: {fileID: 8300000, guid: 0be8db4eb3612d9439cdadd72e35d5d6, type: 3}
+  - no: 2
+    title: 
+    seType: 2
+    volume: 0.0813
+    seAudioClip: {fileID: 8300000, guid: d4aed21985ff8da4cb8c0e9469f1499f, type: 3}
+  - no: 3
+    title: 
+    seType: 3
+    volume: 0.0843
+    seAudioClip: {fileID: 8300000, guid: 4bc965e1ed1663f4cb11331ee1c5c2ae, type: 3}
+  - no: 4
+    title: 
+    seType: 4
+    volume: 0.0748
+    seAudioClip: {fileID: 8300000, guid: 180e43fe46d4c6e4cb889ae15022c167, type: 3}
+  - no: 5
+    title: 
+    seType: 5
+    volume: 0.1325
+    seAudioClip: {fileID: 8300000, guid: d82fa5200b190824fb9076e342ccecb5, type: 3}
+  - no: 7
+    title: 
+    seType: 6
+    volume: 0.1325
+    seAudioClip: {fileID: 8300000, guid: ae5b58e2301cb0b4a8204271f25c66f5, type: 3}

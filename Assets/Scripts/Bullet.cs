@@ -102,9 +102,19 @@ public class Bullet : MonoBehaviour
     {
         if (col.gameObject.tag == "EnemyBullet")
         {
+            //相殺演出
             GameData.instance.GanerateOffsetEffect(col.transform);
+
+            //SE再生
+            SoundManager.instance.PlaySE(SoundDataSO.SeType.Destroy);
+
             Destroy(col.gameObject);
-            Destroy(gameObject);
+
+            if (bulletData.bulletType != BulletDataSO.BulletType.Player_3ways_Piercing)
+            {
+                Destroy(gameObject);
+            }
+            
         }
     }
 

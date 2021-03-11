@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
 
             //弾プレファブ生成
             SetupGenerateBullet(shotDir); //<=  ☆①　送る側の引数
+
+            //SE再生
+            SoundManager.instance.PlaySE(SoundDataSO.SeType.Shot);
         }
     }
 

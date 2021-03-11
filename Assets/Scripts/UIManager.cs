@@ -181,16 +181,22 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void DisplayGameOver()
     {
+        //BGM停止
+        SoundManager.instance.StopBGM();
+
+        //SE再生
+        SoundManager.instance.PlaySE(SoundDataSO.SeType.GameOver);
+
         //アルファ値を1にする。（見える）
         canvasGroupGameOver.DOFade(1, 1f);
 
         string txt = "Game Over";
 
         // DOTween の DOText メソッドを利用して文字列を１文字ずつ順番に同じ表示時間で表示
-        txtGameOver.DOText(txt, 1.5f).SetEase(Ease.Linear);
+        txtGameOver.DOText(txt, 3f).SetEase(Ease.Linear);
 
-        //btnRestart.onClick.AddListener(OnClickRestart);
-        //canvasGroupGameOver.blocksRaycasts = true;
+        
+        StartCoroutine(SwitchBlocksRaycastsGameOver());
     }
 
     /// <summary>
@@ -227,10 +233,21 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public IEnumerator SwitchBlocksRaycasts()
+    public IEnumerator SwitchBlocksRaycastsGameClear()
     {
         //画面タップ許可
         yield return canvasGroupGameClear.blocksRaycasts = true;
+
+    }
+    public IEnumerator SwitchBlocksRaycastsGameOver()
+    {
+        //リスタートボタン生成
+        btnRestart.onClick.AddListener(OnClickRestart);
+
+        yield return new WaitForSeconds(4f);
+
+        //画面タップ許可
+        yield return canvasGroupGameOver.blocksRaycasts = true;
 
     }
 
