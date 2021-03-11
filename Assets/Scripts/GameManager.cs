@@ -101,8 +101,6 @@ public class GameManager : MonoBehaviour
 
         //ゲームクリア演出
         StartCoroutine(GanerateFireWorks());
-
-
     }
 
     /// <summary>
@@ -132,10 +130,10 @@ public class GameManager : MonoBehaviour
             Destroy(fireworks, 3f);
 
             //
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
 
             // TODO 画面タップ許可
-            yield return uIManager.SwitchBlocksRaycasts();
+            yield return uIManager.SwitchBlocksRaycastsGameClear();
 
 
         }

@@ -26,6 +26,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     AudioSource[] bgmSources = new AudioSource[2];
 
+    AudioSource[] seSources = new AudioSource[10];
+
     //クロスフェードフラグ
     bool isCrossFading;
 
@@ -44,10 +46,16 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // BGM用 AudioSource追加
+        //BGM用 AudioSource追加
         bgmSources[0] = gameObject.AddComponent<AudioSource>();
         bgmSources[1] = gameObject.AddComponent<AudioSource>();
         bgmSources[1].volume = 0;
+
+        //SE用 AudioSource追加
+        for (int i = 0; i < seSources.Length; i++)
+        {
+            seSources[i] = gameObject.AddComponent<AudioSource>();
+        }
     }
 
 
@@ -164,5 +172,46 @@ public class SoundManager : MonoBehaviour
     {
         bgmSources[0].Play();
         bgmSources[1].Play();
+    }
+
+    /// <summary>
+    /// SE再生
+    /// </summary>
+    /// <param name="seType"></param>
+    public void PlaySE(SoundDataSO.SeType newSeType)
+    {
+
+        // 再生する SE 用の SeData を取得
+        SoundDataSO.SeData newSeData = null;
+        foreach (SoundDataSO.SeData seData in soundDataSO.seDataList.Where(x => x.seType == newSeType))
+        {
+            newSeData = seData;
+            break;
+        }
+
+        // 再生中ではないAudioSouceをつかってSEを鳴らす
+        foreach (AudioSource source in seSources)
+        {
+            if (source.isPlaying == false)
+            {
+                source.clip = newSeData.seAudioClip;
+                source.volume = newSeData.volume;
+                source.Play();
+                return;
+            }
+        }
+    }
+
+    /// <summary>
+    /// SE停止
+    /// </summary>
+    public void StopSE()
+    {
+        // 全てのSE用のAudioSouceを停止する
+        foreach (AudioSource source in seSources)
+        {
+            source.Stop();
+            source.clip = null;
+        }
     }
 }

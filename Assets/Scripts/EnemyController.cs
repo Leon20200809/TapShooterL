@@ -68,8 +68,6 @@ public class EnemyController : MonoBehaviour
             sliderEnemyHp.transform.localPosition = new Vector3(0, 50, 0);
         }
 
-        
-
         //エネミーHP設定
         maxEnemyHp = this.enemyData.hp;
         enemyHp = maxEnemyHp;
@@ -117,9 +115,9 @@ public class EnemyController : MonoBehaviour
     /// <returns></returns>
     IEnumerator EnemyShot(BulletDataSO.BulletData bulletData)
     {
+        
         while (true)
         {
-
             GameObject enemyBulletObj = Instantiate(enemyBulletPrefab, transform);
             enemyBulletObj.GetComponent<Bullet>().ShotBullet(enemyGenerator.GetPlayerDirection_From_EnemyController(transform.position), bulletData);
 
@@ -129,9 +127,9 @@ public class EnemyController : MonoBehaviour
 
                 enemyBulletObj.transform.SetParent(TransformHelper.TOCTran);
 
-                if (atkCount % 5 ==0) 
+                if (atkCount % 3 == 0) 
                 {
-                    enemyGenerator.GenerateEnemy();
+                    enemyGenerator.GenerateEnemy(EnemyType.Elite);
                 }
             }
 
@@ -159,7 +157,7 @@ public class EnemyController : MonoBehaviour
 
                 //HITエフェクト生成⇒発生場所指定
                 GenerateBulletEffect(col.gameObject.transform);
-
+                SoundManager.instance.PlaySE(SoundDataSO.SeType.Hit);
             }
 
         }
@@ -225,6 +223,7 @@ public class EnemyController : MonoBehaviour
         //エネミーHP判定
         if (enemyHp <= 0)
         {
+
             //撃破演出
             GameData.instance.GanerateDestroyEffect(gameObject.transform);
 
@@ -233,6 +232,14 @@ public class EnemyController : MonoBehaviour
             {
                 //ボス討伐フラグ
                 enemyGenerator.SwitchBossDestroyed(true);
+
+                //SE再生(撃破)
+                SoundManager.instance.PlaySE(SoundDataSO.SeType.GameClear);
+            }
+            else
+            {
+                //SE再生(撃破)
+                SoundManager.instance.PlaySE(SoundDataSO.SeType.Destroy);
             }
 
             //Exp加算処理（内部的に）

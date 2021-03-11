@@ -71,6 +71,7 @@ public class DefenseBase : MonoBehaviour
 
             //エフェクト生成
             GenerateEnemyAtkEffect(col.gameObject.transform);
+            SoundManager.instance.PlaySE(SoundDataSO.SeType.Damage);
 
             //エネミー破棄
             Destroy(col.gameObject);
