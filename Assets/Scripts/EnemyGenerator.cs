@@ -163,8 +163,15 @@ public class EnemyGenerator : MonoBehaviour
     /// <returns></returns>
     IEnumerator GenerateBoss()
     {
+        if (gameManager.isGameUp) yield break;
+
         // TODO 出現演出
         yield return StartCoroutine(gameManager.uIManager.PlayBossAlert(bossEnemyDatas[0]));
+
+        if (gameManager.isGameUp) yield break;
+
+        //ボス用BGM再生
+        SoundManager.instance.PlayBGM(SoundDataSO.BgmType.Boss);
 
         // TODO ボス生成
         GenerateEnemy(EnemyType.Boss);

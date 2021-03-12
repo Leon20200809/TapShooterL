@@ -20,7 +20,7 @@ MonoBehaviour:
     selectSprite: {fileID: 0}
     bulletSprite: {fileID: 21300000, guid: 6636269061ff47b42a797820d7bac983, type: 3}
     bulletSpeed: 300
-    bulletPow: 10
+    bulletPow: 100
     bulletReload: 10.9
     bulletUsableTime: 0
     openExp: 0
