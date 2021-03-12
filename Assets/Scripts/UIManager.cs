@@ -50,8 +50,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Text txtBossAlert;
 
+    [SerializeField]
+    UnityAds unityAds;
+
     public void OnClickNextStage()
     {
+        
         btnNextStage.onClick.RemoveAllListeners();
 
         // TODO 仮リスタート。徐々に難易度をあげていく処理を追加
@@ -121,9 +125,6 @@ public class UIManager : MonoBehaviour
         //
         yield return new WaitForSeconds(0.25f);
 
-        //ボス用BGM再生
-        SoundManager.instance.PlayBGM(SoundDataSO.BgmType.Boss);
-
         //
         canvasGroupBossAlert.transform.parent.gameObject.SetActive(false);
     }
@@ -165,6 +166,8 @@ public class UIManager : MonoBehaviour
             });
 
         btnNextStage.onClick.AddListener(OnClickNextStage);
+
+        unityAds.FadeBtnAds1();
     }
 
     /// <summary>
@@ -190,12 +193,15 @@ public class UIManager : MonoBehaviour
         //アルファ値を1にする。（見える）
         canvasGroupGameOver.DOFade(1, 1f);
 
-        string txt = "Game Over";
+        string txt = "Game Over？\nちょっと上手くいかなかっただけで\n部分的成功です";
 
         // DOTween の DOText メソッドを利用して文字列を１文字ずつ順番に同じ表示時間で表示
         txtGameOver.DOText(txt, 3f).SetEase(Ease.Linear);
 
+        //
+        unityAds.FadeBtnAds2();
         
+
         StartCoroutine(SwitchBlocksRaycastsGameOver());
     }
 

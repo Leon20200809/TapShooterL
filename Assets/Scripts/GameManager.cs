@@ -72,6 +72,9 @@ public class GameManager : MonoBehaviour
         //特殊弾使用可否判定
         bulletSelectManager.JugdeOpenBullet();
 
+        //EXP表示
+        uIManager.DisplayTotalExp(GameData.instance.GetTotalExp());
+
         //ゲーム開始セットアップ完了フラグオン
         isStartSetup = true;
         Debug.Log("GameManager初期セットアップ完了！");

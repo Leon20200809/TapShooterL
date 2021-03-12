@@ -10,15 +10,15 @@ public class PositiveWord : MonoBehaviour
     [SerializeField]
     Text txtPositiveWord;
 
-    List<PositiveWordSO.PositiveWord> positiveWordList;
-
     // Start is called before the first frame update
     void Start()
     {
         GeneratePositiveWord();
     }
 
-
+    /// <summary>
+    /// このゲームのキモ
+    /// </summary>
     void GeneratePositiveWord()
     {
         //表示データ内容初期化
@@ -33,18 +33,15 @@ public class PositiveWord : MonoBehaviour
         displayWord = GameData.instance.positiveWordSO.positiveWordsList[displayNo];
 
         //SOから表示内容を取得表示
-        txtPositiveWord.text = "ポジティブ!";
         txtPositiveWord.text = displayWord.positiveWord;
 
         //表示演出
         transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-30f, 50f), transform.localPosition.y + Random.Range(-10f, 10f), 0);
 
-        transform.DOLocalMoveY(transform.localPosition.y + 80f, 1.5f).OnComplete(() =>
+        transform.DOLocalMoveY(transform.localPosition.y + 90f, 2.5f).OnComplete(() =>
         {  
             //消す
             Destroy(gameObject);
         });
-
-
     }
 }
