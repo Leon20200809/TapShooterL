@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Transform fireworksEffectTran;
 
+    [SerializeField]
+    AdMobManager adMobManager;
+
     //ゲーム開始セットアップ完了フラグ
     public bool isStartSetup;
 
@@ -74,6 +77,9 @@ public class GameManager : MonoBehaviour
 
         //EXP表示
         uIManager.DisplayTotalExp(GameData.instance.GetTotalExp());
+
+        //
+        adMobManager.ShowBN();
 
         //ゲーム開始セットアップ完了フラグオン
         isStartSetup = true;
