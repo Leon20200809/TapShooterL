@@ -21,6 +21,9 @@ public class DefenseBase : MonoBehaviour
     [SerializeField]
     FloatingMessage floatingMessagePrefab;
 
+    [SerializeField]
+    AnimatorController animatorController;
+
     GameManager gameManager;
 
     /// <summary>
@@ -111,16 +114,21 @@ public class DefenseBase : MonoBehaviour
 
         if (playerHp <= 0 && gameManager.isGameUp == false)
         {
+            //死亡アニメーション再生
+            animatorController.PlayAnimaition(AnimatorController.ActionType.die.ToString());
+
             Debug.Log("ゲームオーバー");
 
             // TODO ゲームオーバー処理
             gameManager.SwitchGameUp(true);
-
             gameManager.GameOver_From_DefenseBase();
 
         }
         else
         {
+            //被弾アニメーション再生
+            animatorController.PlayAnimaition(AnimatorController.ActionType.getHit.ToString());
+
             Debug.Log("残HP：" + playerHp);
         }
 

@@ -243,7 +243,7 @@ public class EnemyController : MonoBehaviour
             }
 
             //Exp加算処理（内部的に）
-            GameData.instance.UpdateTotalExp(enemyData.exp);
+            //GameData.instance.UpdateTotalExp(enemyData.exp);
 
             //Exp加算処理（UI更新）
             enemyGenerator.DisplayTotalExp_From_EnemyController(enemyData.exp);

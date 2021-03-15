@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - TemporaryObjectContainer
   - EnemyBullet
+  - GameManager
+  - EnemyGenerator
   layers:
   - Default
   - TransparentFX
