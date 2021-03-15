@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
         //ゲーム内のエネミー、弾オブジェクト削除
         if (isGameUp)
         {
+            playerController.animatorController.PlayAnimaition(AnimatorController.ActionType.win.ToString());
             enemyGenerator.ClearEnemiesList();
             enemyGenerator.DestroyTOC();
         }
