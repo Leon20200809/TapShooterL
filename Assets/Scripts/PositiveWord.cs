@@ -35,6 +35,8 @@ public class PositiveWord : MonoBehaviour
         //SOから表示内容を取得表示
         txtPositiveWord.text = displayWord.positiveWord;
 
+        txtPositiveWord.DOText(txtPositiveWord.text, 1f, scrambleMode: ScrambleMode.All).SetEase(Ease.Linear); 
+
         //表示演出
         transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-30f, 50f), transform.localPosition.y + Random.Range(-10f, 10f), 0);
 

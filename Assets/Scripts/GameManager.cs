@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     [Header("ゲーム終了フラグ")]
     public bool isGameUp;
 
+    //ゲーム開始セットアップ完了フラグ
+    public bool isStartSetup;
+
     [SerializeField]
     DefenseBase defenseBase;
 
@@ -14,7 +17,7 @@ public class GameManager : MonoBehaviour
     PlayerController playerController;
 
     [SerializeField]
-    EnemyGenerator enemyGenerator;
+    public EnemyGenerator enemyGenerator;
 
     [SerializeField]
     Transform tOCTran;
@@ -30,8 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     AdMobManager adMobManager;
 
-    //ゲーム開始セットアップ完了フラグ
-    public bool isStartSetup;
+    
 
 
     // Start is called before the first frame update
@@ -41,6 +43,9 @@ public class GameManager : MonoBehaviour
 
         //ゲーム終了フラグリセット
         SwitchGameUp(false);
+
+        //広告の初期セットアップ
+        adMobManager.SetUpAdMob(this);
 
         //BGM再生
         SoundManager.instance.PlayBGM(SoundDataSO.BgmType.Main);
@@ -76,7 +81,7 @@ public class GameManager : MonoBehaviour
         bulletSelectManager.JugdeOpenBullet();
 
         //EXP表示
-        uIManager.DisplayTotalExp(GameData.instance.GetTotalExp());
+        uIManager.DisplayTotalExp(0);
 
         //
         adMobManager.ShowBN();

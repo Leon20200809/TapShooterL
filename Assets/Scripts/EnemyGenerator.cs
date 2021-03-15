@@ -200,10 +200,13 @@ public class EnemyGenerator : MonoBehaviour
     public void DisplayTotalExp_From_EnemyController(int exp)
     {
         //EXPUI更新
-        gameManager.uIManager.DisplayTotalExp(GameData.instance.GetTotalExp());
+        gameManager.uIManager.DisplayTotalExp(exp);
 
         //EXP取得演出
         gameManager.uIManager.CreateMessageToExp(exp, FloatingMessage.FloatingMessageType.GetExp);
+
+        //
+        GameData.instance.UpdateTotalExp(exp);
 
         //特殊弾使用可否判定
         gameManager.bulletSelectManager.JugdeOpenBullet();

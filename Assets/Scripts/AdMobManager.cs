@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using GoogleMobileAds.Api;
+using UnityEngine.UI;
 
 public class AdMobManager : MonoBehaviour
 {
@@ -12,20 +13,34 @@ public class AdMobManager : MonoBehaviour
 
     // -------広告系
     // 広告IDの切替
+    [SerializeField]
     private int DEVE_NOW = 0;       // 開発中は０　リリース時に１に変更
     // リワード取得可能状態フラグ
+    [SerializeField]
     private bool reward_flg = false;
     // ムービー読み込み管理フラグ
     private bool MV_flg = true;
 
+    [SerializeField]
+    Button btnRewardGameClear;
+    [SerializeField]
+    Button btnRewardGameOver;
+
     //-------------------------------------------------//
 
-    private void Start()
+    /// <summary>
+    /// 疑似スタートメソッド、AdMob
+    /// </summary>
+    /// <param name="gameManager"></param>
+    public void SetUpAdMob(GameManager gameManager)
     {
+        this.gameManager = gameManager;
+
         // 初期化 Google Mobile Ads SDK.
         MobileAds.Initialize(initStatus => { });
         // バナーリクエスト
         this.RequestBanner();
+
     }
 
     // バナーの初期化
@@ -141,6 +156,10 @@ public class AdMobManager : MonoBehaviour
     // 動画の再生
     public void ShowMV()
     {
+        if (reward_flg) return;
+        btnRewardGameClear.gameObject.SetActive(false);
+        btnRewardGameOver.gameObject.SetActive(false);
+
 #if UNITY_EDITOR
         HandleUserEarnedReward(null, null);
         HandleRewardedAdClosed(null, null);
@@ -207,12 +226,18 @@ public class AdMobManager : MonoBehaviour
         reward_flg = true;
     }
 
-    // リワードの取得
+    /// <summary>
+    /// リワード報酬
+    /// </summary>
     private void Reward_Exe()
     {
-        GameData.instance.UpdateTotalExp(3000);
-        GameData.instance.GetTotalExp();
+        int rewardExp = 1500;
+        GameData.instance.UpdateTotalExp(rewardExp);
+        GameObject eg = GameObject.FindGameObjectWithTag("EnemyGenerator");
+        eg.GetComponent<EnemyGenerator>().DisplayTotalExp_From_EnemyController(rewardExp);
+
         Debug.Log("報酬獲得！");
+
     }
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using System.Xml.Schema;
 
 public class UIManager : MonoBehaviour
 {
@@ -50,9 +50,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Text txtBossAlert;
 
-    [SerializeField]
-    UnityAds unityAds;
-
     public void OnClickNextStage()
     {
         
@@ -83,14 +80,14 @@ public class UIManager : MonoBehaviour
             .OnComplete(() =>
             {
                 //
-                imgGameStart.transform.DOLocalJump(Vector3.zero, 300f, 2, 2f).SetEase(Ease.Linear);
+                imgGameStart.transform.DOLocalJump(new Vector3(0, 400f, 0), 300f, 2, 2f).SetEase(Ease.Linear);
             });
 
         //
         yield return new WaitForSeconds(5.5f);
 
         //
-        imgGameStart.transform.DOLocalJump(new Vector3(1500, 0, 0), 200f, 6, 1.5f).SetEase(Ease.Linear);
+        imgGameStart.transform.DOLocalJump(new Vector3(1500, 400, 0), 200f, 6, 1.5f).SetEase(Ease.Linear);
     }
 
     /// <summary>
@@ -111,13 +108,13 @@ public class UIManager : MonoBehaviour
         canvasGroupBossAlert.transform.parent.gameObject.SetActive(true);
 
         //テキスト表示
-        txtBossAlert.text = enemyData.name + "を撃退せよ！ ";
+        txtBossAlert.text = enemyData.name + "を撃退せよ!\n \n" + enemyData.discription;
 
         //
         canvasGroupBossAlert.DOFade(1, 0.5f).SetLoops(10, LoopType.Yoyo);
 
         //
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(7f);
 
         //
         canvasGroupBossAlert.DOFade(0, 0.25f);
@@ -167,7 +164,6 @@ public class UIManager : MonoBehaviour
 
         btnNextStage.onClick.AddListener(OnClickNextStage);
 
-        unityAds.FadeBtnAds1();
     }
 
     /// <summary>
@@ -199,8 +195,6 @@ public class UIManager : MonoBehaviour
         txtGameOver.DOText(txt, 3f).SetEase(Ease.Linear);
 
         //
-        unityAds.FadeBtnAds2();
-        
 
         StartCoroutine(SwitchBlocksRaycastsGameOver());
     }
@@ -221,9 +215,25 @@ public class UIManager : MonoBehaviour
     /// EXPUI更新
     /// </summary>
     /// <param name="totalExp"></param>
-    public void DisplayTotalExp(int totalExp)
+    public void DisplayTotalExp(int exp)
     {
-        txtTotalExp.text = totalExp.ToString();
+        //txtTotalExp.text = totalExp.ToString();
+        //
+        int currentExp = GameData.instance.GetTotalExp();
+
+        int displayExp = exp + currentExp;
+
+        //ラムダ式　currentExpからdisplayExpまで加算アニメーション
+        DOTween.To(
+            () => currentExp,
+            (x) =>
+            {
+                currentExp = x;
+                txtTotalExp.text = x.ToString();
+            },
+            displayExp, 1f);
+
+
     }
 
     /// <summary>

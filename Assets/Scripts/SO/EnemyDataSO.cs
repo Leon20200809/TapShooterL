@@ -44,5 +44,9 @@ public class EnemyDataSO : ScriptableObject
 
         [Range(2f, 60f)]
         public float moveDuration;
+
+        //説明文
+        [SerializeField, Multiline(4)]
+        public string discription;
     }
 }

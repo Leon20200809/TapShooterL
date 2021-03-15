@@ -23,6 +23,11 @@ public class Bullet : MonoBehaviour
 
     Vector3 nearEnemyPos;
 
+    int ofsetExp = 10;
+
+    const string Tag_EnemyBullet = "EnemyBullet";
+    const string Tag_EnemyGenerator = "EnemyGenerator";
+
 
     /// <summary>
     /// 弾発射
@@ -100,8 +105,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "EnemyBullet")
+        if (col.gameObject.tag == Tag_EnemyBullet)
         {
+
             //相殺演出
             GameData.instance.GanerateOffsetEffect(col.transform);
 
@@ -114,6 +120,13 @@ public class Bullet : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+
+
+            //相殺弾EXP取得//Exp加算処理
+            GameData.instance.UpdateTotalExp(ofsetExp);
+
+            GameObject eg = GameObject.FindGameObjectWithTag(Tag_EnemyGenerator);
+            eg.GetComponent<EnemyGenerator>().DisplayTotalExp_From_EnemyController(ofsetExp);
             
         }
     }

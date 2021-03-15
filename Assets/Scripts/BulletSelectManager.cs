@@ -155,14 +155,15 @@ public class BulletSelectManager : MonoBehaviour
     /// <param name="costExp"></param>
     public void SelectedBulletCostPayment(int costExp)
     {
-        //特殊弾コスト減算
-        GameData.instance.UpdateTotalExp(-costExp);
 
         //UI更新
-        gameManager.uIManager.DisplayTotalExp(GameData.instance.GetTotalExp());
+        gameManager.uIManager.DisplayTotalExp(-costExp);
 
         //UI表示
         gameManager.uIManager.CreateMessageToExp(-costExp, FloatingMessage.FloatingMessageType.BulletCost);
+
+        //特殊弾コスト減算
+        GameData.instance.UpdateTotalExp(-costExp);
 
         //特殊弾使用可否判定
         JugdeOpenBullet();
