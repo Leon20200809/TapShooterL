@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     Bullet bulletPrefab;
 
     [SerializeField]
-    AnimatorController animatorController;
+    public AnimatorController animatorController;
 
     GameManager gameManager;
 

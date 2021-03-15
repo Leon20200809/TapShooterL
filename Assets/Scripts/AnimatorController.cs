@@ -12,6 +12,7 @@ public class AnimatorController : MonoBehaviour
         attack,
         getHit,
         die,
+        win,
     }
 
     /// <summary>
@@ -26,11 +27,14 @@ public class AnimatorController : MonoBehaviour
             animator.ResetTrigger(ActionType.getHit.ToString());
             animator.SetBool(ActionType.die.ToString(), true);
         }
+        else if (actionType == ActionType.win.ToString())
+        {
+            animator.SetTrigger(ActionType.win.ToString());
+        }
         else
         {
             animator.ResetTrigger(ActionType.attack.ToString());
             animator.SetTrigger(actionType);
         }
     }
-
 }
