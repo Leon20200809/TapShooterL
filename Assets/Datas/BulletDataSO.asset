@@ -65,8 +65,8 @@ MonoBehaviour:
     liberalType: 1
     bulletType: 0
     elementType: 0
-    selectSprite: {fileID: 21300000, guid: 80bb8586f10d4ca4a9ae447f38d87cd1, type: 3}
-    bulletSprite: {fileID: 21300000, guid: 80bb8586f10d4ca4a9ae447f38d87cd1, type: 3}
+    selectSprite: {fileID: 21300000, guid: 0170ff942eaceb540a65c82314141c1c, type: 3}
+    bulletSprite: {fileID: 21300000, guid: 0170ff942eaceb540a65c82314141c1c, type: 3}
     bulletSpeed: 70
     bulletPow: 10
     bulletReload: 2.5
@@ -77,8 +77,8 @@ MonoBehaviour:
     liberalType: 2
     bulletType: 1
     elementType: 0
-    selectSprite: {fileID: 21300000, guid: e7306f9803ee82a47ae17aed07dd8660, type: 3}
-    bulletSprite: {fileID: 21300000, guid: e7306f9803ee82a47ae17aed07dd8660, type: 3}
+    selectSprite: {fileID: 21300000, guid: 7dd703acd9ef89a46b24ebee9c793ec9, type: 3}
+    bulletSprite: {fileID: 21300000, guid: 7dd703acd9ef89a46b24ebee9c793ec9, type: 3}
     bulletSpeed: 80
     bulletPow: 15
     bulletReload: 1.5

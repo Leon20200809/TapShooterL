@@ -63,8 +63,6 @@ public class EnemyMoveEventSO : ScriptableObject
         //ボス挙動　一定位置まで移動⇒左右にループ移動
         tran.DOLocalMoveY(-500f, 3f).OnComplete(() =>
         {
-            Debug.Log("水平移動");
-
             Sequence sequence = DOTween.Sequence();
             sequence.Append(tran.DOLocalMoveX(tran.localPosition.x + 500f, 2.5f).SetEase(Ease.Linear));
             sequence.Append(tran.DOLocalMoveX(tran.localPosition.x + -500f, 5f).SetEase(Ease.Linear));

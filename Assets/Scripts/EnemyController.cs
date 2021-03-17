@@ -36,7 +36,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     FloatingMessage floatingMessagePrefab;
 
-
+    [SerializeField]
+    BossDiscription bossDiscriptionPrefab;
 
     EnemyGenerator enemyGenerator;
 
@@ -65,7 +66,9 @@ public class EnemyController : MonoBehaviour
             transform.localScale = Vector3.one * 2f;
 
             //HPゲージ位置調整
-            sliderEnemyHp.transform.localPosition = new Vector3(0, 50, 0);
+            sliderEnemyHp.transform.localPosition = new Vector3(0, 150, 0);
+
+
         }
 
         //エネミーHP設定
@@ -79,6 +82,7 @@ public class EnemyController : MonoBehaviour
         imgEnemy.sprite = this.enemyData.enemySprite;
 
         DisplayEnemyHp();
+
     }
 
 
@@ -96,6 +100,8 @@ public class EnemyController : MonoBehaviour
 
         //移動開始
         enemyMoveEvent.Invoke(transform, enemyData.moveDuration);
+
+        if (enemyData.enemyType == EnemyType.Boss) CreateBossDiscription();
 
         //攻撃手段設定
         if (bulletData != null && bulletData.bulletType != BulletDataSO.BulletType.None)
@@ -147,7 +153,7 @@ public class EnemyController : MonoBehaviour
         if (col.gameObject.tag == "Bullet")
         {
             //ログ表示
-            Debug.Log("接触判定；" + col.gameObject.tag);
+            //Debug.Log("接触判定；" + col.gameObject.tag);
 
             //プレイヤーの弾情報取得
             if (col.gameObject.TryGetComponent(out Bullet playerBullet))
@@ -223,6 +229,8 @@ public class EnemyController : MonoBehaviour
         //エネミーHP判定
         if (enemyHp <= 0)
         {
+            //コライダーオフ
+            GetComponent<CapsuleCollider2D>().enabled = false;
 
             //撃破演出
             GameData.instance.GanerateDestroyEffect(gameObject.transform);
@@ -249,7 +257,8 @@ public class EnemyController : MonoBehaviour
             enemyGenerator.DisplayTotalExp_From_EnemyController(enemyData.exp);
 
             //エネミー破棄
-            Destroy(gameObject);
+            transform.DOScale(new Vector3(0, 0, 0), 1f);
+            Destroy(gameObject, 1f);
             Debug.Log("エネミーを倒した！");
 
         }
@@ -276,8 +285,17 @@ public class EnemyController : MonoBehaviour
 
         // フロート表示の生成。生成位置は EnemySet ゲームオブジェクト内の FloatingMessageTran ゲームオブジェクトの位置(子オブジェクト)
         FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingDamageTran, false);
+        floatingMessage.transform.SetParent(TransformHelper.TOCTran);
 
         // 生成したフロート表示の設定用メソッドを実行。引数として、バレットの攻撃力値とフロート表示の種類を指定して渡す
         floatingMessage.DisplayFloatingMessage(bulletPower, FloatingMessage.FloatingMessageType.EnemyDamage, isWeekness);
     }
+
+    void CreateBossDiscription()
+    {
+        Instantiate(bossDiscriptionPrefab, enemyGenerator.transform, false).DisplayBossDiscription(enemyData);
+    }
+
+
+
 }

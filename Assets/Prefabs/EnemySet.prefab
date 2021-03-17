@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData:
     no: 0
+    name: 
     hp: 0
     power: 0
     exp: 0
@@ -114,12 +115,14 @@ MonoBehaviour:
     bulletType: 0
     moveType: 0
     moveDuration: 0
+    discription: 
   imgEnemy: {fileID: 7943149633688428959}
   sliderEnemyHp: {fileID: 7943149632715130699}
   bulletEffectPrefab: {fileID: 7906057700657667004, guid: 8d7e7663c65699240b23acea1536055c, type: 3}
   enemyBulletPrefab: {fileID: 1964718252411700308, guid: db037c7a88a31ce448cc7b96fb6eb20b, type: 3}
   floatingDamageTran: {fileID: 8787507867125803089}
   floatingMessagePrefab: {fileID: -3482728527075159554, guid: f67e939113672ab45bbf46fb83a21cb6, type: 3}
+  bossDiscriptionPrefab: {fileID: 8541095629163264791, guid: bb51aa7c847cdba408cd12685017d752, type: 3}
 --- !u!1 &7943149632715130701
 GameObject:
   m_ObjectHideFlags: 0

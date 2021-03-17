@@ -122,7 +122,7 @@ public class GameData : MonoBehaviour
 
         offsetEffect.transform.SetParent(TransformHelper.TOCTran);
         Destroy(offsetEffect, 3f);
-        Debug.Log("弾相殺");
+        //Debug.Log("弾相殺");
     }
 
     /// <summary>
