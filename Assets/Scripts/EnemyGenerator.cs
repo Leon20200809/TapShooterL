@@ -39,6 +39,8 @@ public class EnemyGenerator : MonoBehaviour
 
     GameManager gameManager;
 
+    
+
     /// <summary>
     /// エネミーの種類のListを作成、値を戻す
     /// </summary>
@@ -151,7 +153,6 @@ public class EnemyGenerator : MonoBehaviour
 
         //追加設定
         enemyController.AdditionalSetUpEnemy(this, gameManager.bulletSelectManager.GetBulletData(enemyData.bulletType));
-        Debug.Log(gameManager.bulletSelectManager.GetBulletData(enemyData.bulletType));
 
         //リスト追加 クリア後の全削除用
         enemiesList.Add(enemyController);
@@ -166,7 +167,7 @@ public class EnemyGenerator : MonoBehaviour
         if (gameManager.isGameUp) yield break;
 
         // TODO 出現演出
-        yield return StartCoroutine(gameManager.uIManager.PlayBossAlert(bossEnemyDatas[0]));
+        yield return StartCoroutine(gameManager.uIManager.PlayBossAlert());
 
         if (gameManager.isGameUp) yield break;
 

@@ -109,7 +109,7 @@ public class Bullet : MonoBehaviour
         {
 
             //相殺演出
-            GameData.instance.GanerateOffsetEffect(col.transform);
+            GameData.instance.GanerateDestroyEffect(col.transform);
 
             //SE再生
             SoundManager.instance.PlaySE(SoundDataSO.SeType.Destroy);

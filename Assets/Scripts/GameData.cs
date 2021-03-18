@@ -25,7 +25,7 @@ public class GameData : MonoBehaviour
     float damageRetio;
 
     [Header("エフェクト")]
-    public GameObject offsetEfectPrefab;
+    public PositiveWord positiveWordEffectPrefab;
 
     public PositiveWordSO positiveWordSO;
 
@@ -113,27 +113,14 @@ public class GameData : MonoBehaviour
     }
 
     /// <summary>
-    /// 弾相殺エフェクト生成
-    /// </summary>
-    /// <param name="offsetTran"></param>
-    public void GanerateOffsetEffect(Transform offsetTran)
-    {
-        GameObject offsetEffect = Instantiate(offsetEfectPrefab, offsetTran, false);
-
-        offsetEffect.transform.SetParent(TransformHelper.TOCTran);
-        Destroy(offsetEffect, 3f);
-        Debug.Log("弾相殺");
-    }
-
-    /// <summary>
     /// 撃破エフェクト生成
     /// </summary>
     /// <param name="destroyTran"></param>
     public void GanerateDestroyEffect(Transform destroyTran)
     {
-        GameObject destroyEffect = Instantiate(offsetEfectPrefab, destroyTran, false);
+        Instantiate(positiveWordEffectPrefab, destroyTran, false).transform.SetParent(TransformHelper.TOCTran);
 
-        destroyEffect.transform.SetParent(TransformHelper.TOCTran);
-        Destroy(destroyEffect, 3f);
+        
+        //Destroy(destroyEffect, 3f);
     }
 }

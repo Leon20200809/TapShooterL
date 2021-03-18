@@ -1791,7 +1791,7 @@ MonoBehaviour:
     openExp: 0
     discription: 
   damageRetio: 1.2
-  offsetEfectPrefab: {fileID: 8441952121782860288, guid: 3e3a4919c2ed20743a429c5b7c21ca61, type: 3}
+  positiveWordEffectPrefab: {fileID: 9023139201768653592, guid: 3e3a4919c2ed20743a429c5b7c21ca61, type: 3}
   positiveWordSO: {fileID: 11400000, guid: ed151b2f644b13149b02075e60e6898b, type: 2}
 --- !u!4 &1046914885
 Transform:

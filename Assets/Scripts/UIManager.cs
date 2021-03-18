@@ -102,19 +102,19 @@ public class UIManager : MonoBehaviour
     /// ボス出現演出
     /// </summary>
     /// <returns></returns>
-    public IEnumerator PlayBossAlert(EnemyDataSO.EnemyData enemyData)
+    public IEnumerator PlayBossAlert()
     {
         //
         canvasGroupBossAlert.transform.parent.gameObject.SetActive(true);
 
         //テキスト表示
-        txtBossAlert.text = enemyData.name + "を撃退せよ!\n \n" + enemyData.discription;
+        txtBossAlert.text = "やばいヤツが来る気配";//enemyData.name + "を撃退せよ!\n \n" + enemyData.discription;
 
         //
         canvasGroupBossAlert.DOFade(1, 0.5f).SetLoops(10, LoopType.Yoyo);
 
         //
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(3f);
 
         //
         canvasGroupBossAlert.DOFade(0, 0.25f);
@@ -267,4 +267,5 @@ public class UIManager : MonoBehaviour
 
     }
 
+    
 }
