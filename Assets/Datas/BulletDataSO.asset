@@ -81,7 +81,7 @@ MonoBehaviour:
     bulletSprite: {fileID: 21300000, guid: 7dd703acd9ef89a46b24ebee9c793ec9, type: 3}
     bulletSpeed: 80
     bulletPow: 15
-    bulletReload: 1.5
+    bulletReload: 0.7
     bulletUsableTime: 0
     openExp: 0
     discription: 

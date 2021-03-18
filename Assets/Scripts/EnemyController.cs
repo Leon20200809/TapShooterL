@@ -39,6 +39,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     BossDiscription bossDiscriptionPrefab;
 
+    [SerializeField]
+    Image imgBossScale;
+
     EnemyGenerator enemyGenerator;
 
     /// <summary>
@@ -63,7 +66,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             //サイズ変更
-            transform.localScale = Vector3.one * 2f;
+            imgBossScale.transform.localScale *= 2f;
 
             //HPゲージ位置調整
             sliderEnemyHp.transform.localPosition = new Vector3(0, 150, 0);
@@ -291,6 +294,9 @@ public class EnemyController : MonoBehaviour
         floatingMessage.DisplayFloatingMessage(bulletPower, FloatingMessage.FloatingMessageType.EnemyDamage, isWeekness);
     }
 
+    /// <summary>
+    /// ボス出現時の説明文
+    /// </summary>
     void CreateBossDiscription()
     {
         Instantiate(bossDiscriptionPrefab, enemyGenerator.transform, false).DisplayBossDiscription(enemyData);

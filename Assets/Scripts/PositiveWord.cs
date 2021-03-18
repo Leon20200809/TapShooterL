@@ -19,7 +19,7 @@ public class PositiveWord : MonoBehaviour
     /// <summary>
     /// このゲームのキモ
     /// </summary>
-    void GeneratePositiveWord()
+    public void GeneratePositiveWord()
     {
         //表示データ内容初期化
         PositiveWordSO.PositiveWord displayWord = null;

@@ -123,6 +123,7 @@ MonoBehaviour:
   floatingDamageTran: {fileID: 8787507867125803089}
   floatingMessagePrefab: {fileID: -3482728527075159554, guid: f67e939113672ab45bbf46fb83a21cb6, type: 3}
   bossDiscriptionPrefab: {fileID: 8541095629163264791, guid: bb51aa7c847cdba408cd12685017d752, type: 3}
+  imgBossScale: {fileID: 7943149633688428959}
 --- !u!1 &7943149632715130701
 GameObject:
   m_ObjectHideFlags: 0
