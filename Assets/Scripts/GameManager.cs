@@ -83,6 +83,9 @@ public class GameManager : MonoBehaviour
         //EXP表示
         uIManager.DisplayTotalExp(0);
 
+        //ゲームクリア回数表示
+        uIManager.DisplayClearCount();
+
         //
         adMobManager.ShowBN();
 

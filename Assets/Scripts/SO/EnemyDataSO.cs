@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using OneLine;
 
 [CreateAssetMenu(fileName = "EnemyDataSO", menuName = "Create EnemyDataSO")]
 
 public class EnemyDataSO : ScriptableObject
 {
+    [OneLineWithHeader]
     public List<EnemyData> enemyDataList = new List<EnemyData>();
 
     [Serializable]

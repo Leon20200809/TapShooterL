@@ -50,10 +50,19 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Text txtBossAlert;
 
+    [SerializeField]
+    Text txtClearCount;
+
+    const string Tag_BossDiscription = "BossDiscription";
+
     public void OnClickNextStage()
     {
-        
+        //重複タップ防止
         btnNextStage.onClick.RemoveAllListeners();
+
+        //ゲームクリア回数加算
+        GameData.instance.ClearCount++;
+        DisplayClearCount();
 
         // TODO 仮リスタート。徐々に難易度をあげていく処理を追加
         string sceneName = SceneManager.GetActiveScene().name;
@@ -62,6 +71,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickRestart()
     {
+        //重複タップ防止
         btnNextStage.onClick.RemoveAllListeners();
 
         string sceneName = SceneManager.GetActiveScene().name;
@@ -108,7 +118,7 @@ public class UIManager : MonoBehaviour
         canvasGroupBossAlert.transform.parent.gameObject.SetActive(true);
 
         //テキスト表示
-        txtBossAlert.text = "やばいヤツが来る気配";//enemyData.name + "を撃退せよ!\n \n" + enemyData.discription;
+        txtBossAlert.text = "やばいヤツが来る気配・・・！？";//enemyData.name + "を撃退せよ!\n \n" + enemyData.discription;
 
         //
         canvasGroupBossAlert.DOFade(1, 0.5f).SetLoops(10, LoopType.Yoyo);
@@ -142,6 +152,9 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void DisplayGameClear()
     {
+        //ゲームクリアメッセージ表示
+        DisplayGameClearMessage();
+
         //アルファ値を1にする。（見える）
         canvasGroupGameClear.DOFade(1, 0.25f)
 
@@ -167,6 +180,28 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
+    /// ゲームクリアメッセージ表示
+    /// </summary>
+    void DisplayGameClearMessage()
+    {
+        GameObject gameObjectBossDiscription = GameObject.FindGameObjectWithTag(Tag_BossDiscription);
+        Text txtBossDiscription = gameObjectBossDiscription.GetComponent<Text>();
+
+        txtBossDiscription.text = "不必要な人間を遠ざける事により、大切な自分の時間を守ることができました。おめでとうございます！　　     ";
+        gameObjectBossDiscription.transform.DOLocalMoveX(-7000, 15f).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear).From(new Vector3(1547f, 593, 0));
+    }
+
+
+
+    /// <summary>
+    /// ゲームクリア回数表示
+    /// </summary>
+    public void DisplayClearCount()
+    {
+        txtClearCount.text = "Stage : " + GameData.instance.ClearCount.ToString();
+    }
+
+    /// <summary>
     /// ゲームオーバー画像のアルファ値を0にする。（透明）
     /// </summary>
     public void HideGameOver()
@@ -189,7 +224,10 @@ public class UIManager : MonoBehaviour
         //アルファ値を1にする。（見える）
         canvasGroupGameOver.DOFade(1, 1f);
 
-        string txt = "Game Over？\nちょっと上手くいかなかっただけで\n部分的成功です";
+        //ゲームオーバーメッセージ表示
+        DisplayGameOverMessage();
+
+        string txt = "Game Over？\n　\n気になる単語があれば調べてみましょう";
 
         // DOTween の DOText メソッドを利用して文字列を１文字ずつ順番に同じ表示時間で表示
         txtGameOver.DOText(txt, 3f).SetEase(Ease.Linear);
@@ -198,6 +236,19 @@ public class UIManager : MonoBehaviour
 
         StartCoroutine(SwitchBlocksRaycastsGameOver());
     }
+
+    /// <summary>
+    /// ゲームオーバーメッセージ表示
+    /// </summary>
+    void DisplayGameOverMessage()
+    {
+        GameObject gameObjectBossDiscription = GameObject.FindGameObjectWithTag(Tag_BossDiscription);
+        Text txtBossDiscription = gameObjectBossDiscription.GetComponent<Text>();
+
+        txtBossDiscription.text = "ちょっとうまくいかなかっただけです。所謂『部分的成功』です。　　     ";
+        gameObjectBossDiscription.transform.DOLocalMoveX(-7000, 15f).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear).From(new Vector3(1547f, 593, 0));
+    }
+
 
     /// <summary>
     /// playerHpのUI更新

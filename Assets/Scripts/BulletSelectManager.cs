@@ -45,6 +45,7 @@ public class BulletSelectManager : MonoBehaviour
         //特定のENUMタイプのみのリスト作成
         List<BulletDataSO.BulletData> playerBulletDatas = new List<BulletDataSO.BulletData>();
 
+        //Where(x => x)の意味：コレクション内の値のうちtrueのものを探す ※Where(x => !x)は(x => x == false)
         //作ったリストにデータを格納 BulletDataSO.LiberalType.Player
         playerBulletDatas = bulletDataSO.bulletDataList.Where(x => x.liberalType == BulletDataSO.LiberalType.Player).ToList();
 
