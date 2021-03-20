@@ -44,6 +44,8 @@ public class EnemyController : MonoBehaviour
 
     EnemyGenerator enemyGenerator;
 
+    const string Tag_BossDiscription = "BossDiscription";
+
     /// <summary>
     /// エネミーの移動メソッドが入る
     /// </summary>
@@ -299,7 +301,22 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     void CreateBossDiscription()
     {
-        Instantiate(bossDiscriptionPrefab, enemyGenerator.transform, false).DisplayBossDiscription(enemyData);
+        //Instantiate(bossDiscriptionPrefab, enemyGenerator.transform, false).DisplayBossDiscription(enemyData);
+
+        GameObject gameObjectBossDiscription = GameObject.FindGameObjectWithTag(Tag_BossDiscription);
+        Text txtBossDiscription = gameObjectBossDiscription.GetComponent<Text>();
+
+        txtBossDiscription.text = enemyData.name + "がやってきた!!     " + enemyData.discription;
+        gameObjectBossDiscription.transform.DOLocalMoveX(-9000, 25f).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+
+
+
+        //DOTween.Sequence()
+        //    .Append(txtBossDiscription.DOText(enemyData.name + "がやってきた!!     " + enemyData.discription, 1f, scrambleMode: ScrambleMode.None))
+        //    .Append(gameObjectBossDiscription.transform.DOLocalMoveX(-8000, 2f).SetSpeedBased(true).SetLoops(-1, LoopType.Restart));
+
+
+
     }
 
 

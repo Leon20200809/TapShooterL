@@ -48,7 +48,7 @@ MonoBehaviour:
     bulletType: 1
     moveType: 2
     moveDuration: 5
-    discription: "\u4F1A\u8A71\u306E\u7B2C\u4E00\u58F0\u304C\n\u5426\u5B9A\u304B\u3089\u306F\u3058\u307E\u308B\n\u3044\u3064\u3067\u3082\u81EA\u5206\u306E\u610F\u898B\u304C\n\u6B63\u3057\u3044\u3068\u601D\u3063\u3066\u3044\u308B\n\u4ECA\u3059\u3050\u8DDD\u96E2\u3092\u304A\u304D\u307E\u3057\u3087\u3046"
+    discription: "\u4F1A\u8A71\u306E\u7B2C\u4E00\u58F0\u304C\u5426\u5B9A\u304B\u3089\u306F\u3058\u307E\u308B\u3000\u3044\u3064\u3067\u3082\u81EA\u5206\u306E\u610F\u898B\u304C\u6B63\u3057\u3044\u3068\u601D\u3063\u3066\u3044\u308B\u3000\u4ECA\u3059\u3050\u8DDD\u96E2\u3092\u304A\u304D\u307E\u3057\u3087\u3046"
   - no: 3
     name: "\u30AC\u30B9\u6E9C\u308A\uFF08\u767D\uFF09"
     hp: 50
@@ -77,7 +77,7 @@ MonoBehaviour:
     name: "\u30C1\u30D3\u5426\u5B9A\u4EBA"
     hp: 20
     power: 30
-    exp: 20
+    exp: 10
     enemySprite: {fileID: 21300000, guid: 2011de10211f0964cb3d5e786797442e, type: 3}
     enemyType: 1
     elementType: 0
@@ -120,12 +120,12 @@ MonoBehaviour:
     bulletType: 1
     moveType: 2
     moveDuration: 50.5
-    discription: "\u81EA\u5206\u306E\u975E\u3092\u8A8D\u3081\u305F\u308A\n\u76F8\u624B\u3092\u5C0A\u91CD\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u306A\u3044\n\u81EA\u5206\u306E\u512A\u4F4D\u6027\u3092\u793A\u3059\u884C\u70BA\u304C\u5927\u597D\u304D\n\u4ECA\u3059\u3050\u8DDD\u96E2\u3092\u304A\u304D\u307E\u3057\u3087\u3046"
+    discription: "\u81EA\u5206\u306E\u975E\u3092\u8A8D\u3081\u305F\u308A\u76F8\u624B\u3092\u5C0A\u91CD\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u306A\u3044\u3000\u81EA\u5206\u306E\u512A\u4F4D\u6027\u3092\u793A\u3059\u884C\u70BA\u304C\u5927\u597D\u304D\u3000\u4ECA\u3059\u3050\u8DDD\u96E2\u3092\u304A\u304D\u307E\u3057\u3087\u3046"
   - no: 9
     name: "\u30C1\u30D3\u30B4\u30EA\u30E9\uFF08\u9ED2\uFF09"
     hp: 50
     power: 20
-    exp: 30
+    exp: 10
     enemySprite: {fileID: 21300000, guid: 686008eba1bbb614eb657b869cadaed6, type: 3}
     enemyType: 1
     elementType: 0
@@ -144,12 +144,12 @@ MonoBehaviour:
     bulletType: 1
     moveType: 2
     moveDuration: 48
-    discription: "\u5618\u3068\u8CAC\u4EFB\u8EE2\u5AC1\u304C\u5927\u597D\u304D\n\u81EA\u5206\u306B\u975E\u304C\u3042\u3063\u305F\u3068\u304D\u306E\n\u8A00\u3044\u8A33\u304C\u3068\u3066\u3082\u4E0A\u624B\n\u4ECA\u3059\u3050\u8DDD\u96E2\u3092\u304A\u304D\u307E\u3057\u3087\u3046\n"
+    discription: "\u5618\u3068\u8CAC\u4EFB\u8EE2\u5AC1\u304C\u5927\u597D\u304D\u3000\u81EA\u5206\u306B\u975E\u304C\u3042\u3063\u305F\u3068\u304D\u306E\u8A00\u3044\u8A33\u304C\u3068\u3066\u3082\u4E0A\u624B\u3000\u4ECA\u3059\u3050\u8DDD\u96E2\u3092\u304A\u304D\u307E\u3057\u3087\u3046\n"
   - no: 11
     name: "\u30C1\u30D3\u4ED6\u8CAC\u601D\u8003"
-    hp: 50
+    hp: 30
     power: 20
-    exp: 30
+    exp: 10
     enemySprite: {fileID: 21300000, guid: ed47f4687a74d9148909cd52d3855421, type: 3}
     enemyType: 1
     elementType: 0
@@ -161,19 +161,19 @@ MonoBehaviour:
     name: "\u30CD\u30AC\u30C6\u30A3\u30D6\u661F\u4EBA"
     hp: 2200
     power: 20
-    exp: 30
+    exp: 300
     enemySprite: {fileID: 21300000, guid: bc1cb152493c9764a972cd1681017574, type: 3}
     enemyType: 2
     elementType: 0
     bulletType: 1
     moveType: 2
     moveDuration: 46.3
-    discription: "\u53E3\u3092\u958B\u3051\u3070\u4E0D\u5E73\u4E0D\u6E80\u3070\u304B\u308A\n\u8AB0\u304B\u306E\u60AA\u53E3\u3070\u304B\u308A\u8A00\u3063\u3066\u3044\u308B\n\u805E\u3044\u3066\u3044\u308B\u65B9\u3082\u6C17\u304C\u91CD\u3044\n\u4ECA\u3059\u3050\u8DDD\u96E2\u3092\u304A\u304D\u307E\u3057\u3087\u3046"
+    discription: "\u53E3\u3092\u958B\u3051\u3070\u4E0D\u5E73\u4E0D\u6E80\u3070\u304B\u308A\u3000\u306A\u305C\u304B\u8AB0\u304B\u306E\u60AA\u53E3\u3092\u8A00\u3046\u3000\u805E\u3044\u3066\u3044\u308B\u65B9\u3082\u6C17\u304C\u91CD\u3044\u3000\u4ECA\u3059\u3050\u8DDD\u96E2\u3092\u304A\u304D\u307E\u3057\u3087\u3046"
   - no: 13
     name: "\u30C1\u30D3\u30CD\u30AC\u30C6\u30A3\u30D6"
-    hp: 50
+    hp: 30
     power: 20
-    exp: 30
+    exp: 10
     enemySprite: {fileID: 21300000, guid: bc1cb152493c9764a972cd1681017574, type: 3}
     enemyType: 1
     elementType: 0
@@ -186,22 +186,72 @@ MonoBehaviour:
     hp: 2800
     power: 20
     exp: 300
-    enemySprite: {fileID: 21300000, guid: 1f17d5cd33500d04484248990937fc21, type: 3}
+    enemySprite: {fileID: 21300000, guid: 7ebcdcdc699404741bd662e436816299, type: 3}
     enemyType: 2
     elementType: 0
     bulletType: 1
     moveType: 2
     moveDuration: 12.2
-    discription: "\u3046\u307E\u304F\u3044\u304F\u308F\u3051\u306A\u3044\u7684\u306A\n\u8A00\u8449\u306B\u3088\u3063\u3066\u76F8\u624B\u306E\u5922\u3084\u76EE\u6A19\u3092\n\u58CA\u305D\u3046\u3068\u3057\u3066\u304F\u308B\u53E3\u9054\u8005"
+    discription: "\u3046\u307E\u304F\u3044\u304F\u308F\u3051\u306A\u3044\u7684\u306A
+      \u8A00\u8449\u306B\u3088\u3063\u3066\u76F8\u624B\u306E\u5922\u3084\u76EE\u6A19\u3092
+      \u58CA\u305D\u3046\u3068\u3057\u3066\u304F\u308B\u53E3\u9054\u8005 \u4ECA\u3059\u3050\u8DDD\u96E2\u3092\u304A\u304D\u307E\u3057\u3087\u3046"
   - no: 15
-    name: "\u30C1\u30D3\u30CD\u30AC\u30C6\u30A3\u30D6"
-    hp: 50
+    name: "\u3042\u304F\u307E\uFF08\u9752\uFF09"
+    hp: 30
     power: 20
-    exp: 30
-    enemySprite: {fileID: 21300000, guid: bc1cb152493c9764a972cd1681017574, type: 3}
-    enemyType: 1
+    exp: 10
+    enemySprite: {fileID: 21300000, guid: fdd20124cd30a7844acf73f260f1d3fa, type: 3}
+    enemyType: 0
+    elementType: 0
+    bulletType: 0
+    moveType: 1
+    moveDuration: 22
+    discription: 
+  - no: 16
+    name: "\u304F\u3082\uFF08\u8D64\uFF09"
+    hp: 30
+    power: 20
+    exp: 10
+    enemySprite: {fileID: 21300000, guid: ec15ffc3761d82f4d9e8238d85c3b12e, type: 3}
+    enemyType: 0
+    elementType: 0
+    bulletType: 7
+    moveType: 1
+    moveDuration: 13
+    discription: 
+  - no: 17
+    name: "\u304F\u3082\uFF08\u7DD1\uFF09"
+    hp: 30
+    power: 20
+    exp: 10
+    enemySprite: {fileID: 21300000, guid: 3c3d20afb09ffe34b9e4880762bad8af, type: 3}
+    enemyType: 0
+    elementType: 0
+    bulletType: 7
+    moveType: 1
+    moveDuration: 14
+    discription: 
+  - no: 18
+    name: "\u76EE\u7389\uFF08\u9752\uFF09"
+    hp: 30
+    power: 20
+    exp: 10
+    enemySprite: {fileID: 21300000, guid: cd8099e06b0bcaa4ab3efca0edaa0bd1, type: 3}
+    enemyType: 0
     elementType: 0
     bulletType: 7
     moveType: 0
-    moveDuration: 12.2
+    moveDuration: 11
+    discription: 
+  - no: 19
+    name: "\u76EE\u7389\uFF08\u7D2B\uFF09"
+    hp: 30
+    power: 20
+    exp: 10
+    enemySprite: {fileID: 21300000, guid: b087fe01947f9cb4b97e2e66d03220ed, type: 3}
+    enemyType: 0
+    elementType: 0
+    bulletType: 7
+    moveType: 0
+    moveDuration: 9
     discription: 

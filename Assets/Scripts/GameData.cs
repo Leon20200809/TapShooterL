@@ -18,6 +18,9 @@ public class GameData : MonoBehaviour
     [SerializeField, Header("トータルEXP")]
     int totalExp;
 
+    [SerializeField, Header("ゲームクリア回数")]
+    int clearCount = 1;
+
     [SerializeField, Header("現在の弾種")]
     BulletDataSO.BulletData currentBullet;
 
@@ -109,6 +112,22 @@ public class GameData : MonoBehaviour
         get
         {
             return damageRetio;
+        }
+    }
+
+    /// <summary>
+    /// ゲームクリア回数（プロパティ）
+    /// </summary>
+    public int ClearCount
+    {
+        set
+        {
+            clearCount = value;
+        }
+
+        get
+        {
+            return clearCount;
         }
     }
 
