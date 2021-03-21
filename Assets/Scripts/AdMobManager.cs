@@ -150,7 +150,7 @@ public class AdMobManager : MonoBehaviour
 
         AdRequest request = new AdRequest.Builder().Build();
         this.rewardedAd.LoadAd(request);
-        Debug.Log("Load開始");
+        //Debug.Log("Load開始");
     }
 
     // 動画の再生
@@ -183,7 +183,7 @@ public class AdMobManager : MonoBehaviour
     // 広告リクエストが正常に読み込まれたときに呼び出されます
     public void HandleRewardedAdLoaded(object sender, System.EventArgs args)
     {
-        Debug.Log("Load成功");
+        //Debug.Log("Load成功");
         MV_flg = true;
         rewardedAd.Show();
     }
@@ -191,27 +191,27 @@ public class AdMobManager : MonoBehaviour
     // 広告要求が読み込めなかったときに呼び出されます
     public void HandleRewardedAdFailedToLoad(object sender, AdErrorEventArgs args)
     {
-        Debug.Log("Load失敗");
+        //Debug.Log("Load失敗");
         MV_flg = true;
     }
 
     // 広告が表示されたときに呼び出されます
     public void HandleRewardedAdOpening(object sender, System.EventArgs args)
     {
-        Debug.Log("広告開始");
+        //Debug.Log("広告開始");
     }
 
     // 広告要求が表示されなかったときに呼び出されます
     public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
     {
-        Debug.Log("広告失敗");
+        //Debug.Log("広告失敗");
         MV_flg = true;
     }
 
     // 広告が閉じたときに呼び出されます
     public void HandleRewardedAdClosed(object sender, System.EventArgs args)
     {
-        Debug.Log("広告終了");
+        //Debug.Log("広告終了");
 
         if (reward_flg)
         {
@@ -236,7 +236,7 @@ public class AdMobManager : MonoBehaviour
         GameObject eg = GameObject.FindGameObjectWithTag("EnemyGenerator");
         eg.GetComponent<EnemyGenerator>().DisplayTotalExp_From_EnemyController(rewardExp);
 
-        Debug.Log("報酬獲得！");
+        //Debug.Log("報酬獲得！");
 
     }
 

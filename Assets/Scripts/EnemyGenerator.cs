@@ -103,12 +103,12 @@ public class EnemyGenerator : MonoBehaviour
 
             //エネミー出現数カウントアップ
             generateCount++;
-            Debug.Log("エネミー出現数" + generateCount);
+            //Debug.Log("エネミー出現数" + generateCount);
 
             if (generateCount >= maxEnemyGenerateCounts)
             {
                 isGenerateEnd = true;
-                Debug.Log("エネミー生成完了、ボス出現");
+                //Debug.Log("エネミー生成完了、ボス出現");
 
                 //ボス生成
                 StartCoroutine(GenerateBoss());
@@ -186,7 +186,6 @@ public class EnemyGenerator : MonoBehaviour
     {
         //ボス討伐フラグオン
         isBossDestroyed = isSwitch;
-        Debug.Log("ボスを倒した！");
 
         gameManager.SwitchGameUp(isBossDestroyed);
 

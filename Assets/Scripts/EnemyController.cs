@@ -113,8 +113,6 @@ public class EnemyController : MonoBehaviour
         {
             //飛び道具発射
             StartCoroutine(EnemyShot(bulletData));
-            Debug.Log("エネミー飛び道具発射");
-
         }
 
     }
@@ -209,7 +207,6 @@ public class EnemyController : MonoBehaviour
         //ダメージ倍率チェック
         if (ElementCompatibilityHelper.GetElementCompati(playerBullet.bulletData.elementType, enemyData.elementType))
         {
-            Debug.Log("<color=blue>ボーナス倍率適用!!</color>");
             //☆小数点以下切り捨て処理☆
             bulletDamage = Mathf.FloorToInt(playerBullet.bulletData.bulletPow * GameData.instance.DamageRetio);
             isWeekness = true;
@@ -264,8 +261,6 @@ public class EnemyController : MonoBehaviour
             //エネミー破棄
             transform.DOScale(new Vector3(0, 0, 0), 1f);
             Destroy(gameObject, 1f);
-            Debug.Log("エネミーを倒した！");
-
         }
 
         //被弾種判定

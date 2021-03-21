@@ -90,7 +90,7 @@ public class BulletSelectDetail : MonoBehaviour
     /// </summary>
     public void OnClickBulletSelect()
     {
-        Debug.Log("弾選択");
+        //Debug.Log("弾選択");
 
         //使用中の弾をゲーム内データに登録
         GameData.instance.SetUpBulletData(bulletData);
@@ -102,7 +102,7 @@ public class BulletSelectDetail : MonoBehaviour
         //☆重複タップ防止策☆
         if (!isDefaultBullet && imgUsableTimeGauge.fillAmount == 0)
         {
-            Debug.Log("<color=yellow>" + bulletData.bulletType + "</color>");
+            //Debug.Log("<color=yellow>" + bulletData.bulletType + "</color>");
             if (bulletData.bulletType == BulletDataSO.BulletType.Player_Blaze)
             {
                 Time.timeScale = 0.4f;

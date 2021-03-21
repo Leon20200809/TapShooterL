@@ -9,7 +9,6 @@ public static class TransformHelper
     public static void SetTOCTran(Transform newTran)
     {
         tOCTran = newTran;
-        Debug.Log("位置情報一時保存");
     }
 
     public static Transform GetTOCTran()
