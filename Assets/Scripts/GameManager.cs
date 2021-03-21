@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
 
         //ゲーム開始セットアップ完了フラグオン
         isStartSetup = true;
-        Debug.Log("GameManager初期セットアップ完了！");
+        //Debug.Log("GameManager初期セットアップ完了！");
     }
 
     /// <summary>

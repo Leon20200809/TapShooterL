@@ -83,12 +83,12 @@ public class BulletSelectManager : MonoBehaviour
             if (bulletSelectDetailList[i].bulletData.no == bulletNo)
             {
                 bulletSelectDetailList[i].ChengeShotBullet(true);
-                Debug.Log("装填中のバレットの No " + bulletNo);
+                //Debug.Log("装填中のバレットの No " + bulletNo);
             }
             else
             {
                 bulletSelectDetailList[i].ChengeShotBullet(false);
-                Debug.Log("未装填のバレットの No " + bulletNo);
+                //Debug.Log("未装填のバレットの No " + bulletNo);
 
             }
         }
@@ -105,7 +105,7 @@ public class BulletSelectManager : MonoBehaviour
             if (bulletSelectDetail.isDefaultBullet == true)
             {
                 bulletSelectDetail.OnClickBulletSelect();
-                Debug.Log("初期バレットを装填中のバレットとして設定");
+                //Debug.Log("初期バレットを装填中のバレットとして設定");
                 Time.timeScale = 1f;
 
                 return;
@@ -182,12 +182,9 @@ public class BulletSelectManager : MonoBehaviour
         // 引数の bulletType と同じ BulletType が登録されている BulletData を探す
         foreach (BulletDataSO.BulletData bulletData in bulletDataSO.bulletDataList.Where(x => x.bulletType == bulletType))
         {
-            Debug.Log(bulletType);
-
             // 合致した BulletData を戻す
             return bulletData;
         }
-        Debug.Log(bulletType);
 
         // どれも合致しない場合は null を戻す
         return null;

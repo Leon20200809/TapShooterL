@@ -51,7 +51,6 @@ public class DefenseBase : MonoBehaviour
             //接触コライダーOFF
             col.GetComponent<CapsuleCollider2D>().enabled = false;
 
-            Debug.Log("接触判定；" + col.gameObject.tag);
 
             //エネミー本体の場合
             if (col.gameObject.TryGetComponent(out EnemyController enemyController))
@@ -63,7 +62,6 @@ public class DefenseBase : MonoBehaviour
             if (col.gameObject.TryGetComponent(out Bullet bullet))
             {
                 damage = JudgeDamageToElementType(bullet.bulletData.bulletPow, bullet.bulletData.elementType);
-                Debug.Log(damage);
             }
 
             //
@@ -105,7 +103,6 @@ public class DefenseBase : MonoBehaviour
 
         //拠点HP減らす
         playerHp -= damage;
-        Debug.Log("エネミーの攻撃力 : " + damage);
 
         //拠点HPの上限下限値定義（負の値になるバグ回避のため）
         playerHp = Mathf.Clamp(playerHp, 0, maxPlayerHp);
@@ -117,8 +114,6 @@ public class DefenseBase : MonoBehaviour
             //死亡アニメーション再生
             animatorController.PlayAnimaition(AnimatorController.ActionType.die.ToString());
 
-            Debug.Log("ゲームオーバー");
-
             // TODO ゲームオーバー処理
             gameManager.SwitchGameUp(true);
             gameManager.GameOver_From_DefenseBase();
@@ -128,8 +123,6 @@ public class DefenseBase : MonoBehaviour
         {
             //被弾アニメーション再生
             animatorController.PlayAnimaition(AnimatorController.ActionType.getHit.ToString());
-
-            Debug.Log("残HP：" + playerHp);
         }
 
     }
@@ -167,8 +160,6 @@ public class DefenseBase : MonoBehaviour
             // エネミーの攻撃属性がプレイヤー側の弱点であるなら、ダメージ値に倍率をかける
             lastDamage = Mathf.FloorToInt(attackPower * GameData.instance.DamageRetio);
             isWeekness = true;
-
-            Debug.Log("弱点");
         }
 
         // 計算後のダメージ値を戻す

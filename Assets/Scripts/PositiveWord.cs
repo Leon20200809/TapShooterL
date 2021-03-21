@@ -26,7 +26,6 @@ public class PositiveWord : MonoBehaviour
 
         //登録済みワードの総数取得
         int displayNo = GameData.instance.positiveWordSO.positiveWordsList.Count;
-        Debug.Log(displayNo);
 
         //抽選
         displayNo = Random.Range(0, displayNo);
