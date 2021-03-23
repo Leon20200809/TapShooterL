@@ -1290,7 +1290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18692f4ef5be2394386081fe84914fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEVE_NOW: 0
+  DEVE_NOW: 1
   reward_flg: 0
   btnRewardGameClear: {fileID: 1431027452}
   btnRewardGameOver: {fileID: 799762904}
